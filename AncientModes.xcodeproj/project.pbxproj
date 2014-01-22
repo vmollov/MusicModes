@@ -21,6 +21,13 @@
 		C00724DB18874136001446A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C00724BD18874136001446A5 /* UIKit.framework */; };
 		C00724E318874136001446A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C00724E118874136001446A5 /* InfoPlist.strings */; };
 		C00724E518874136001446A5 /* AncientModesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724E418874136001446A5 /* AncientModesTests.m */; };
+		C00724F01887534F001446A5 /* AMMode.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724EF1887534F001446A5 /* AMMode.m */; };
+		C0CF99AE188EAC82002949DD /* AMDataAndSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CF99AD188EAC82002949DD /* AMDataAndSettings.m */; };
+		C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */; };
+		C0CFA2B6188AD25F00583812 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B5188AD25F00583812 /* Sounds */; };
+		C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B7188AD27100583812 /* Piano.aupreset */; };
+		C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */; };
+		C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2BB188AD42C00583812 /* Trombone.aupreset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,16 @@
 		C00724E018874136001446A5 /* AncientModesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AncientModesTests-Info.plist"; sourceTree = "<group>"; };
 		C00724E218874136001446A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C00724E418874136001446A5 /* AncientModesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AncientModesTests.m; sourceTree = "<group>"; };
+		C00724EE1887534F001446A5 /* AMMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMode.h; sourceTree = "<group>"; };
+		C00724EF1887534F001446A5 /* AMMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMode.m; sourceTree = "<group>"; };
+		C0CF99AC188EAC82002949DD /* AMDataAndSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDataAndSettings.h; sourceTree = "<group>"; };
+		C0CF99AD188EAC82002949DD /* AMDataAndSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDataAndSettings.m; sourceTree = "<group>"; };
+		C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesPlayer.h; sourceTree = "<group>"; };
+		C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesPlayer.m; sourceTree = "<group>"; };
+		C0CFA2B5188AD25F00583812 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		C0CFA2B7188AD27100583812 /* Piano.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano.aupreset; sourceTree = "<group>"; };
+		C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
+		C0CFA2BB188AD42C00583812 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +134,7 @@
 				C00724CB18874136001446A5 /* Main.storyboard */,
 				C00724CE18874136001446A5 /* AMViewController.h */,
 				C00724CF18874136001446A5 /* AMViewController.m */,
+				C00724F118875366001446A5 /* ModeClasses */,
 				C00724D118874136001446A5 /* Images.xcassets */,
 				C00724C018874136001446A5 /* Supporting Files */,
 			);
@@ -126,6 +144,10 @@
 		C00724C018874136001446A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0CFA2B5188AD25F00583812 /* Sounds */,
+				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
+				C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */,
+				C0CFA2BB188AD42C00583812 /* Trombone.aupreset */,
 				C00724C118874136001446A5 /* AncientModes-Info.plist */,
 				C00724C218874136001446A5 /* InfoPlist.strings */,
 				C00724C518874136001446A5 /* main.m */,
@@ -150,6 +172,19 @@
 				C00724E118874136001446A5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C00724F118875366001446A5 /* ModeClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C00724EE1887534F001446A5 /* AMMode.h */,
+				C00724EF1887534F001446A5 /* AMMode.m */,
+				C0CF99AC188EAC82002949DD /* AMDataAndSettings.h */,
+				C0CF99AD188EAC82002949DD /* AMDataAndSettings.m */,
+				C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */,
+				C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */,
+			);
+			name = ModeClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +265,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C00724D218874136001446A5 /* Images.xcassets in Resources */,
+				C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */,
 				C00724C418874136001446A5 /* InfoPlist.strings in Resources */,
+				C0CFA2B6188AD25F00583812 /* Sounds in Resources */,
 				C00724CD18874136001446A5 /* Main.storyboard in Resources */,
+				C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */,
+				C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */,
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,
 				C00724D018874136001446A5 /* AMViewController.m in Sources */,
+				C0CF99AE188EAC82002949DD /* AMDataAndSettings.m in Sources */,
+				C00724F01887534F001446A5 /* AMMode.m in Sources */,
 				C00724C618874136001446A5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +503,7 @@
 				C00724EA18874136001446A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C00724EB18874136001446A5 /* Build configuration list for PBXNativeTarget "AncientModesTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +512,7 @@
 				C00724ED18874136001446A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
