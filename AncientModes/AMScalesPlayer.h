@@ -11,11 +11,14 @@
 
 @interface AMScalesPlayer : NSObject
 
-@property MusicPlayer player;
 @property (readonly) NSString *currentSample;
+@property Float64 tempo;
+
+-(id)initWithTempo: (Float64) tempo;
 
 -(void)playSequence:(MusicSequence) sequence;
 -(void)stop;
+-(void)changeTempoTo: (Float64) newTempo;
 
 -(void)loadPianoSample;
 -(void)loadTromboneSample;

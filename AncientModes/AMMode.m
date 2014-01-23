@@ -9,18 +9,10 @@
 #import "AMMode.h"
 #import "AMDataAndSettings.h"
 
-@interface AMMode()
-@property MusicTrack tempoTrack;
-@end
-
 @implementation AMMode
-
 #pragma mark
-#pragma mark Constructors
+#pragma mark Object Management
 -(id) initWithName:(NSString *)name{
-    return [self initWithName:name tempo:120];
-}
--(id)initWithName:(NSString *)name tempo:(Float64)tempo{
     NSDictionary *scaleProperties = [AMDataAndSettings getPropertiesForMode:name];
     if(scaleProperties == nil) [NSException raise:@"Invalid Mode" format:@"%@ is not a recognized mode or it does not exist in the main property list file", name];
     
@@ -29,7 +21,6 @@
     _modeDescription = [scaleProperties objectForKey:@"Description"];
     _pattern = [scaleProperties objectForKey:@"Pattern"];
     _patternDesc = [scaleProperties objectForKey:@"PatternDesc"];
-    _tempo = tempo;
     
     //if the descending version of the pattern is not present in the properties then build it by reversing the ascending pattern
     if(self.patternDesc == NULL) {
@@ -44,7 +35,7 @@
 }
 
 #pragma mark
-#pragma mark Object Methods
+#pragma mark Scale Sequence
 -(MusicSequence)buildScaleSequenceFromNote:(NSString *)note{
     return [self buildScaleSequenceFromMIDINote:[AMDataAndSettings getMIDIValueForNote:note]];
 }
@@ -58,10 +49,6 @@
     NewMusicSequence(&theScaleSequence);
     MusicSequenceNewTrack(theScaleSequence, &theScaleTrack);
     
-    //get the tempo track and set the tempo
-    MusicSequenceGetTempoTrack(theScaleSequence, &_tempoTrack);
-    MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, self.tempo);
-        
     //create the notes' common attributes
     MIDINoteMessage aNote;
     aNote.channel = 1;
@@ -99,14 +86,6 @@
     
     return theScaleSequence;
 }
--(void)changeTempoTo:(Float64)newTempo{
-    //change the tempo in the tempo track
-    MusicTrackNewExtendedTempoEvent(self.tempoTrack, 0.0, newTempo);
-    [self setTempo:newTempo];
-}
-
-#pragma mark
-#pragma mark Object Management
 -(void)disposeScaleSequence:(MusicSequence) sequence{
     UInt32 trackCount;
     MusicSequenceGetTrackCount(sequence, &trackCount); //we will dispose of all tracks in the sequence

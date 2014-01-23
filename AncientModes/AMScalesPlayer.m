@@ -10,15 +10,24 @@
 #import "AMDataAndSettings.h"
 
 @interface AMScalesPlayer()
+@property MusicPlayer player;
+
 @property AUGraph processingGraph;
 @property double graphSampleRate;
 @property AudioUnit samplerUnit;
 @property AudioUnit ioUnit;
+
+@property MusicTrack tempoTrack;
 @end
 
 @implementation AMScalesPlayer
 
+#pragma mark
+#pragma mark Object Management
 -(id)init{
+    return [self initWithTempo:120];
+}
+-(id)initWithTempo: (Float64) tempo{
     //initialize the player
     NewMusicPlayer(&_player);
     
@@ -31,6 +40,7 @@
     _currentSample = [AMDataAndSettings getSampleSetting];
     //Load the default sample from settings
     [self loadSample:_currentSample];
+    [self changeTempoTo:tempo];
     
     return self;
 }
@@ -57,6 +67,9 @@
 #pragma mark
 #pragma mark Player Controls
 -(void)playSequence:(MusicSequence)sequence{
+    //get the tempo track and set the tempo
+    MusicSequenceGetTempoTrack(sequence, &_tempoTrack);
+    MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, self.tempo);
     //set the graph to the sequence
     MusicSequenceSetAUGraph(sequence, self.processingGraph);
     // Load the sequence into the music player
@@ -69,7 +82,11 @@
 -(void)stop{
     MusicPlayerStop(_player);
 }
-
+-(void)changeTempoTo:(Float64)newTempo{
+    //change the tempo in the tempo track
+    if(_tempoTrack != nil) MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, newTempo);
+    [self setTempo:newTempo];
+}
 
 #pragma mark
 #pragma mark Audio Configuration Methods
