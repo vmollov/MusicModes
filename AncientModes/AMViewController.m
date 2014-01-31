@@ -7,12 +7,8 @@
 //
 
 #import "AMViewController.h"
-#import "AMMode.h"
-#import "AMDataAndSettings.h"
+#import "AMSettingsAndUtilities.h"
 
-@interface AMViewController ()
-@property AMMode *theMode;
-@end
 
 @implementation AMViewController
 
@@ -20,7 +16,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _thePlayer = [[AMScalesPlayer alloc] init];
+    _thePlayer.delegate = self;
     
+    _test = [[AMEarTest alloc] initWithNumberOfChallenges:5];
+    [self displayChallenge];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,11 +30,7 @@
 }
 
 - (IBAction)playScale:(id)sender {
-    [self playWithSample:@""];
-}
-
-- (IBAction)stopPlayer:(id)sender {
-    [_thePlayer stop];
+    [self playWithSample:@"Piano"];
 }
 
 - (IBAction)playWithVibraphone:(id)sender {
@@ -44,25 +40,56 @@
 - (IBAction)playWithTrombone:(id)sender {
     [self playWithSample:@"Trombone"];
 }
+- (IBAction)stopPlayer:(id)sender {
+    [_thePlayer stop];
+}
 
 - (IBAction)tempoChange:(id)sender {
-    [self.theMode changeTempoTo:(Float64)[self.slTempo value]];
+    [self.thePlayer changeTempoTo:(Float64)[self.slTempo value]];
     self.lbTempo.text = [NSString stringWithFormat:@"Tempo: %.f", [self.slTempo value]];
+}
+
+- (IBAction)checkPlaying:(id)sender {
+    self.lbPlaying.text = [NSString stringWithFormat:@"%@", [_thePlayer isPlaying]? @"Yes":@"No"];
+    
+}
+
+- (IBAction)previousChallenge:(id)sender {
+    [_test getPreviousChallenge];
+    [self displayChallenge];
+}
+
+- (IBAction)nextChallenge:(id)sender {
+    [_test getNextChallenge];
+    [self displayChallenge];
+    
+}
+-(void)displayChallenge{
+    AMTestChallenge *challenge = [_test getCurrentChallenge];
+    _txtScale.text = [NSString stringWithFormat:@"%@ %@", challenge.scale.baseNote, challenge.scale.scaleMode.name];
+    if(_test.hasNextChallenge) _btnNext.enabled = true;
+    else _btnNext.enabled = false;
+    if(_test.hasPreviousChallenge) _btnPrevious.enabled = true;
+    else _btnPrevious.enabled = false;
 }
 
 -(void)playWithSample: (NSString *) theSample{
     [self.txtScale resignFirstResponder];
     @try{
-        self.theMode =[[AMMode alloc] initWithName:_txtScale.text tempo:(Float64)[self.slTempo value]];
-        _thePlayer = [[AMScalesPlayer alloc] init];
+        if([theSample isEqualToString:@"Piano"])[_thePlayer loadPianoSample];
         if([theSample isEqualToString:@"Vibraphone"])[_thePlayer loadVibraphoneSample];
         if([theSample isEqualToString:@"Trombone"])[_thePlayer loadTromboneSample];
-        [_thePlayer playSequence:[self.theMode buildScaleSequenceFromNote:@"Cs7"]];
+        
+        MusicSequence theScaleSeq = [[_test.getCurrentChallenge scale] scaleSequence];
+        [_thePlayer playSequence:theScaleSeq];
     }
     @catch(NSException *e){
         _txtScale.text = [NSString stringWithFormat:@"Exception has occured: %@", e];
     }
-
 }
 
+-(void)playerStoppedPlayback{
+    self.lbPlaying.text = @"Just Stopped";
+   
+}
 @end

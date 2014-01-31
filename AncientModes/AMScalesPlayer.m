@@ -7,7 +7,7 @@
 //
 
 #import "AMScalesPlayer.h"
-#import "AMDataAndSettings.h"
+#import "AMSettingsAndUtilities.h"
 
 @interface AMScalesPlayer()
 @property MusicPlayer player;
@@ -28,64 +28,118 @@
     return [self initWithTempo:120];
 }
 -(id)initWithTempo: (Float64) tempo{
-    //initialize the player
-    NewMusicPlayer(&_player);
-    
-    //setup the audio session and the AUGraph
-    if (![self setupAudioSession]) { NSLog(@"Could not set up audio session"); return false;}
-    if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
-    [self configureAndStartAudioProcessingGraph:self.processingGraph];
-    
-    //set up this object's properties
-    _currentSample = [AMDataAndSettings getSampleSetting];
-    //Load the default sample from settings
-    [self loadSample:_currentSample];
-    [self changeTempoTo:tempo];
+    if(self = [super init]){
+        //initialize the player
+        NewMusicPlayer(&_player);
+        
+        //setup the audio session and the AUGraph
+        if (![self setupAudioSession]) { NSLog(@"Could not set up audio session"); return false;}
+        if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
+        [self configureAndStartAudioProcessingGraph:self.processingGraph];
+        
+        //set up this object's properties
+        _currentSample = [AMSettingsAndUtilities getSampleSetting];
+        //Load the default sample from settings
+        [self loadSample:_currentSample];
+        [self changeTempoTo:tempo];
+    }//if(self = [super init])
     
     return self;
-}
--(void)dealloc{
-    NSLog(@"Deallocating AMScalesPlayer");
-    DisposeMusicPlayer(_player);
 }
 
 #pragma mark
 #pragma mark Samples Control Methods
 -(void)loadPianoSample{
-    _currentSample = @"Piano";
-    [self loadSample:self.currentSample];
+    if(![self.currentSample isEqualToString:@"Piano"]){
+        _currentSample = @"Piano";
+        [self loadSample:self.currentSample];
+    }
 }
 -(void)loadTromboneSample{
-    _currentSample = @"Trombone";
-    [self loadSample:self.currentSample];
+    if(![self.currentSample isEqualToString:@"Trombone"]){
+        _currentSample = @"Trombone";
+        [self loadSample:self.currentSample];
+    }
 }
 -(void)loadVibraphoneSample{
-    _currentSample = @"Vibraphone";
-    [self loadSample:self.currentSample];
+    if(![self.currentSample isEqualToString:@"Vibraphone"]){
+        _currentSample = @"Vibraphone";
+        [self loadSample:self.currentSample];
+    }
 }
 
 #pragma mark
-#pragma mark Player Controls
+#pragma mark Player Controls and Status
 -(void)playSequence:(MusicSequence)sequence{
-    //get the tempo track and set the tempo
-    MusicSequenceGetTempoTrack(sequence, &_tempoTrack);
-    MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, self.tempo);
+    //stop player if it is currently playing
+    if ([self isPlaying]) [self stop];
+    
     //set the graph to the sequence
     MusicSequenceSetAUGraph(sequence, self.processingGraph);
     // Load the sequence into the music player
     MusicPlayerSetSequence(_player, sequence);
+    
+    //get the tempo track and set the tempo
+    MusicSequenceGetTempoTrack(sequence, &_tempoTrack);
+    [self changeTempoTo:self.tempo];
+    
     //prepare playback
     MusicPlayerPreroll(_player);
     //start playback
     MusicPlayerStart(_player);
+    
+    [self autoStopAtSequenceEnd];
 }
+
 -(void)stop{
     MusicPlayerStop(_player);
+    [_delegate playerStoppedPlayback];
 }
 -(void)changeTempoTo:(Float64)newTempo{
     //change the tempo in the tempo track
     if(_tempoTrack != nil) MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, newTempo);
     [self setTempo:newTempo];
+}
+-(BOOL)isPlaying{
+    Boolean isPlaying;
+    MusicPlayerIsPlaying(_player, &isPlaying);
+    return isPlaying;
+}
+
+#pragma mark
+#pragma mark Private Utility Methods
+-(void)autoStopAtSequenceEnd{
+    if([self getPlayerTimeInBeats] > [self getLoadedSequenceLength]) [self stop];
+    else [self performSelector:@selector(autoStopAtSequenceEnd)  withObject:self afterDelay:1.0];
+}
+-(Float64)getPlayerTimeInBeats{
+    Float64 currentTime;
+    MusicPlayerGetTime(_player, &currentTime);
+    return currentTime;
+}
+-(MusicTimeStamp)getLoadedSequenceLength{
+    MusicSequence theSequence;
+    MusicPlayerGetSequence(_player, &theSequence);
+
+    //get the sequence time lenght
+    UInt32 tracks;
+    MusicTimeStamp sequenceLength = 0.0f;
+    
+    if (MusicSequenceGetTrackCount(theSequence, &tracks) != noErr) return sequenceLength;
+    
+    for (UInt32 i = 0; i < tracks; i++) {
+        MusicTrack track = NULL;
+        MusicTimeStamp trackLen = 0;
+        
+        UInt32 trackLenSize = sizeof(trackLen);
+        
+        MusicSequenceGetIndTrack(theSequence, i, &track);
+        MusicTrackGetProperty(track, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenSize);
+        
+        if (sequenceLength < trackLen)
+            sequenceLength = trackLen;
+    }
+    return sequenceLength;
 }
 
 #pragma mark

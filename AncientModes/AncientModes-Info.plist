@@ -6,10 +6,14 @@
 	<dict>
 		<key>PlayOptions</key>
 		<dict>
+			<key>PlayDescending</key>
+			<string>YES</string>
+			<key>PlayAscending</key>
+			<false/>
 			<key>Sample</key>
 			<string>Piano</string>
 			<key>Octaves</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>ModeDefinitions</key>
 		<dict>
