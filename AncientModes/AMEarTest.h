@@ -12,6 +12,7 @@
 @interface AMEarTest : NSObject
 @property NSArray *challenges;
 @property int challengeIndex;
+@property (readonly) int correctAnswersCount;
 
 -(id) initWithNumberOfChallenges: (int) number;
 
@@ -20,4 +21,7 @@
 -(AMTestChallenge *) getPreviousChallenge;
 -(BOOL) hasNextChallenge;
 -(BOOL) hasPreviousChallenge;
+
+-(BOOL) checkAnswer: (NSString *) answer;
+-(double) getFinalTestScorePercentage;
 @end

@@ -24,6 +24,15 @@
 
 #pragma mark
 #pragma mark Object Management
++(id)sharedInstance{
+    static AMScalesPlayer *sharedPlayer = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedPlayer = [[self alloc] init];
+    });
+    
+    return sharedPlayer;
+}
 -(id)init{
     return [self initWithTempo:120];
 }

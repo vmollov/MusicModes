@@ -31,10 +31,10 @@
 				</array>
 				<key>Description</key>
 				<string></string>
-				<key>SameAs</key>
+				<key>Alias</key>
 				<string>Ionian</string>
 			</dict>
-			<key>HarmonicMajor</key>
+			<key>Harmonic Major</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -49,7 +49,7 @@
 				<key>Description</key>
 				<string>A major with a lowered 6th</string>
 			</dict>
-			<key>DoubleHarmonicMajor</key>
+			<key>Double Harmonic Major</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -64,9 +64,9 @@
 				<key>Description</key>
 				<string>A major with a lowered 2nd and 6th</string>
 			</dict>
-			<key>Minor</key>
+			<key>Natural Minor</key>
 			<dict>
-				<key>SameAs</key>
+				<key>Alias</key>
 				<string>Aeolian</string>
 				<key>Pattern</key>
 				<array>
@@ -81,7 +81,7 @@
 				<key>Description</key>
 				<string></string>
 			</dict>
-			<key>HarmonicMinor</key>
+			<key>Harmonic Minor</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -96,7 +96,7 @@
 				<key>Description</key>
 				<string>A minor with raised 7th</string>
 			</dict>
-			<key>MelodicMinor</key>
+			<key>Melodic Minor</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -121,7 +121,7 @@
 				<key>Description</key>
 				<string>A mknor with raised 6th and 7th in ascending.  Decending is the same as Natural Minor</string>
 			</dict>
-			<key>DoubleHarmonicMinor</key>
+			<key>Double Harmonic Minor</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -138,7 +138,7 @@
 			</dict>
 			<key>Ionian</key>
 			<dict>
-				<key>SameAs</key>
+				<key>Alias</key>
 				<string>Major</string>
 				<key>Pattern</key>
 				<array>
@@ -215,8 +215,8 @@
 			</dict>
 			<key>Aeolian</key>
 			<dict>
-				<key>SameAs</key>
-				<string>Minor</string>
+				<key>Alias</key>
+				<string>Natural Minor</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -245,8 +245,10 @@
 				<key>Description</key>
 				<string>A minor mode with lowered 2nd and 5th</string>
 			</dict>
-			<key>MajorPentatonic</key>
+			<key>Major Pentatonic</key>
 			<dict>
+				<key>VariationOf</key>
+				<string>Minor Pentatonic</string>
 				<key>Description</key>
 				<string>Major Pentatonic Scale</string>
 				<key>Pattern</key>
@@ -258,8 +260,10 @@
 					<string>3</string>
 				</array>
 			</dict>
-			<key>MinorPentatonic</key>
+			<key>Minor Pentatonic</key>
 			<dict>
+				<key>VariationOf</key>
+				<string>Major Pentatonic</string>
 				<key>Description</key>
 				<string>Minor Pentatonic Scale</string>
 				<key>Pattern</key>
@@ -271,8 +275,10 @@
 					<string>2</string>
 				</array>
 			</dict>
-			<key>WholeHalfOctatonic</key>
+			<key>Whole-Half Octatonic</key>
 			<dict>
+				<key>VariationOf</key>
+				<string>Half-Whole Octatonic</string>
 				<key>Pattern</key>
 				<array>
 					<string>2</string>
@@ -287,8 +293,10 @@
 				<key>Description</key>
 				<string>Build by alternating whole step and half step</string>
 			</dict>
-			<key>HalfWholeOctatonic</key>
+			<key>Half-Whole Octatonic</key>
 			<dict>
+				<key>VariationOf</key>
+				<string>Whole-Half Octatonic</string>
 				<key>Pattern</key>
 				<array>
 					<string>1</string>

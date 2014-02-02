@@ -21,7 +21,7 @@
     if(self = [super init]){
         @try{
             _baseMIDINote = baseMIDINote;
-            _scaleMode = [[AMMode alloc] initWithName: modeName];
+            _mode = [[AMMode alloc] initWithName: modeName];
         }@catch (NSException *e) {
             NSLog(@"Exception occured: %@", e);
             return nil;
@@ -39,18 +39,22 @@
     self.baseMIDINote = [AMSettingsAndUtilities getMIDIValueForNote:note];
 }
 #pragma mark
-#pragma mark Methods to Build Scales
--(MusicSequence)scaleSequence{
-    return [self buildSequenceFromMIDINote:self.baseMIDINote ascending:true descending:true];
-}
--(MusicSequence)scaleSequenceAsc{
-    return [self buildSequenceFromMIDINote:self.baseMIDINote ascending:true descending:false];
-}
--(MusicSequence)scaleSequenceDesc{
-    return [self buildSequenceFromMIDINote:self.baseMIDINote ascending:false descending:true];
+#pragma mark Methods to Build and Play Scales
+-(void)playScale{
+    [[AMScalesPlayer sharedInstance] playSequence:[self scaleSequence]];
 }
 
--(MusicSequence)buildSequenceFromMIDINote: (UInt8)startingMIDINote ascending: (BOOL)ascending descending: (BOOL) descending{
+-(MusicSequence)scaleSequence{
+    return [self buildSequenceInascending:true descending:true];
+}
+-(MusicSequence)scaleSequenceAsc{
+    return [self buildSequenceInascending:true descending:false];
+}
+-(MusicSequence)scaleSequenceDesc{
+    return [self buildSequenceInascending:false descending:true];
+}
+
+-(MusicSequence)buildSequenceInascending: (BOOL)ascending descending: (BOOL) descending{
     //Get the settings
     NSNumber *octaves = [AMSettingsAndUtilities getOctavesSetting];
     if(!ascending && !descending) [NSException raise:@"Incorrect Application Congfiguration" format:@"The settings currently indicate that neither ascending nor descending scale should be built. Adjust the configuration in the main plist file"];
@@ -66,7 +70,7 @@
     aNote.channel = 1;
     aNote.velocity = 127;
     //set starting note to the passed midi note argument - adjust it for number of octaves if only descending scale is requested
-    aNote.note = (!ascending && descending)? startingMIDINote + ([octaves intValue] *12):startingMIDINote;
+    aNote.note = (!ascending && descending)? self.baseMIDINote + ([octaves intValue] *12):self.baseMIDINote;
     aNote.duration = 1;
     
     MusicTimeStamp noteTime = 0.0;
@@ -74,9 +78,9 @@
     
     for(int octavePoint = 0; octavePoint<[octaves intValue]; octavePoint++){
         //itterate through the mode pattern to build the scale note by note
-        for (int patternPoint=0; patternPoint<[self.scaleMode.pattern count]; patternPoint++){
+        for (int patternPoint=0; patternPoint<[self.mode.pattern count]; patternPoint++){
             //get the number of semitones to the next note from the self.pattern array
-            UInt8 semitones = [[self.scaleMode.pattern objectAtIndex:patternPoint] intValue];
+            UInt8 semitones = [[self.mode.pattern objectAtIndex:patternPoint] intValue];
             //set the MIDI value and time for the next note
             if (ascending) {
                 aNote.note = aNote.note + semitones;
@@ -89,9 +93,9 @@
     }
     for(int octavePoint = 0; octavePoint<[octaves intValue]; octavePoint++){
         //build the descending scale
-        for(int patternPoint = 0; patternPoint<[self.scaleMode.patternDesc count]; patternPoint++){
+        for(int patternPoint = 0; patternPoint<[self.mode.patternDesc count]; patternPoint++){
             //get the number of semitones to the next note from the self.pattern array
-            UInt8 semitones = [[self.scaleMode.patternDesc objectAtIndex:patternPoint] intValue];
+            UInt8 semitones = [[self.mode.patternDesc objectAtIndex:patternPoint] intValue];
             //set the MIDI value and time for the next note
             if(descending){
                 aNote.note = aNote.note + semitones;
@@ -104,5 +108,14 @@
     }
     
     return theScaleSequence;
+}
+
++(AMScale *)generateRandomScale{
+    //select a random starting MIDI note value
+    UInt8 startingNote = [AMSettingsAndUtilities getRandomNoteWithinSampleRangeAdjustingForOctaves];
+    //get a random mode
+    NSString *randomModeName = [AMMode generateRandomModeName];
+    
+    return [[AMScale alloc] initWithModeName:randomModeName baseMIDINote:startingNote];
 }
 @end

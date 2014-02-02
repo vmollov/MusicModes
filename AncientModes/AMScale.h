@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/MusicPlayer.h>
 #import "AMMode.h"
+#import "AMScalesPlayer.h"
 
 @interface AMScale : NSObject
 @property UInt8 baseMIDINote;
-@property AMMode *scaleMode;
+@property AMMode *mode;
 
 -(id)initWithModeName: (NSString *) modeName baseNote:(NSString *) baseNote;
 -(id)initWithModeName: (NSString *) modeName baseMIDINote:(UInt8) baseMIDINote;
@@ -20,8 +21,11 @@
 -(NSString *)baseNote;
 -(void) setBaseNote: (NSString *) note;
 
+-(void)playScale;
 -(MusicSequence)scaleSequence;
 -(MusicSequence)scaleSequenceAsc;
 -(MusicSequence)scaleSequenceDesc;
+
++(AMScale *)generateRandomScale;
 
 @end

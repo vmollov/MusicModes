@@ -16,11 +16,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
     _thePlayer = [[AMScalesPlayer alloc] init];
     _thePlayer.delegate = self;
     
     _test = [[AMEarTest alloc] initWithNumberOfChallenges:5];
     [self displayChallenge];
+    
+    int current = 2.0;
+    int total = 10.0;
+    
+    float result = ((float)current / (float)total) * 100;
+    
+    NSLog(@"Test Result: %.1f %%", result);
+   
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,11 +76,16 @@
 }
 -(void)displayChallenge{
     AMTestChallenge *challenge = [_test getCurrentChallenge];
-    _txtScale.text = [NSString stringWithFormat:@"%@ %@", challenge.scale.baseNote, challenge.scale.scaleMode.name];
+    _txtScale.text = [NSString stringWithFormat:@"%@ %@", challenge.scale.baseNote, challenge.scale.mode.name];
     if(_test.hasNextChallenge) _btnNext.enabled = true;
     else _btnNext.enabled = false;
     if(_test.hasPreviousChallenge) _btnPrevious.enabled = true;
     else _btnPrevious.enabled = false;
+    
+    NSArray *answers = _test.getCurrentChallenge.presentedAnswers;
+    for (int i=0; i<[answers count]; i++){
+        NSLog(@"Answer %i: %@", i, [answers objectAtIndex:i]);
+    }
 }
 
 -(void)playWithSample: (NSString *) theSample{

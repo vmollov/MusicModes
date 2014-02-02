@@ -36,6 +36,19 @@
     return self;
 }
 
+-(BOOL)isAliasToMode:(NSString *)checkMode{
+    //get mode aliases
+    NSDictionary *modeProperties = [AMSettingsAndUtilities getPropertiesForMode:self.name];
+    NSString *modeAlias = [modeProperties objectForKey:@"Alias"];
+    
+    return [checkMode caseInsensitiveCompare:modeAlias] == NSOrderedSame || [self.name caseInsensitiveCompare:checkMode] ==NSOrderedSame;
+}
+-(NSString *)getVariationMode{
+    //get mode variations
+    NSDictionary *modeProperties = [AMSettingsAndUtilities getPropertiesForMode:self.name];
+    return [modeProperties objectForKey:@"VariationOf"];
+}
+
 +(NSString *) generateRandomModeName{
     // get a randome mode index integer then map the mode index to a name from the list
     NSArray *listOfModes = [AMSettingsAndUtilities getListOfModes];

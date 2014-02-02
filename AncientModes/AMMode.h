@@ -7,7 +7,6 @@
 //
 
 #import <AudioToolbox/MusicPlayer.h>
-#import "AMScalesPlayer.h"
 
 @interface AMMode : NSObject
 @property (nonatomic, strong, readonly) NSString *name;
@@ -16,6 +15,9 @@
 @property (retain, readonly) NSMutableArray *patternDesc;
 
 -(id)initWithName:(NSString *)name;
+
+-(BOOL)isAliasToMode:(NSString *)checkMode;
+-(NSString *)getVariationMode;
 
 +(NSString *) generateRandomModeName;
 @end

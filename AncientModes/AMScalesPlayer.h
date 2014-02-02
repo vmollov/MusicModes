@@ -20,6 +20,8 @@
 @property (readonly) NSString *currentSample;
 @property Float64 tempo;
 
++(id)sharedInstance;
+
 -(id)initWithTempo: (Float64) tempo;
 
 -(void)playSequence:(MusicSequence) sequence;

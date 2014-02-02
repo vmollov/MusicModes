@@ -42,7 +42,7 @@ static NSDictionary *appData;
 #pragma mark
 #pragma mark Range Settings
 +(NSRange) getSampleRangeSetting{
-    return NSMakeRange(21, 108); //A0 and C8 Piano Range
+    return NSMakeRange(33, 96); //A1 and C7
 }
 +(UInt8)getRandomNoteWithinSampleRangeAdjustingForOctaves{
     int lowBound = [self getSampleRangeSetting].location;
@@ -61,7 +61,7 @@ static NSDictionary *appData;
 #pragma mark
 #pragma mark Utility Methods
 +(int)randomIntBetween: (int)lowerBound and: (int) upperBound{
-    return arc4random_uniform(upperBound - lowerBound + 1) + lowerBound;
+    return (int)arc4random_uniform(upperBound - lowerBound + 1) + lowerBound;
 }
 
 #pragma mark

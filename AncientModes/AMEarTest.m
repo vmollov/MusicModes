@@ -18,11 +18,13 @@
         }
         _challenges = [[NSArray alloc] initWithArray:theChallenges];
         _challengeIndex = -1;
+        _correctAnswersCount = 0;
     }//if(self = [super init])
     
     return self;
 }
 
+#pragma mark Navigate Challenges
 -(AMTestChallenge *) getCurrentChallenge{
     if (self.challengeIndex < 0) return [self getNextChallenge];
     return [self.challenges objectAtIndex:self.challengeIndex];
@@ -48,5 +50,16 @@
 }
 -(BOOL)hasPreviousChallenge{
     return self.challengeIndex > 0;
+}
+
+#pragma mark Score Keeping
+-(BOOL) checkAnswer: (NSString *) answer{
+    BOOL correct = [self.getCurrentChallenge.scale.mode.name compare:answer] == NSOrderedSame;
+    if(correct) _correctAnswersCount++;
+    return correct;
+}
+-(double) getFinalTestScorePercentage{
+    float result = ((float)_correctAnswersCount/(float)[_challenges count])*100;
+    return result;
 }
 @end
