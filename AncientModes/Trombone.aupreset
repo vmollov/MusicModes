@@ -411,15 +411,15 @@
 	<key>file-references</key>
 	<dict>
 		<key>Sample:1</key>
-		<string>file://localhost//Library/Audio/Sounds/Tbone/1a%23.caf</string>
+		<string>file://localhost//Library/Audio/Sounds/Tbone/1As.caf</string>
 		<key>Sample:2</key>
-		<string>file://localhost/Library/Audio/Sounds/Tbone/2a%23.caf</string>
+		<string>file://localhost/Library/Audio/Sounds/Tbone/2As.caf</string>
 		<key>Sample:3</key>
-		<string>file://localhost/Library/Audio/Sounds/Tbone/3a%23.caf</string>
+		<string>file://localhost/Library/Audio/Sounds/Tbone/3As.caf</string>
 		<key>Sample:4</key>
-		<string>file://localhost/Library/Audio/Sounds/Tbone/4g.caf</string>
+		<string>file://localhost/Library/Audio/Sounds/Tbone/4G.caf</string>
 		<key>Sample:5</key>
-		<string>file://localhost/Library/Audio/Sounds/Tbone/5e.caf</string>
+		<string>file://localhost/Library/Audio/Sounds/Tbone/5E.caf</string>
 	</dict>
 	<key>fine tune</key>
 	<integer>0</integer>

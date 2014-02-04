@@ -69,6 +69,3 @@
 }
 
 @end
-
-//implement logic for pentantonic and octatonic to always present counterparts in answers
-//remmeber to adjust the piano aupreset to include the full piano range

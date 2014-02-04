@@ -46,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C00724B618874136001446A5 /* AncientModes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncientModes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00724B918874136001446A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C00724BB18874136001446A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C00724BD18874136001446A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -60,7 +59,6 @@
 		C00724CE18874136001446A5 /* AMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMViewController.h; sourceTree = "<group>"; };
 		C00724CF18874136001446A5 /* AMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMViewController.m; sourceTree = "<group>"; };
 		C00724D118874136001446A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C00724D718874136001446A5 /* AncientModesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AncientModesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00724D818874136001446A5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C00724E018874136001446A5 /* AncientModesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AncientModesTests-Info.plist"; sourceTree = "<group>"; };
 		C00724E218874136001446A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		C04A06AD189D6CD600E4A25F /* AMTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestViewController.m; sourceTree = "<group>"; };
 		C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		C0715B1218A13D610062038A /* AncientModes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncientModes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0715B1318A13D610062038A /* AncientModesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AncientModesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CF99AC188EAC82002949DD /* AMSettingsAndUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSettingsAndUtilities.h; sourceTree = "<group>"; };
 		C0CF99AD188EAC82002949DD /* AMSettingsAndUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSettingsAndUtilities.m; sourceTree = "<group>"; };
 		C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesPlayer.h; sourceTree = "<group>"; };
@@ -117,17 +117,8 @@
 				C00724BF18874136001446A5 /* AncientModes */,
 				C00724DE18874136001446A5 /* AncientModesTests */,
 				C00724B818874136001446A5 /* Frameworks */,
-				C00724B718874136001446A5 /* Products */,
+				C0715B1418A13D6C0062038A /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		C00724B718874136001446A5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C00724B618874136001446A5 /* AncientModes.app */,
-				C00724D718874136001446A5 /* AncientModesTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C00724B818874136001446A5 /* Frameworks */ = {
@@ -220,6 +211,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		C0715B1418A13D6C0062038A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0715B1218A13D610062038A /* AncientModes.app */,
+				C0715B1318A13D610062038A /* AncientModesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,7 +237,7 @@
 			);
 			name = AncientModes;
 			productName = AncientModes;
-			productReference = C00724B618874136001446A5 /* AncientModes.app */;
+			productReference = C0715B1218A13D610062038A /* AncientModes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C00724D618874136001446A5 /* AncientModesTests */ = {
@@ -255,7 +255,7 @@
 			);
 			name = AncientModesTests;
 			productName = AncientModesTests;
-			productReference = C00724D718874136001446A5 /* AncientModesTests.xctest */;
+			productReference = C0715B1318A13D610062038A /* AncientModesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -282,7 +282,7 @@
 				Base,
 			);
 			mainGroup = C00724AD18874135001446A5;
-			productRefGroup = C00724B718874136001446A5 /* Products */;
+			productRefGroup = C00724AD18874135001446A5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
