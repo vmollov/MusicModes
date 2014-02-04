@@ -138,11 +138,9 @@
 				C00724C818874136001446A5 /* AMAppDelegate.h */,
 				C00724C918874136001446A5 /* AMAppDelegate.m */,
 				C00724CB18874136001446A5 /* Main.storyboard */,
-				C04A06AC189D6CD600E4A25F /* AMTestViewController.h */,
-				C04A06AD189D6CD600E4A25F /* AMTestViewController.m */,
-				C00724CE18874136001446A5 /* AMViewController.h */,
-				C00724CF18874136001446A5 /* AMViewController.m */,
-				C00724F118875366001446A5 /* ModeClasses */,
+				C00724F118875366001446A5 /* Model */,
+				C0458FBD18A14979009A1958 /* View */,
+				C0458FBC18A14921009A1958 /* Controller */,
 				C00724D118874136001446A5 /* Images.xcassets */,
 				C00724C018874136001446A5 /* Supporting Files */,
 			);
@@ -182,7 +180,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C00724F118875366001446A5 /* ModeClasses */ = {
+		C00724F118875366001446A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C00724EE1887534F001446A5 /* AMMode.h */,
@@ -199,7 +197,25 @@
 				C0343BBD189574B7009F0934 /* AMTestChallenge.m */,
 				C051CAC5189EC1A2009BCBE8 /* Categories */,
 			);
-			name = ModeClasses;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C0458FBC18A14921009A1958 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C04A06AC189D6CD600E4A25F /* AMTestViewController.h */,
+				C04A06AD189D6CD600E4A25F /* AMTestViewController.m */,
+				C00724CE18874136001446A5 /* AMViewController.h */,
+				C00724CF18874136001446A5 /* AMViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C0458FBD18A14979009A1958 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		C051CAC5189EC1A2009BCBE8 /* Categories */ = {

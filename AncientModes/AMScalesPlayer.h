@@ -14,15 +14,15 @@
 -(void)playerStoppedPlayback;
 @end
 
+@protocol AMScalesPlayerDelegate;
+
 @interface AMScalesPlayer : NSObject
-@property (nonatomic,strong) id delegate;
+@property (nonatomic,weak) id<AMScalesPlayerDelegate> delegate;
 
 @property (readonly) NSString *currentSample;
 @property Float64 tempo;
 
 +(id)sharedInstance;
-
--(id)initWithTempo: (Float64) tempo;
 
 -(void)playSequence:(MusicSequence) sequence;
 -(void)stop;
@@ -33,5 +33,3 @@
 -(void)loadTromboneSample;
 -(void)loadVibraphoneSample;
 @end
-
-//implement AMScalesPlayer as singleton and make AMScale use it to play it's sequence

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AMScalesPlayer.h"
 #import "AMEarTest.h"
 
 @interface AMViewController : UIViewController <AMScalesPlayerDelegate>

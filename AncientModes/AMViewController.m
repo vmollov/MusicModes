@@ -17,19 +17,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    _thePlayer = [[AMScalesPlayer alloc] init];
+    _thePlayer = [AMScalesPlayer sharedInstance];
     _thePlayer.delegate = self;
     
     _test = [[AMEarTest alloc] initWithNumberOfChallenges:5];
     [self displayChallenge];
-    
-    int current = 2.0;
-    int total = 10.0;
-    
-    float result = ((float)current / (float)total) * 100;
-    
-    NSLog(@"Test Result: %.1f %%", result);
-   
     
 }
 
