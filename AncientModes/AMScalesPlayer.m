@@ -7,7 +7,7 @@
 //
 
 #import "AMScalesPlayer.h"
-#import "AMSettingsAndUtilities.h"
+#import "AMDataManager.h"
 
 @interface AMScalesPlayer()
 @property MusicPlayer player;
@@ -18,12 +18,12 @@
 @property AudioUnit ioUnit;
 
 @property MusicTrack tempoTrack;
+@property MusicTimeStamp playEndMark;
 @end
 
 @implementation AMScalesPlayer
 
-#pragma mark
-#pragma mark Object Management
+#pragma mark - Object Management
 +(id)sharedInstance{
     static AMScalesPlayer *sharedPlayer = nil;
     static dispatch_once_t onceToken;
@@ -34,9 +34,10 @@
     return sharedPlayer;
 }
 -(id)init{
-    return [self initWithTempo:120];
+    NSString *defaultSample = [[AMDataManager getInstance] getSampleSetting];
+    return [self initWithSample:defaultSample tempo:120];
 }
--(id)initWithTempo: (Float64) tempo{
+-(id)initWithSample: (NSString *) sample tempo: (Float64) tempo{
     if(self = [super init]){
         //initialize the player
         NewMusicPlayer(&_player);
@@ -47,7 +48,7 @@
         [self configureAndStartAudioProcessingGraph:self.processingGraph];
         
         //set up this object's properties
-        _currentSample = [AMSettingsAndUtilities getSampleSetting];
+        _currentSample = sample;
         //Load the default sample from settings
         [self loadSample:_currentSample];
         [self changeTempoTo:tempo];
@@ -56,8 +57,7 @@
     return self;
 }
 
-#pragma mark
-#pragma mark Samples Control Methods
+#pragma mark - Samples Control Methods
 -(void)loadPianoSample{
     if(![self.currentSample isEqualToString:@"Piano"]){
         _currentSample = @"Piano";
@@ -77,8 +77,11 @@
     }
 }
 
-#pragma mark
-#pragma mark Player Controls and Status
+#pragma mark - Player Controls and Status
+-(void)playScale:(AMScale *) scale{
+    [self playSequence:[scale scaleSequence]];
+}
+
 -(void)playSequence:(MusicSequence)sequence{
     //stop player if it is currently playing
     if ([self isPlaying]) [self stop];
@@ -96,18 +99,20 @@
     MusicPlayerPreroll(_player);
     //start playback
     MusicPlayerStart(_player);
+    self.playEndMark = [self getLoadedSequenceLength];
     
     [self autoStopAtSequenceEnd];
 }
 
 -(void)stop{
     MusicPlayerStop(_player);
-    [_delegate playerStoppedPlayback];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ScalesPlayerStoppedPlayback" object:self];
 }
 -(void)changeTempoTo:(Float64)newTempo{
     //change the tempo in the tempo track
     if(_tempoTrack != nil) MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, newTempo);
     [self setTempo:newTempo];
+    self.playEndMark = [self getLoadedSequenceLength];
 }
 -(BOOL)isPlaying{
     Boolean isPlaying;
@@ -115,10 +120,9 @@
     return isPlaying;
 }
 
-#pragma mark
-#pragma mark Private Utility Methods
+#pragma mark - Private Utility Methods
 -(void)autoStopAtSequenceEnd{
-    if([self getPlayerTimeInBeats] > [self getLoadedSequenceLength]) [self stop];
+    if([self getPlayerTimeInBeats] > self.playEndMark) [self stop];
     else [self performSelector:@selector(autoStopAtSequenceEnd)  withObject:self afterDelay:1.0];
 }
 -(Float64)getPlayerTimeInBeats{
@@ -134,25 +138,22 @@
     UInt32 tracks;
     MusicTimeStamp sequenceLength = 0.0f;
     
-    if (MusicSequenceGetTrackCount(theSequence, &tracks) != noErr) return sequenceLength;
+    if (MusicSequenceGetTrackCount(theSequence, &tracks) != noErr || theSequence == nil) return sequenceLength;
     
     for (UInt32 i = 0; i < tracks; i++) {
         MusicTrack track = NULL;
         MusicTimeStamp trackLen = 0;
-        
         UInt32 trackLenSize = sizeof(trackLen);
         
         MusicSequenceGetIndTrack(theSequence, i, &track);
         MusicTrackGetProperty(track, kSequenceTrackProperty_TrackLength, &trackLen, &trackLenSize);
         
-        if (sequenceLength < trackLen)
-            sequenceLength = trackLen;
+        if (sequenceLength < trackLen) sequenceLength = trackLen;
     }
     return sequenceLength;
 }
 
-#pragma mark
-#pragma mark Audio Configuration Methods
+#pragma mark - Audio Configuration Methods
 -(BOOL)setupAudioSession{
     AVAudioSession *playerAudioSession = [AVAudioSession sharedInstance];
    

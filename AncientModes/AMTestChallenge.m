@@ -7,15 +7,17 @@
 //
 
 #import "AMTestChallenge.h"
-#import "AMSettingsAndUtilities.h"
+#import "AMScalesManager.h"
 #import "NSMutableArray+Shuffling.h"
 
 @implementation AMTestChallenge
 
 -(id)initWithRandModeRandNote{
-    AMScale *challengeScale = [AMScale generateRandomScale];
+    AMScalesManager *scalesManager = [AMScalesManager getInstance];
+    
+    AMScale *challengeScale = [scalesManager generateRandomScale];
     //get the variation mode so we can include it in the presented answers
-    NSString *variationMode = [challengeScale.mode getVariationMode];
+    NSString *variationMode = challengeScale.mode.variationMode;
    
     //generate the presented answers
     int presentedAnswersCount = 4;
@@ -33,7 +35,7 @@
     }
     
     for(index = index; index<presentedAnswersCount; index++){
-        NSString *randomModeAnswer = [AMMode generateRandomModeName];
+        NSString *randomModeAnswer = [scalesManager generateRandomModeName];
         BOOL skip = false;
         //prevent the correct mode (or its alias) from being put in the pool of incorrect presented answer
         if([challengeScale.mode isAliasToMode:randomModeAnswer]) skip = true;

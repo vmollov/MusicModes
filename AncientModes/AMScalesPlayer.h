@@ -8,22 +8,16 @@
 
 #import <AVFoundation/AVAudioSession.h>
 #import <AudioToolbox/MusicPlayer.h>
-
-@protocol AMScalesPlayerDelegate <NSObject>
-@optional
--(void)playerStoppedPlayback;
-@end
-
-@protocol AMScalesPlayerDelegate;
+#import "AMScale.h"
 
 @interface AMScalesPlayer : NSObject
-@property (nonatomic,weak) id<AMScalesPlayerDelegate> delegate;
 
 @property (readonly) NSString *currentSample;
 @property Float64 tempo;
 
 +(id)sharedInstance;
 
+-(void)playScale:(AMScale *) scale;
 -(void)playSequence:(MusicSequence) sequence;
 -(void)stop;
 -(void)changeTempoTo: (Float64) newTempo;

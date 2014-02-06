@@ -25,9 +25,13 @@
 		C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BB91895744B009F0934 /* AMEarTest.m */; };
 		C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BBD189574B7009F0934 /* AMTestChallenge.m */; };
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
+		C0480DA918A2ECD50085BC4D /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0480DA818A2ECD50085BC4D /* AMScalesManager.m */; };
 		C04A06AE189D6CD600E4A25F /* AMTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestViewController.m */; };
 		C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */; };
-		C0CF99AE188EAC82002949DD /* AMSettingsAndUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CF99AD188EAC82002949DD /* AMSettingsAndUtilities.m */; };
+		C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06892E918A26FB800B860C2 /* CoreData.framework */; };
+		C06892EE18A2703400B860C2 /* AMAncientModesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C06892EC18A2703400B860C2 /* AMAncientModesData.xcdatamodeld */; };
+		C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E5E18A29F7800F7BA88 /* AMUtilities.m */; };
+		C0863E6218A29FD800F7BA88 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E6118A29FD800F7BA88 /* AMDataManager.m */; };
 		C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */; };
 		C0CFA2B6188AD25F00583812 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B5188AD25F00583812 /* Sounds */; };
 		C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B7188AD27100583812 /* Piano.aupreset */; };
@@ -71,14 +75,20 @@
 		C0343BBD189574B7009F0934 /* AMTestChallenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestChallenge.m; sourceTree = "<group>"; };
 		C0343BBF189578C2009F0934 /* AMScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScale.h; sourceTree = "<group>"; };
 		C0343BC0189578C2009F0934 /* AMScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScale.m; sourceTree = "<group>"; };
+		C0480DA718A2ECD50085BC4D /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
+		C0480DA818A2ECD50085BC4D /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
 		C04A06AC189D6CD600E4A25F /* AMTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestViewController.h; sourceTree = "<group>"; };
 		C04A06AD189D6CD600E4A25F /* AMTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestViewController.m; sourceTree = "<group>"; };
 		C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		C06892E918A26FB800B860C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C06892ED18A2703400B860C2 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
 		C0715B1218A13D610062038A /* AncientModes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncientModes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0715B1318A13D610062038A /* AncientModesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AncientModesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0CF99AC188EAC82002949DD /* AMSettingsAndUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSettingsAndUtilities.h; sourceTree = "<group>"; };
-		C0CF99AD188EAC82002949DD /* AMSettingsAndUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSettingsAndUtilities.m; sourceTree = "<group>"; };
+		C0863E5D18A29F7800F7BA88 /* AMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUtilities.h; sourceTree = "<group>"; };
+		C0863E5E18A29F7800F7BA88 /* AMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUtilities.m; sourceTree = "<group>"; };
+		C0863E6018A29FD800F7BA88 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDataManager.h; sourceTree = "<group>"; };
+		C0863E6118A29FD800F7BA88 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDataManager.m; sourceTree = "<group>"; };
 		C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesPlayer.h; sourceTree = "<group>"; };
 		C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesPlayer.m; sourceTree = "<group>"; };
 		C0CFA2B5188AD25F00583812 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -92,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */,
 				C00724BC18874136001446A5 /* CoreGraphics.framework in Frameworks */,
 				C00724BE18874136001446A5 /* UIKit.framework in Frameworks */,
 				C00724BA18874136001446A5 /* Foundation.framework in Frameworks */,
@@ -124,6 +135,7 @@
 		C00724B818874136001446A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C06892E918A26FB800B860C2 /* CoreData.framework */,
 				C00724B918874136001446A5 /* Foundation.framework */,
 				C00724BB18874136001446A5 /* CoreGraphics.framework */,
 				C00724BD18874136001446A5 /* UIKit.framework */,
@@ -137,7 +149,9 @@
 			children = (
 				C00724C818874136001446A5 /* AMAppDelegate.h */,
 				C00724C918874136001446A5 /* AMAppDelegate.m */,
-				C00724CB18874136001446A5 /* Main.storyboard */,
+				C0863E5D18A29F7800F7BA88 /* AMUtilities.h */,
+				C0863E5E18A29F7800F7BA88 /* AMUtilities.m */,
+				C06892EB18A26FE500B860C2 /* DataAPI */,
 				C00724F118875366001446A5 /* Model */,
 				C0458FBD18A14979009A1958 /* View */,
 				C0458FBC18A14921009A1958 /* Controller */,
@@ -187,8 +201,6 @@
 				C00724EF1887534F001446A5 /* AMMode.m */,
 				C0343BBF189578C2009F0934 /* AMScale.h */,
 				C0343BC0189578C2009F0934 /* AMScale.m */,
-				C0CF99AC188EAC82002949DD /* AMSettingsAndUtilities.h */,
-				C0CF99AD188EAC82002949DD /* AMSettingsAndUtilities.m */,
 				C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */,
 				C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */,
 				C0343BB81895744B009F0934 /* AMEarTest.h */,
@@ -214,6 +226,7 @@
 		C0458FBD18A14979009A1958 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C00724CB18874136001446A5 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -225,6 +238,19 @@
 				C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		C06892EB18A26FE500B860C2 /* DataAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C06892EC18A2703400B860C2 /* AMAncientModesData.xcdatamodeld */,
+				C0863E6018A29FD800F7BA88 /* AMDataManager.h */,
+				C0863E6118A29FD800F7BA88 /* AMDataManager.m */,
+				C0480DA718A2ECD50085BC4D /* AMScalesManager.h */,
+				C0480DA818A2ECD50085BC4D /* AMScalesManager.m */,
+			);
+			name = DataAPI;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		C0715B1418A13D6C0062038A /* Products */ = {
@@ -339,16 +365,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */,
+				C06892EE18A2703400B860C2 /* AMAncientModesData.xcdatamodeld in Sources */,
 				C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */,
+				C0480DA918A2ECD50085BC4D /* AMScalesManager.m in Sources */,
 				C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */,
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,
 				C00724D018874136001446A5 /* AMViewController.m in Sources */,
-				C0CF99AE188EAC82002949DD /* AMSettingsAndUtilities.m in Sources */,
 				C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */,
 				C00724F01887534F001446A5 /* AMMode.m in Sources */,
 				C0343BC1189578C2009F0934 /* AMScale.m in Sources */,
 				C04A06AE189D6CD600E4A25F /* AMTestViewController.m in Sources */,
 				C00724C618874136001446A5 /* main.m in Sources */,
+				C0863E6218A29FD800F7BA88 /* AMDataManager.m in Sources */,
+				C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +598,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C06892EC18A2703400B860C2 /* AMAncientModesData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C06892ED18A2703400B860C2 /* AMAncientModesData.xcdatamodel */,
+			);
+			currentVersion = C06892ED18A2703400B860C2 /* AMAncientModesData.xcdatamodel */;
+			path = AMAncientModesData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C00724AE18874135001446A5 /* Project object */;
 }

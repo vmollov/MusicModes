@@ -7,8 +7,7 @@
 //
 
 #import "AMViewController.h"
-#import "AMSettingsAndUtilities.h"
-
+#import "AMUtilities.h"
 
 @implementation AMViewController
 
@@ -18,11 +17,35 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     _thePlayer = [AMScalesPlayer sharedInstance];
-    _thePlayer.delegate = self;
     
     _test = [[AMEarTest alloc] initWithNumberOfChallenges:5];
     [self displayChallenge];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
+    
+    AMAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    /*NSManagedObject *newEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Test" inManagedObjectContext:context];
+    [newEntry setValue:[NSNumber numberWithInt:34] forKey:@"id"];
+    [newEntry setValue:@"testName" forKey:@"name"];*/
+    NSError *error;
+    //[context save:&error];
+    
+    NSFetchRequest *requiest  = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Test" inManagedObjectContext:context];
+    [requiest setEntity:entity];
+    [requiest setPredicate:[NSPredicate predicateWithFormat:@"id==34"]];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:requiest error:&error];
+    
+    NSLog(@"Fetched Objects: %i", [fetchedObjects count]);
+    for(int i=0; i<fetchedObjects.count; i++){
+        NSManagedObject *match = fetchedObjects[i];
+        NSLog(@"Object id: %@, name: %@", [match valueForKey:@"id"], [match valueForKey:@"name"]);
+    }
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +91,7 @@
 }
 -(void)displayChallenge{
     AMTestChallenge *challenge = [_test getCurrentChallenge];
-    _txtScale.text = [NSString stringWithFormat:@"%@ %@", challenge.scale.baseNote, challenge.scale.mode.name];
+    _txtScale.text = [NSString stringWithFormat:@"%@ %@", noteForMIDIValue(challenge.scale.baseMIDINote), challenge.scale.mode.name];
     if(_test.hasNextChallenge) _btnNext.enabled = true;
     else _btnNext.enabled = false;
     if(_test.hasPreviousChallenge) _btnPrevious.enabled = true;

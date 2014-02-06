@@ -7,11 +7,11 @@
 //
 
 #import "AMTestViewController.h"
+#import "AMScalesPlayer.h"
 
 @interface AMTestViewController ()
 @property NSArray *answerButtons;
 @property AMEarTest *currentTest;
-@property AMScalesPlayer *player;
 @end
 
 @implementation AMTestViewController
@@ -40,11 +40,14 @@
     
     //initiate a new test
     _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:10];
-    _player = [AMScalesPlayer sharedInstance];
-    _player.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
     [self presentChallenge];
     
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +57,7 @@
 }
 
 - (IBAction)changeTempo:(id)sender {
-    [_player changeTempoTo:_slTempo.value];
+    [[AMScalesPlayer sharedInstance] changeTempoTo:_slTempo.value];
     _lbTempo.text = [NSString stringWithFormat:@"Tempo: %.f", _slTempo.value];
 }
 
@@ -113,7 +116,7 @@
         answerButton.selected = false;
     }
     
-    [_currentTest.getCurrentChallenge.scale playScale];
+    [[AMScalesPlayer sharedInstance] playScale:_currentTest.getCurrentChallenge.scale];
 }
 
 -(void)finalizeTest{

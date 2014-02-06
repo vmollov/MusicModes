@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AMEarTest.h"
 
-@interface AMTestViewController : UIViewController <AMScalesPlayerDelegate>
+@interface AMTestViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *lbTempo;
 @property (strong, nonatomic) IBOutlet UISlider *slTempo;
 @property (strong, nonatomic) IBOutlet UILabel *lbPlayIndicator;

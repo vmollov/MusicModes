@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AMTestChallenge.h"
 
 @interface AMEarTest : NSObject

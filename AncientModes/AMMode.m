@@ -7,29 +7,27 @@
 //
 
 #import "AMMode.h"
-#import "AMSettingsAndUtilities.h"
+#import "AMDataManager.h"
 
 @implementation AMMode
-#pragma mark
-#pragma mark Object Management
--(id) initWithName:(NSString *)name{
+
+-(id)initWithName:(NSString *) name description:(NSString *)description ascPattern: (NSArray *)pattern descPattern: (NSArray *)descPattern alias: (NSString *)alias variationOf: (NSString *) variation{
     if(self = [super init]){
-        NSDictionary *scaleProperties = [AMSettingsAndUtilities getPropertiesForMode:name];
-        if(scaleProperties == nil) [NSException raise:@"Invalid Mode" format:@"%@ is not a recognized mode or it does not exist in the main property list file", name];
-        
-        //populate the modes's properties from the dictionary
         _name = name;
-        _modeDescription = [scaleProperties objectForKey:@"Description"];
-        _pattern = [scaleProperties objectForKey:@"Pattern"];
-        _patternDesc = [scaleProperties objectForKey:@"PatternDesc"];
+        _description = description;
+        _pattern = pattern;
+        _patternDesc = descPattern;
+        _alias = alias;
+        _variationMode = variation;
         
         //if the descending version of the pattern is not present in the properties then build it by reversing the ascending pattern
         if(self.patternDesc == NULL) {
-            _patternDesc = [[NSMutableArray alloc] initWithCapacity:[self.pattern count]];
+            NSMutableArray *tmpDescPattern = [[NSMutableArray alloc] initWithCapacity:[self.pattern count]];
             for(int i=[self.pattern count]-1; i>-1; i--){
                 int patternPoint = -[[self.pattern objectAtIndex:i] intValue];
-                [_patternDesc addObject: [NSNumber numberWithInt:patternPoint]];
+                [tmpDescPattern addObject: [NSNumber numberWithInt:patternPoint]];
             }//for
+            _patternDesc = tmpDescPattern;
         }//if(scaleProperties == nil)
     }//if(self = [super init])
     
@@ -38,21 +36,6 @@
 
 -(BOOL)isAliasToMode:(NSString *)checkMode{
     //get mode aliases
-    NSDictionary *modeProperties = [AMSettingsAndUtilities getPropertiesForMode:self.name];
-    NSString *modeAlias = [modeProperties objectForKey:@"Alias"];
-    
-    return [checkMode caseInsensitiveCompare:modeAlias] == NSOrderedSame || [self.name caseInsensitiveCompare:checkMode] ==NSOrderedSame;
-}
--(NSString *)getVariationMode{
-    //get mode variations
-    NSDictionary *modeProperties = [AMSettingsAndUtilities getPropertiesForMode:self.name];
-    return [modeProperties objectForKey:@"VariationOf"];
-}
-
-+(NSString *) generateRandomModeName{
-    // get a randome mode index integer then map the mode index to a name from the list
-    NSArray *listOfModes = [AMSettingsAndUtilities getListOfModes];
-    int mode = [AMSettingsAndUtilities randomIntBetween:0 and:[listOfModes count]-1];
-    return [listOfModes objectAtIndex:mode];
+    return [checkMode caseInsensitiveCompare:self.alias] == NSOrderedSame || [self.name caseInsensitiveCompare:checkMode] ==NSOrderedSame;
 }
 @end
