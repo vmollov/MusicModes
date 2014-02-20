@@ -9,6 +9,7 @@
 #import "AMTestChallenge.h"
 
 @interface AMEarTest : NSObject
+@property (readonly) NSDate *timeStamp;
 @property NSArray *challenges;
 @property int challengeIndex;
 @property (readonly) int correctAnswersCount;

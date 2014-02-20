@@ -17,7 +17,7 @@
 		</dict>
 		<key>ModeDefinitions</key>
 		<dict>
-			<key>Major</key>
+			<key>Major/Ionian</key>
 			<dict>
 				<key>Pattern</key>
 				<array>
@@ -31,8 +31,6 @@
 				</array>
 				<key>Description</key>
 				<string></string>
-				<key>Alias</key>
-				<string>Ionian</string>
 			</dict>
 			<key>Harmonic Major</key>
 			<dict>
@@ -64,10 +62,8 @@
 				<key>Description</key>
 				<string>A major with a lowered 2nd and 6th</string>
 			</dict>
-			<key>Natural Minor</key>
+			<key>Natural Minor/Aeolian</key>
 			<dict>
-				<key>Alias</key>
-				<string>Aeolian</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -136,23 +132,6 @@
 				<key>Description</key>
 				<string>A minor with raised 4th and 7th</string>
 			</dict>
-			<key>Ionian</key>
-			<dict>
-				<key>Alias</key>
-				<string>Major</string>
-				<key>Pattern</key>
-				<array>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>1</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>1</integer>
-				</array>
-				<key>Description</key>
-				<string>This is the modern major modality</string>
-			</dict>
 			<key>Dorian</key>
 			<dict>
 				<key>Pattern</key>
@@ -212,23 +191,6 @@
 				</array>
 				<key>Description</key>
 				<string>A major mode with lowered 7th</string>
-			</dict>
-			<key>Aeolian</key>
-			<dict>
-				<key>Alias</key>
-				<string>Natural Minor</string>
-				<key>Pattern</key>
-				<array>
-					<integer>2</integer>
-					<integer>1</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-					<integer>1</integer>
-					<integer>2</integer>
-					<integer>2</integer>
-				</array>
-				<key>Description</key>
-				<string>This is the modern minor modality</string>
 			</dict>
 			<key>Locrian</key>
 			<dict>

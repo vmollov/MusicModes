@@ -8,6 +8,7 @@
 
 #import "AMViewController.h"
 #import "AMUtilities.h"
+#import "AMDataManager.h"
 
 @implementation AMViewController
 
@@ -23,26 +24,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
-    AMAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    /*NSManagedObject *newEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Test" inManagedObjectContext:context];
-    [newEntry setValue:[NSNumber numberWithInt:34] forKey:@"id"];
-    [newEntry setValue:@"testName" forKey:@"name"];*/
-    NSError *error;
-    //[context save:&error];
-    
-    NSFetchRequest *requiest  = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Test" inManagedObjectContext:context];
-    [requiest setEntity:entity];
-    [requiest setPredicate:[NSPredicate predicateWithFormat:@"id==34"]];
-    
-    NSArray *fetchedObjects = [context executeFetchRequest:requiest error:&error];
-    
-    NSLog(@"Fetched Objects: %i", [fetchedObjects count]);
-    for(int i=0; i<fetchedObjects.count; i++){
-        NSManagedObject *match = fetchedObjects[i];
-        NSLog(@"Object id: %@, name: %@", [match valueForKey:@"id"], [match valueForKey:@"name"]);
-    }
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -97,10 +78,6 @@
     if(_test.hasPreviousChallenge) _btnPrevious.enabled = true;
     else _btnPrevious.enabled = false;
     
-    NSArray *answers = _test.getCurrentChallenge.presentedAnswers;
-    for (int i=0; i<[answers count]; i++){
-        NSLog(@"Answer %i: %@", i, [answers objectAtIndex:i]);
-    }
 }
 
 -(void)playWithSample: (NSString *) theSample{

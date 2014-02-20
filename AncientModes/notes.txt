@@ -1,0 +1,3 @@
+look into user defaults for plyaer settings
+
+look into moving mode data to CoreData - http://stackoverflow.com/questions/2230354/any-way-to-pre-populate-core-data

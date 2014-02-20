@@ -8,6 +8,7 @@
 
 #import "AMTestViewController.h"
 #import "AMScalesPlayer.h"
+#import "AMDataManager.h"
 
 @interface AMTestViewController ()
 @property NSArray *answerButtons;
@@ -39,7 +40,7 @@
     }
     
     //initiate a new test
-    _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:10];
+    _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:7];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
@@ -86,8 +87,12 @@
     }
     
     //determine if selected answer is correct
-    if([_currentTest checkAnswer:currentSelection.titleLabel.text]) _lbPlayIndicator.text = @"Correct!";
+    BOOL correct = [_currentTest checkAnswer:currentSelection.titleLabel.text];
+    if(correct) _lbPlayIndicator.text = @"Correct!";
     else _lbPlayIndicator.text = @"Wrong!";
+    
+    //update the persistent stats
+    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name addPresented:1 addAnswered:correct timeStamp:_currentTest.timeStamp];
     
     _lbScore.text=[NSString stringWithFormat:@"%i correct!", _currentTest.correctAnswersCount];
     
@@ -103,7 +108,7 @@
     }
     
     //adjust the labels and question navigation buttons
-    _lbChallengeCounter.text = [NSString stringWithFormat:@"Question %i of %i", _currentTest.challengeIndex + 1, [_currentTest.challenges count]];
+    _lbChallengeCounter.text = [NSString stringWithFormat:@"Question %i of %lu", _currentTest.challengeIndex + 1, (unsigned long)[_currentTest.challenges count]];
     
     [self playCurrentScale];
 }
@@ -126,6 +131,7 @@
     }
 
     _lbScore.text = [NSString stringWithFormat:@"Your Score is %.f%%", [_currentTest getFinalTestScorePercentage]];
+    
 }
 
 #pragma mark

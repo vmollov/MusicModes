@@ -7,13 +7,14 @@
 //
 
 #import "AMUtilities.h"
-#import "AMDataManager.h"
 
 @implementation AMUtilities
 
 #pragma mark - pragma mark Utility Methods
-int randomIntInRange(NSRange range){
-    return (int)arc4random_uniform(range.length - range.location + 1) + range.location;
+uint32_t randomIntInRange(NSRange range){
+    uint32_t lowBound = (uint32_t)range.location;
+    uint32_t highBound = (uint32_t)range.length;
+    return arc4random_uniform(highBound - lowBound + 1) + lowBound;
 }
 
 #pragma mark - pragma mark Conversion Methods
@@ -21,7 +22,7 @@ UInt8 MIDIValueForNote(NSString* note){
     //check if the passed note string is a valid note
     NSError *checkError;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[A-G][s,f]?[1-8]$" options:NSRegularExpressionCaseInsensitive error:&checkError];
-    int numberOfMatches = [regex numberOfMatchesInString:note options:0 range:NSMakeRange(0, [note length])];
+    int numberOfMatches = (int)[regex numberOfMatchesInString:note options:0 range:NSMakeRange(0, [note length])];
     if(numberOfMatches < 1) [NSException raise:@"Invalid Note" format:@"Notes have to be in the format A-G(s,f)1-8"];
     
     //parse the note and get it into format of A-G{s,f}0-9

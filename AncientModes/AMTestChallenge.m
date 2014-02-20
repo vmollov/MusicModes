@@ -37,8 +37,6 @@
     for(index = index; index<presentedAnswersCount; index++){
         NSString *randomModeAnswer = [scalesManager generateRandomModeName];
         BOOL skip = false;
-        //prevent the correct mode (or its alias) from being put in the pool of incorrect presented answer
-        if([challengeScale.mode isAliasToMode:randomModeAnswer]) skip = true;
         
         //prevent a RandomModeAnswer to be put in the pool more than once
         for(int n=0; n<index; n++){

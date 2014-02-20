@@ -7,10 +7,9 @@
 //
 
 @interface AMMode : NSObject
-@property (readonly) NSString *name, *description, *alias, *variationMode;
+@property (readonly) NSString *name, *description, *variationMode;
 @property (readonly) NSArray *pattern, *patternDesc;
 
--(id)initWithName:(NSString *) name description:(NSString *)description ascPattern: (NSArray *)pattern descPattern: (NSArray *)descPattern alias: (NSString *)alias variationOf: (NSString *) variation;
+-(id)initWithName:(NSString *) name description:(NSString *)description ascPattern: (NSArray *)pattern descPattern: (NSArray *)descPattern variationOf: (NSString *) variation;
 
--(BOOL)isAliasToMode:(NSString *)checkMode;
 @end

@@ -9,6 +9,8 @@
 @interface AMDataManager : NSObject
 +(AMDataManager *) getInstance;
 
+-(void)updateStatisticsForMode:(NSString *) modeName addPresented:(int)presented addAnswered:(int)answered timeStamp:(NSDate *) timeStamp;
+
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
 -(NSArray *)getListOfModes;
 
@@ -17,4 +19,5 @@
 -(NSNumber *)getOctavesSetting;
 
 -(NSRange) getSampleRangeSetting;
+
 @end

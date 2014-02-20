@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AMEarTest.h"
 #import "AMScalesPlayer.h"
-#import "AMAppDelegate.h"
 
 @interface AMViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *txtScale;

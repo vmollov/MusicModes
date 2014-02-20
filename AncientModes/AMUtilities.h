@@ -7,7 +7,7 @@
 //
 
 @interface AMUtilities : NSObject
-int randomIntInRange(NSRange range);
+uint32_t randomIntInRange(NSRange range);
 
 UInt8 MIDIValueForNote(NSString* note);
 NSString* noteForMIDIValue(UInt8 midiValue);

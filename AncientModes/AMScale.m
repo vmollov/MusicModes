@@ -14,7 +14,7 @@
     if(self = [super init]){
         _baseMIDINote = baseMIDINote;
         _mode = mode;
-    }
+    }//if(self = [super init])
     
     return self;
 }
@@ -44,7 +44,7 @@
     MIDINoteMessage aNote;
     aNote.channel = 1;
     aNote.velocity = 127;
-    //set starting note to the passed midi note argument - adjust it for number of octaves if only descending scale is requested
+    //set starting note to the passed midi note argument
     aNote.note = self.baseMIDINote;
     aNote.duration = 1;
     

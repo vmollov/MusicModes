@@ -18,3 +18,5 @@
 -(id)initWithRandModeRandNote;
 
 @end
+
+//make number of presented answers a config change
