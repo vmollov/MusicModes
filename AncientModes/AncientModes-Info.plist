@@ -4,16 +4,29 @@
 <dict>
 	<key>AMScalesData</key>
 	<dict>
-		<key>PlayOptions</key>
+		<key>Samples</key>
 		<dict>
-			<key>PlayDescending</key>
-			<string>YES</string>
-			<key>PlayAscending</key>
-			<false/>
-			<key>Sample</key>
-			<string>Piano</string>
-			<key>Octaves</key>
-			<integer>1</integer>
+			<key>Piano</key>
+			<dict>
+				<key>rangeHigh</key>
+				<integer>108</integer>
+				<key>rangeLow</key>
+				<integer>29</integer>
+			</dict>
+			<key>Vibraphone</key>
+			<dict>
+				<key>rangeHigh</key>
+				<integer>89</integer>
+				<key>rangeLow</key>
+				<integer>53</integer>
+			</dict>
+			<key>Trombone</key>
+			<dict>
+				<key>rangeHigh</key>
+				<integer>67</integer>
+				<key>rangeLow</key>
+				<integer>36</integer>
+			</dict>
 		</dict>
 		<key>ModeDefinitions</key>
 		<dict>

@@ -7,6 +7,7 @@
 //
 
 #import "AMAppDelegate.h"
+#import "AMDataManager.h"
 
 @implementation AMAppDelegate
 
@@ -16,7 +17,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // initialize defaults
+    NSString *dateKey    = @"dateKey";
+    NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"dateKey"];
+    if (lastRead == nil){     // App first run: set up user defaults.
+        NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
+        
+        //set the defaults
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playAscending"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"playDescending"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"Piano" forKey:@"playSample"];
+        [[NSUserDefaults standardUserDefaults] setFloat:120.0 forKey:@"playTempo"];
+        
+        //enable use of all modes
+        NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModes];
+        for(NSString *mode in listOfModes){
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:mode];
+        }
+        [[NSUserDefaults standardUserDefaults] setInteger:listOfModes.count forKey:@"NumberOfEnabledModes"];
+        
+        // sync the defaults to disk
+        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"Loaded defaults.");
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
+    
     return YES;
 }
 							

@@ -15,6 +15,7 @@
 
 -(id)initWithMode: (AMMode *) mode baseMIDINote:(UInt8) baseMIDINote;
 
+-(NSArray *) getNotes;
 -(MusicSequence)scaleSequence;
 -(MusicSequence)scaleSequenceAsc;
 -(MusicSequence)scaleSequenceDesc;

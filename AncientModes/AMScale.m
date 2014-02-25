@@ -7,6 +7,7 @@
 //
 
 #import "AMScale.h"
+#import "AMUtilities.h"
 
 @implementation AMScale
 
@@ -14,12 +15,30 @@
     if(self = [super init]){
         _baseMIDINote = baseMIDINote;
         _mode = mode;
-    }//if(self = [super init])
+    }
     
     return self;
 }
 
 #pragma mark - Methods to Build Scales
+//This method produces a string of the note names with a starting note in first octave
+-(NSArray *) getNotes{
+    NSMutableArray *scaleNotes = [[NSMutableArray alloc] initWithCapacity:1];
+    UInt8 currentNote = self.baseMIDINote;
+    
+    //put the starting note in first octave
+    while(currentNote<60) currentNote+=12; //C4 is MIDI value 60
+    while(currentNote>71) currentNote-=12; //B4 is MIDI value 71
+    
+    [scaleNotes addObject:noteForMIDIValue(currentNote)];
+    for(int patternPoint=0; patternPoint<self.mode.pattern.count; patternPoint++){
+        currentNote += [[self.mode.pattern objectAtIndex:patternPoint] intValue];
+        [scaleNotes addObject:noteForMIDIValue(currentNote)];
+    }
+    
+    return scaleNotes;
+}
+
 -(MusicSequence)scaleSequence{
     return [self buildSequenceInAscending:true descending:true];
 }

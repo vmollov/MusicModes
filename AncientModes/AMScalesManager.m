@@ -32,14 +32,16 @@
 }
 
 -(NSString *) generateRandomModeName{
-    NSArray *listOfModes = [[AMDataManager getInstance] getListOfModes];
+    NSArray *listOfModes = [[AMDataManager getInstance] getListOfEnabledModes];
     // get a randome mode index integer then map the mode index to a name from the list
     NSUInteger mode = randomIntInRange(NSMakeRange(0, listOfModes.count -1));
     return [listOfModes objectAtIndex:mode];
 }
 
 -(AMScale *)generateRandomScale{
-    NSRange range = [[AMDataManager getInstance] getSampleRangeSetting];
+    NSRange range = [[AMDataManager getInstance] getCurrentSampleRange];
+    //adjust the range high note with one octave (to allow for the scale to be built
+    range.length -= 12;
     //select a random starting MIDI note value
     UInt8 startingNote = (UInt8)randomIntInRange(range);
     //get a random mode

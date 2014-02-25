@@ -24,7 +24,7 @@
 @implementation AMScalesPlayer
 
 #pragma mark - Object Management
-+(id)sharedInstance{
++(id)getInstance{
     static AMScalesPlayer *sharedPlayer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,10 +34,6 @@
     return sharedPlayer;
 }
 -(id)init{
-    NSString *defaultSample = [[AMDataManager getInstance] getSampleSetting];
-    return [self initWithSample:defaultSample tempo:120];
-}
--(id)initWithSample: (NSString *) sample tempo: (Float64) tempo{
     if(self = [super init]){
         //initialize the player
         NewMusicPlayer(&_player);
@@ -47,12 +43,12 @@
         if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
         [self configureAndStartAudioProcessingGraph:self.processingGraph];
         
-        //set up this object's properties
-        _currentSample = sample;
-        //Load the default sample from settings
-        [self loadSample:_currentSample];
-        [self changeTempoTo:tempo];
-    }//if(self = [super init])
+        //Load the default player settings
+        NSString *defaultSample = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"];
+        [self loadSample:defaultSample]; //also sets _currentSample
+        Float64 defaultTempo = [[NSUserDefaults standardUserDefaults] floatForKey:@"playTempo"];
+        [self changeTempoTo:defaultTempo]; //also sets _tempo
+    }
     
     return self;
 }
@@ -60,26 +56,30 @@
 #pragma mark - Samples Control Methods
 -(void)loadPianoSample{
     if(![self.currentSample isEqualToString:@"Piano"]){
-        _currentSample = @"Piano";
-        [self loadSample:self.currentSample];
+        [self loadSample:@"Piano"];
     }
 }
 -(void)loadTromboneSample{
     if(![self.currentSample isEqualToString:@"Trombone"]){
-        _currentSample = @"Trombone";
-        [self loadSample:self.currentSample];
+        [self loadSample:@"Trombone"];
     }
 }
 -(void)loadVibraphoneSample{
     if(![self.currentSample isEqualToString:@"Vibraphone"]){
-        _currentSample = @"Vibraphone";
-        [self loadSample:self.currentSample];
+        [self loadSample:@"Vibraphone"];
     }
 }
 
 #pragma mark - Player Controls and Status
 -(void)playScale:(AMScale *) scale{
-    [self playSequence:[scale scaleSequence]];
+    BOOL playAsc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playAscending"];
+    BOOL playDesc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playDescending"];
+    MusicSequence scaleSequence;
+    if(playAsc) scaleSequence = [scale scaleSequenceAsc];
+    if(playDesc) scaleSequence = [scale scaleSequenceDesc];
+    if(playAsc && playDesc) scaleSequence =[scale scaleSequence];
+        
+    [self playSequence:scaleSequence];
 }
 
 -(void)playSequence:(MusicSequence)sequence{
@@ -112,6 +112,7 @@
     //change the tempo in the tempo track
     if(_tempoTrack != nil) MusicTrackNewExtendedTempoEvent(_tempoTrack, 0.0, newTempo);
     [self setTempo:newTempo];
+    [[NSUserDefaults standardUserDefaults] setFloat:newTempo forKey:@"playTempo"];
     self.playEndMark = [self getLoadedSequenceLength];
 }
 -(BOOL)isPlaying{
@@ -304,6 +305,9 @@
     
     if (errorRef) CFRelease(errorRef);
 	CFRelease (propertyResourceData);
+    
+    _currentSample = samplePreset;
+    [[NSUserDefaults standardUserDefaults] setObject:samplePreset forKey:@"playSample"];
     
     NSLog(@"%@ sample loaded succesfully!", samplePreset);
 }

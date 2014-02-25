@@ -14,7 +14,6 @@
 		C00724C618874136001446A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724C518874136001446A5 /* main.m */; };
 		C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724C918874136001446A5 /* AMAppDelegate.m */; };
 		C00724CD18874136001446A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00724CB18874136001446A5 /* Main.storyboard */; };
-		C00724D018874136001446A5 /* AMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724CF18874136001446A5 /* AMViewController.m */; };
 		C00724D218874136001446A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C00724D118874136001446A5 /* Images.xcassets */; };
 		C00724D918874136001446A5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C00724D818874136001446A5 /* XCTest.framework */; };
 		C00724DA18874136001446A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C00724B918874136001446A5 /* Foundation.framework */; };
@@ -22,23 +21,31 @@
 		C00724E318874136001446A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C00724E118874136001446A5 /* InfoPlist.strings */; };
 		C00724E518874136001446A5 /* AncientModesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724E418874136001446A5 /* AncientModesTests.m */; };
 		C00724F01887534F001446A5 /* AMMode.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724EF1887534F001446A5 /* AMMode.m */; };
+		C0082A4518B6721000050FFB /* AMPlayerSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */; };
 		C032E51718B2B79700A13816 /* notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = C032E51618B2B79700A13816 /* notes.txt */; };
 		C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BB91895744B009F0934 /* AMEarTest.m */; };
 		C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BBD189574B7009F0934 /* AMTestChallenge.m */; };
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
-		C0480DA918A2ECD50085BC4D /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0480DA818A2ECD50085BC4D /* AMScalesManager.m */; };
-		C04A06AE189D6CD600E4A25F /* AMTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestViewController.m */; };
+		C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestVC.m */; };
 		C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */; };
 		C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06892E918A26FB800B860C2 /* CoreData.framework */; };
 		C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E5E18A29F7800F7BA88 /* AMUtilities.m */; };
-		C0863E6218A29FD800F7BA88 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E6118A29FD800F7BA88 /* AMDataManager.m */; };
+		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
+		C0B7946F18B7F5EA00D45334 /* AMModesSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7946E18B7F5EA00D45334 /* AMModesSettingsVC.m */; };
+		C0B7947218B7F6FC00D45334 /* AMModesSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7947118B7F6FC00D45334 /* AMModesSettingsTVC.m */; };
+		C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */; };
+		C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */; };
 		C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */; };
 		C0CFA2B6188AD25F00583812 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B5188AD25F00583812 /* Sounds */; };
 		C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B7188AD27100583812 /* Piano.aupreset */; };
 		C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */; };
 		C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2BB188AD42C00583812 /* Trombone.aupreset */; };
-		C0D6D14318B4CC6A00C550A1 /* AMAncientModesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0D6D14118B4CC6A00C550A1 /* AMAncientModesData.xcdatamodeld */; };
+		C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */; };
+		C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */; };
+		C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */; };
+		C0F7889A18BBC5300079618B /* Images in Resources */ = {isa = PBXBuildFile; fileRef = C0F7889918BBC5300079618B /* Images */; };
+		C0F7889D18BBC5650079618B /* AMHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F7889C18BBC5650079618B /* AMHintView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +69,6 @@
 		C00724C818874136001446A5 /* AMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMAppDelegate.h; sourceTree = "<group>"; };
 		C00724C918874136001446A5 /* AMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMAppDelegate.m; sourceTree = "<group>"; };
 		C00724CC18874136001446A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C00724CE18874136001446A5 /* AMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMViewController.h; sourceTree = "<group>"; };
-		C00724CF18874136001446A5 /* AMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMViewController.m; sourceTree = "<group>"; };
 		C00724D118874136001446A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C00724D818874136001446A5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C00724E018874136001446A5 /* AncientModesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AncientModesTests-Info.plist"; sourceTree = "<group>"; };
@@ -71,6 +76,8 @@
 		C00724E418874136001446A5 /* AncientModesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AncientModesTests.m; sourceTree = "<group>"; };
 		C00724EE1887534F001446A5 /* AMMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMode.h; sourceTree = "<group>"; };
 		C00724EF1887534F001446A5 /* AMMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMode.m; sourceTree = "<group>"; };
+		C0082A4318B6721000050FFB /* AMPlayerSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPlayerSettingsVC.h; sourceTree = "<group>"; };
+		C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPlayerSettingsVC.m; sourceTree = "<group>"; };
 		C032E51618B2B79700A13816 /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
 		C0343BB81895744B009F0934 /* AMEarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEarTest.h; sourceTree = "<group>"; };
 		C0343BB91895744B009F0934 /* AMEarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEarTest.m; sourceTree = "<group>"; };
@@ -78,10 +85,8 @@
 		C0343BBD189574B7009F0934 /* AMTestChallenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestChallenge.m; sourceTree = "<group>"; };
 		C0343BBF189578C2009F0934 /* AMScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScale.h; sourceTree = "<group>"; };
 		C0343BC0189578C2009F0934 /* AMScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScale.m; sourceTree = "<group>"; };
-		C0480DA718A2ECD50085BC4D /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
-		C0480DA818A2ECD50085BC4D /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
-		C04A06AC189D6CD600E4A25F /* AMTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestViewController.h; sourceTree = "<group>"; };
-		C04A06AD189D6CD600E4A25F /* AMTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestViewController.m; sourceTree = "<group>"; };
+		C04A06AC189D6CD600E4A25F /* AMTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestVC.h; sourceTree = "<group>"; };
+		C04A06AD189D6CD600E4A25F /* AMTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestVC.m; sourceTree = "<group>"; };
 		C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		C06892E918A26FB800B860C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -89,17 +94,32 @@
 		C0715B1318A13D610062038A /* AncientModesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AncientModesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0863E5D18A29F7800F7BA88 /* AMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUtilities.h; sourceTree = "<group>"; };
 		C0863E5E18A29F7800F7BA88 /* AMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUtilities.m; sourceTree = "<group>"; };
-		C0863E6018A29FD800F7BA88 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDataManager.h; sourceTree = "<group>"; };
-		C0863E6118A29FD800F7BA88 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDataManager.m; sourceTree = "<group>"; };
+		C099C98318BBB8B400730AD9 /* AMStatisticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsVC.h; sourceTree = "<group>"; };
+		C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsVC.m; sourceTree = "<group>"; };
 		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
 		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
+		C0B7946D18B7F5EA00D45334 /* AMModesSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsVC.h; sourceTree = "<group>"; };
+		C0B7946E18B7F5EA00D45334 /* AMModesSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsVC.m; sourceTree = "<group>"; };
+		C0B7947018B7F6FC00D45334 /* AMModesSettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVC.h; sourceTree = "<group>"; };
+		C0B7947118B7F6FC00D45334 /* AMModesSettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsTVC.m; sourceTree = "<group>"; };
+		C0B89AAA18BB841600CB364A /* AMLearnModesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLearnModesTVC.h; sourceTree = "<group>"; };
+		C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLearnModesTVC.m; sourceTree = "<group>"; };
+		C0B89AAE18BB87EF00CB364A /* AMModeDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModeDetailVC.h; sourceTree = "<group>"; };
+		C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModeDetailVC.m; sourceTree = "<group>"; };
 		C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesPlayer.h; sourceTree = "<group>"; };
 		C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesPlayer.m; sourceTree = "<group>"; };
 		C0CFA2B5188AD25F00583812 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		C0CFA2B7188AD27100583812 /* Piano.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano.aupreset; sourceTree = "<group>"; };
 		C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
 		C0CFA2BB188AD42C00583812 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
-		C0D6D14218B4CC6A00C550A1 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
+		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = AncientModes/AMDataManager.h; sourceTree = "<group>"; };
+		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = AncientModes/AMDataManager.m; sourceTree = "<group>"; };
+		C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMScalesManager.h; path = AncientModes/AMScalesManager.h; sourceTree = "<group>"; };
+		C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMScalesManager.m; path = AncientModes/AMScalesManager.m; sourceTree = "<group>"; };
+		C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
+		C0F7889918BBC5300079618B /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		C0F7889B18BBC5650079618B /* AMHintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMHintView.h; sourceTree = "<group>"; };
+		C0F7889C18BBC5650079618B /* AMHintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMHintView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,13 +185,14 @@
 		C00724C018874136001446A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0F7889918BBC5300079618B /* Images */,
 				C00724D118874136001446A5 /* Images.xcassets */,
 				C0CFA2B5188AD25F00583812 /* Sounds */,
 				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
 				C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */,
 				C0CFA2BB188AD42C00583812 /* Trombone.aupreset */,
 				C00724C118874136001446A5 /* AncientModes-Info.plist */,
-				C0D6D14118B4CC6A00C550A1 /* AMAncientModesData.xcdatamodeld */,
+				C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */,
 				C00724C218874136001446A5 /* InfoPlist.strings */,
 				C00724C518874136001446A5 /* main.m */,
 				C00724C718874136001446A5 /* AncientModes-Prefix.pch */,
@@ -218,6 +239,19 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C0082A4618B674E400050FFB /* SettingsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0082A4318B6721000050FFB /* AMPlayerSettingsVC.h */,
+				C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */,
+				C0B7946D18B7F5EA00D45334 /* AMModesSettingsVC.h */,
+				C0B7946E18B7F5EA00D45334 /* AMModesSettingsVC.m */,
+				C0B7947018B7F6FC00D45334 /* AMModesSettingsTVC.h */,
+				C0B7947118B7F6FC00D45334 /* AMModesSettingsTVC.m */,
+			);
+			name = SettingsControllers;
+			sourceTree = "<group>";
+		};
 		C014DE1C18B3D6780066D1AC /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +264,10 @@
 		C0458FBC18A14921009A1958 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C04A06AC189D6CD600E4A25F /* AMTestViewController.h */,
-				C04A06AD189D6CD600E4A25F /* AMTestViewController.m */,
-				C00724CE18874136001446A5 /* AMViewController.h */,
-				C00724CF18874136001446A5 /* AMViewController.m */,
+				C099C98218BBAF0E00730AD9 /* TestControllers */,
+				C0B89AAD18BB843300CB364A /* LearnControllers */,
+				C0082A4618B674E400050FFB /* SettingsControllers */,
+				C099C98618BBB8B900730AD9 /* StatisticsControllers */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -242,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				C00724CB18874136001446A5 /* Main.storyboard */,
+				C0F7889B18BBC5650079618B /* AMHintView.h */,
+				C0F7889C18BBC5650079618B /* AMHintView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -258,11 +294,11 @@
 		C06892EB18A26FE500B860C2 /* DataAPI */ = {
 			isa = PBXGroup;
 			children = (
+				C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */,
+				C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */,
+				C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */,
+				C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */,
 				C014DE1C18B3D6780066D1AC /* ManagedObjects */,
-				C0863E6018A29FD800F7BA88 /* AMDataManager.h */,
-				C0863E6118A29FD800F7BA88 /* AMDataManager.m */,
-				C0480DA718A2ECD50085BC4D /* AMScalesManager.h */,
-				C0480DA818A2ECD50085BC4D /* AMScalesManager.m */,
 			);
 			name = DataAPI;
 			path = ..;
@@ -277,6 +313,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C099C98218BBAF0E00730AD9 /* TestControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C04A06AC189D6CD600E4A25F /* AMTestVC.h */,
+				C04A06AD189D6CD600E4A25F /* AMTestVC.m */,
+			);
+			name = TestControllers;
+			sourceTree = "<group>";
+		};
+		C099C98618BBB8B900730AD9 /* StatisticsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C099C98318BBB8B400730AD9 /* AMStatisticsVC.h */,
+				C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */,
+			);
+			name = StatisticsControllers;
+			sourceTree = "<group>";
+		};
 		C0B36EE818B242B200962D99 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +338,17 @@
 				C00724C918874136001446A5 /* AMAppDelegate.m */,
 			);
 			name = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		C0B89AAD18BB843300CB364A /* LearnControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0B89AAA18BB841600CB364A /* AMLearnModesTVC.h */,
+				C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */,
+				C0B89AAE18BB87EF00CB364A /* AMModeDetailVC.h */,
+				C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */,
+			);
+			name = LearnControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +435,7 @@
 				C0CFA2B6188AD25F00583812 /* Sounds in Resources */,
 				C00724CD18874136001446A5 /* Main.storyboard in Resources */,
 				C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */,
+				C0F7889A18BBC5300079618B /* Images in Resources */,
 				C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,20 +455,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B7946F18B7F5EA00D45334 /* AMModesSettingsVC.m in Sources */,
+				C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */,
 				C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */,
+				C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */,
+				C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */,
 				C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */,
 				C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */,
-				C0480DA918A2ECD50085BC4D /* AMScalesManager.m in Sources */,
+				C0082A4518B6721000050FFB /* AMPlayerSettingsVC.m in Sources */,
+				C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */,
+				C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */,
 				C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */,
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,
-				C00724D018874136001446A5 /* AMViewController.m in Sources */,
+				C0F7889D18BBC5650079618B /* AMHintView.m in Sources */,
 				C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */,
-				C0D6D14318B4CC6A00C550A1 /* AMAncientModesData.xcdatamodeld in Sources */,
+				C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */,
 				C00724F01887534F001446A5 /* AMMode.m in Sources */,
 				C0343BC1189578C2009F0934 /* AMScale.m in Sources */,
-				C04A06AE189D6CD600E4A25F /* AMTestViewController.m in Sources */,
+				C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */,
 				C00724C618874136001446A5 /* main.m in Sources */,
-				C0863E6218A29FD800F7BA88 /* AMDataManager.m in Sources */,
+				C0B7947218B7F6FC00D45334 /* AMModesSettingsTVC.m in Sources */,
 				C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,14 +698,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C0D6D14118B4CC6A00C550A1 /* AMAncientModesData.xcdatamodeld */ = {
+		C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C0D6D14218B4CC6A00C550A1 /* AMAncientModesData.xcdatamodel */,
+				C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */,
 			);
-			currentVersion = C0D6D14218B4CC6A00C550A1 /* AMAncientModesData.xcdatamodel */;
-			name = AMAncientModesData.xcdatamodeld;
-			path = ../AMAncientModesData.xcdatamodeld;
+			currentVersion = C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */;
+			path = AMAncientModesData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

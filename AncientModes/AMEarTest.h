@@ -12,7 +12,7 @@
 @property (readonly) NSDate *timeStamp;
 @property NSArray *challenges;
 @property int challengeIndex;
-@property (readonly) int correctAnswersCount;
+@property (readonly) int correctAnswersCount, hintsCount;
 
 -(id) initWithNumberOfChallenges: (int) number;
 

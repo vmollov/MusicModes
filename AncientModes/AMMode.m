@@ -7,7 +7,6 @@
 //
 
 #import "AMMode.h"
-#import "AMDataManager.h"
 
 @implementation AMMode
 
@@ -27,8 +26,8 @@
                 [tmpDescPattern addObject: [NSNumber numberWithInt:patternPoint]];
             }//for
             _patternDesc = tmpDescPattern;
-        }//if(scaleProperties == nil)
-    }//if(self = [super init])
+        }
+    }
     
     return self;
 }

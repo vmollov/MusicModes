@@ -9,6 +9,7 @@
 #import "AMTestChallenge.h"
 #import "AMScalesManager.h"
 #import "NSMutableArray+Shuffling.h"
+#import "AMScalesPlayer.h"
 
 @implementation AMTestChallenge
 
@@ -63,9 +64,15 @@
     if(self = [super init]){
         _scale = scale;
         _presentedAnswers = [[NSArray alloc]initWithArray:answers];
-    }//if(self = [super init])
+        _usedHint = NO;
+    }
 
     return self;
+}
+
+-(NSArray *)getHint{
+    self.usedHint = YES;
+    return self.scale.getNotes;
 }
 
 @end

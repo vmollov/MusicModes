@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMTestViewController.h"
+#import "AMTestVC.h"
 #import "AMScalesPlayer.h"
 #import "AMDataManager.h"
 
-@interface AMTestViewController ()
+@interface AMTestVC ()
 @property NSArray *answerButtons;
 @property AMEarTest *currentTest;
 @end
 
-@implementation AMTestViewController
+@implementation AMTestVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,9 +38,11 @@
     for(int i = 0; i<[_answerButtons count]; i++){
         [[_answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
     }
+    _slTempo.value = [[AMScalesPlayer getInstance] tempo];
+    _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
     
     //initiate a new test
-    _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:7];
+    _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:10];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
@@ -58,8 +60,8 @@
 }
 
 - (IBAction)changeTempo:(id)sender {
-    [[AMScalesPlayer sharedInstance] changeTempoTo:_slTempo.value];
-    _lbTempo.text = [NSString stringWithFormat:@"Tempo: %.f", _slTempo.value];
+    [[AMScalesPlayer getInstance] changeTempoTo:_slTempo.value];
+    _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
 }
 
 - (IBAction)previousChallenge:(id)sender {
@@ -92,11 +94,22 @@
     else _lbPlayIndicator.text = @"Wrong!";
     
     //update the persistent stats
-    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name addPresented:1 addAnswered:correct timeStamp:_currentTest.timeStamp];
+    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name neededHint:NO testTimeStamp:_currentTest.timeStamp];
     
     _lbScore.text=[NSString stringWithFormat:@"%i correct!", _currentTest.correctAnswersCount];
     
     if(!_currentTest.hasNextChallenge) [self finalizeTest];
+}
+
+- (IBAction)showHint:(id)sender {
+    NSMutableArray *scaleNotePaths = [[NSMutableArray alloc]initWithCapacity:8];
+    [scaleNotePaths addObject:@"Images/Notes/trblClef"];
+    for (NSString *scale in _currentTest.getCurrentChallenge.scale.getNotes){
+        [scaleNotePaths addObject:[@"Images/Notes" stringByAppendingPathComponent:scale]];
+    }
+    
+    self.hintView.noteImages = scaleNotePaths;
+    [self.hintView refresh];
 }
 
 #pragma mark
@@ -108,7 +121,10 @@
     }
     
     //adjust the labels and question navigation buttons
-    _lbChallengeCounter.text = [NSString stringWithFormat:@"Question %i of %lu", _currentTest.challengeIndex + 1, (unsigned long)[_currentTest.challenges count]];
+    self.navigationItem.title = [NSString stringWithFormat:@"Question %i of %lu", _currentTest.challengeIndex + 1, (unsigned long)[_currentTest.challenges count]];
+    
+    //hide the hint
+    [self.hintView clear];
     
     [self playCurrentScale];
 }
@@ -121,7 +137,7 @@
         answerButton.selected = false;
     }
     
-    [[AMScalesPlayer sharedInstance] playScale:_currentTest.getCurrentChallenge.scale];
+    [[AMScalesPlayer getInstance] playScale:_currentTest.getCurrentChallenge.scale];
 }
 
 -(void)finalizeTest{

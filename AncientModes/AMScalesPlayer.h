@@ -15,7 +15,7 @@
 @property (readonly) NSString *currentSample;
 @property Float64 tempo;
 
-+(id)sharedInstance;
++(id)getInstance;
 
 -(void)playScale:(AMScale *) scale;
 -(void)playSequence:(MusicSequence) sequence;
@@ -26,4 +26,6 @@
 -(void)loadPianoSample;
 -(void)loadTromboneSample;
 -(void)loadVibraphoneSample;
+-(void)loadSample:(NSString *) samplePreset;
+
 @end
