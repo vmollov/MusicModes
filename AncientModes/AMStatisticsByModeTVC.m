@@ -1,20 +1,21 @@
 //
-//  AMModesSettingsTableVC.m
+//  AMStatisticsByModeTVC.m
 //  AncientModes
 //
 //  Created by Vladimir Mollov on 2/27/14.
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMModesSettingsTVC.h"
+#import "AMStatisticsByModeTVC.h"
+#import "AMStatisticsByModeTVCell.h"
+#import "AMStatisticsByModeDetailVC.h"
 #import "AMDataManager.h"
-#import "AMModesSettingsTVCell.h"
 
-@interface AMModesSettingsTVC ()
+@interface AMStatisticsByModeTVC ()
 @property NSArray *listOfModes;
 @end
 
-@implementation AMModesSettingsTVC
+@implementation AMStatisticsByModeTVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,14 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.listOfModes = [[AMDataManager getInstance] getListOfAllModes];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.listOfModes = [[AMDataManager getInstance] getListOfAllModes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,29 +47,28 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     // Return the number of rows in the section.
     return self.listOfModes.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *reuseIdentifier = @"scalesCell";
-    AMModesSettingsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if(cell ==nil) cell = [[AMModesSettingsTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"modeCell";
+    AMStatisticsByModeTVCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if(cell==nil) cell=[[AMStatisticsByModeTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    NSString *currentMode = [self.listOfModes objectAtIndex:indexPath.row];
-    
-    cell.lbMode.text = currentMode;
-    cell.swModeSetting.on = [[NSUserDefaults standardUserDefaults] boolForKey:currentMode];
-    cell.mode = currentMode;
+    // Configure the cell...
+    NSString *modeForCell = [self.listOfModes objectAtIndex:indexPath.row];
+    NSDictionary *modeForCellData = [[AMDataManager getInstance] getStatisticsForMode:modeForCell];
+    cell.modeData = modeForCellData;
+    float average = [[[modeForCellData allValues] valueForKeyPath:@"@avg.self"] floatValue];
+    cell.textLabel.text = modeForCell;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
     
     return cell;
 }
@@ -112,16 +112,15 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    AMStatisticsByModeDetailVC *destination = [segue destinationViewController];
+    AMStatisticsByModeTVCell *selectedCell = sender;
+    destination.data = selectedCell.modeData;
+    destination.modeName = selectedCell.textLabel.text;
 }
-
- */
 
 @end

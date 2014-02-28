@@ -38,7 +38,54 @@
 }
 
 #pragma mark - Core Data Interfaces
--(void)updateStatisticsForMode:(NSString *) modeName neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp{
+-(NSDictionary *) getStatisticsForMode:(NSString *) modeName{
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Statistics" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    if(modeName != nil){
+        //return statistics for specific mode
+        NSPredicate *modePredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"mode='%@'", modeName]];
+        [request setPredicate:modePredicate];
+    }
+    
+    //compose the aggregate sum expressions
+    NSExpression *kpPresented = [NSExpression expressionForKeyPath:@"numPresented"];
+    NSExpression *sumFPresented = [NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:kpPresented]];
+    NSExpressionDescription *sumPresentedExpr = [[NSExpressionDescription alloc]init];
+    sumPresentedExpr.name = @"sumNumPresented";
+    sumPresentedExpr.expression = sumFPresented;
+    sumPresentedExpr.expressionResultType = NSInteger32AttributeType;
+    
+    NSExpression *kpAnswered = [NSExpression expressionForKeyPath:@"numAnswered"];
+    NSExpression *sumFAnswered = [NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:kpAnswered]];
+    NSExpressionDescription *sumAnsweredExpr = [[NSExpressionDescription alloc] init];
+    sumAnsweredExpr.name = @"sumNumAnswered";
+    sumAnsweredExpr.expression = sumFAnswered;
+    sumAnsweredExpr.expressionResultType = NSInteger32AttributeType;
+    
+    [request setPropertiesToFetch:[NSArray arrayWithObjects:@"testTimeStamp", sumPresentedExpr, sumAnsweredExpr, nil]];
+    
+    [request setResultType:NSDictionaryResultType];
+    [request setPropertiesToGroupBy:[NSArray arrayWithObject:[entity.attributesByName objectForKey:@"testTimeStamp"]]];
+    [request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"testTimeStamp" ascending:YES]]];
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if(error != nil)NSLog(@"Error getting statistics. %@", error.localizedDescription);
+    
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for(NSDictionary *record in fetchedObjects){
+        float answered = [[record valueForKey:@"sumNumAnswered"] intValue];
+        float presented = [[record valueForKey:@"sumNumPresented"] intValue];
+        int percentage = (answered/presented) *100;
+        
+        [result setValue:[NSNumber numberWithInt:percentage] forKey:[record valueForKey:@"testTimeStamp"]];
+    }
+    
+    return result;
+}
+
+-(void)updateStatisticsForMode:(NSString *)modeName correct:(BOOL)correct neededHint:(BOOL)withHint testTimeStamp:(NSDate *) timeStamp{
     //get the current record
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     [request setEntity:[NSEntityDescription entityForName:@"Statistics" inManagedObjectContext:self.managedObjectContext]];
@@ -62,7 +109,7 @@
     
     //update the statistics
     int pPossible = 3;
-    int pEarned = withHint?1:3;
+    int pEarned = correct?(withHint?1:3):0;
     currendModeStats.numPresented = [NSNumber numberWithInt:[currendModeStats.numPresented intValue] + pPossible];
     currendModeStats.numAnswered = [NSNumber numberWithInt:[currendModeStats.numAnswered intValue] + pEarned];
     
@@ -103,7 +150,7 @@
     return NSMakeRange(lowBound, highBound);
 }
 -(NSArray *)getListOfSamples{
-    return [[self.plApplicationData objectForKey:@"Samples"] allKeys];
+    return [[[self.plApplicationData objectForKey:@"Samples"] allKeys] sortedArrayUsingSelector:@selector(compare:)];
 }
 
 #pragma mark - User Defaults Interfaces

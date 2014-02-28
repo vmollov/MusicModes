@@ -1,20 +1,19 @@
 //
-//  AMModeDetailVC.m
+//  AMTabBarViewController.m
 //  AncientModes
 //
-//  Created by Vladimir Mollov on 2/24/14.
+//  Created by Vladimir Mollov on 2/27/14.
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMModeDetailVC.h"
-#import "AMScalesManager.h"
-#import "AMUtilities.h"
+#import "AMTabBarViewController.h"
+#import "AMCustomNavBar.h"
 
-@interface AMModeDetailVC ()
+@interface AMTabBarViewController ()
 
 @end
 
-@implementation AMModeDetailVC
+@implementation AMTabBarViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,14 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    //create the scale for this details scene
-    AMMode *scaleMode = [[AMScalesManager getInstance] createModeFromName:self.modeName];
-    UInt8 baseNote = MIDIValueForNote(@"C4");
-    self.scale = [[AMScale alloc] initWithMode:scaleMode baseMIDINote:baseNote];
-    
-    //setting the navigation
-    self.navigationItem.title = self.scale.mode.name;
+    self.tabBar.frame = CGRectMake(0, self.view.frame.size.height-27, self.view.frame.size.width, 27);
+    //self.tabBarItem.titlePositionAdjustment = (UIOffsetMake(0.0, 10.0));
     
 }
 

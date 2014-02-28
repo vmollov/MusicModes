@@ -1,5 +1,5 @@
 //
-//  AMModesSettingsTableVC.h
+//  AMStatisticsByModeTVC.h
 //  AncientModes
 //
 //  Created by Vladimir Mollov on 2/27/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMModesSettingsTVC : UITableViewController
+@interface AMStatisticsByModeTVC : UITableViewController
 
 @end

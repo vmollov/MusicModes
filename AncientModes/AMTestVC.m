@@ -94,7 +94,7 @@
     else _lbPlayIndicator.text = @"Wrong!";
     
     //update the persistent stats
-    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name neededHint:NO testTimeStamp:_currentTest.timeStamp];
+    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:!self.hintView.hidden testTimeStamp:_currentTest.timeStamp];
     
     _lbScore.text=[NSString stringWithFormat:@"%i correct!", _currentTest.correctAnswersCount];
     
@@ -110,6 +110,7 @@
     
     self.hintView.noteImages = scaleNotePaths;
     [self.hintView refresh];
+    self.hintView.hidden = NO;
 }
 
 #pragma mark
@@ -125,6 +126,7 @@
     
     //hide the hint
     [self.hintView clear];
+    self.hintView.hidden=YES;
     
     [self playCurrentScale];
 }

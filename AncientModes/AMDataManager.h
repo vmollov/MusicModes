@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
+#import "AMUtilities.h"
+
 @interface AMDataManager : NSObject
 +(AMDataManager *) getInstance;
 
--(void)updateStatisticsForMode:(NSString *) modeName neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp;
+-(NSDictionary *) getStatisticsForMode:(NSString *) modeName;
+-(void)updateStatisticsForMode:(NSString *) modeName correct:(BOOL)correct neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp;
 
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
 -(NSArray *)getListOfAllModes;

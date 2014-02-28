@@ -281,7 +281,7 @@
     CFDataRef propertyResourceData = 0;
 	Boolean status;
 	SInt32 errorCode = 0;
-	OSStatus result = noErr;
+	//OSStatus result = noErr;
 	
     NSError *errorCode2;
     //get the property data in an NSData object
@@ -299,7 +299,8 @@
     
     // Set the class info property for the Sampler unit using the property list as the value.
 	if (presetPropertyList != 0) {
-		result = AudioUnitSetProperty(self.samplerUnit, kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global, 0, &presetPropertyList, sizeof(CFPropertyListRef));
+		//result =
+        AudioUnitSetProperty(self.samplerUnit, kAudioUnitProperty_ClassInfo, kAudioUnitScope_Global, 0, &presetPropertyList, sizeof(CFPropertyListRef));
 		CFRelease(presetPropertyList);
 	}
     

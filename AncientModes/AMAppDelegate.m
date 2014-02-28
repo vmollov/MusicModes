@@ -44,6 +44,9 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
     
+    //set the background image
+    //[self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Images/4in_p_brown33.png"]]];
+    
     return YES;
 }
 							

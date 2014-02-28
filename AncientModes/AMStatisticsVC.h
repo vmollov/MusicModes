@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMStatisticsGraphV.h"
 
 @interface AMStatisticsVC : UIViewController
+@property (strong, nonatomic) IBOutlet AMStatisticsGraphV *grphOverall;
+@property (strong, nonatomic) IBOutlet UILabel *lbAverage;
 
 @end

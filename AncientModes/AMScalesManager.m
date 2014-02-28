@@ -8,7 +8,6 @@
 
 #import "AMScalesManager.h"
 #import "AMDataManager.h"
-#import "AMUtilities.h"
 
 @implementation AMScalesManager
 +(AMScalesManager *) getInstance{
