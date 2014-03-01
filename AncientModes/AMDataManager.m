@@ -13,7 +13,6 @@
 @interface AMDataManager ()
 @property NSDictionary *plApplicationData;
 @property NSManagedObjectContext *managedObjectContext;
-
 @end
 
 @implementation AMDataManager
@@ -115,6 +114,21 @@
     
     //save
     if(![self.managedObjectContext save:&error]) NSLog(@"Error saving statistics: %@", error.localizedDescription);
+}
+-(void)eraseAllStatistics{
+    NSFetchRequest * allStatistics = [[NSFetchRequest alloc] init];
+    [allStatistics setEntity:[NSEntityDescription entityForName:@"Statistics" inManagedObjectContext:self.managedObjectContext]];
+    [allStatistics setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * records = [self.managedObjectContext executeFetchRequest:allStatistics error:&error];
+    if(error != nil) NSLog(@"Error getting all statistics for deletion. %@", error.localizedDescription);
+    
+    for (Statistics * record in records) {
+        [self.managedObjectContext deleteObject:record];
+    }
+    [self.managedObjectContext save:&error];
+    if(error != nil) NSLog(@"Error deleting statistics. %@", error.localizedDescription);
 }
 
 

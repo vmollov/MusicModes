@@ -35,6 +35,7 @@
 		C0747BCA18BD39C00073DC15 /* AMStatisticsGraphV.m in Sources */ = {isa = PBXBuildFile; fileRef = C0747BC918BD39C00073DC15 /* AMStatisticsGraphV.m */; };
 		C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E5E18A29F7800F7BA88 /* AMUtilities.m */; };
 		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
+		C0A2C1D718C12E500002827B /* noteImages in Resources */ = {isa = PBXBuildFile; fileRef = C0A2C1D618C12E500002827B /* noteImages */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
 		C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */; };
 		C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */; };
@@ -44,14 +45,17 @@
 		C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B7188AD27100583812 /* Piano.aupreset */; };
 		C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */; };
 		C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2BB188AD42C00583812 /* Trombone.aupreset */; };
+		C0D38AC818C1408000E3C963 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D38AC718C1408000E3C963 /* bg.png */; };
+		C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D38AC918C142B100E3C963 /* playAgain.png */; };
 		C0DAB20F18BF960E00B41F92 /* AMModesSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB20E18BF960E00B41F92 /* AMModesSettingsTVC.m */; };
 		C0DAB21218BFA25700B41F92 /* AMTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */; };
-		C0DAB21518BFAC0F00B41F92 /* AMCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB21418BFAC0F00B41F92 /* AMCustomNavBar.m */; };
-		C0E0B77F18BFD7CC00C17636 /* AMCustomNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E0B77E18BFD7CC00C17636 /* AMCustomNavViewController.m */; };
 		C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */; };
 		C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */; };
 		C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */; };
-		C0F7889A18BBC5300079618B /* Images in Resources */ = {isa = PBXBuildFile; fileRef = C0F7889918BBC5300079618B /* Images */; };
+		C0F3470118C15233006218BF /* btnNext.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F346FF18C15233006218BF /* btnNext.png */; };
+		C0F3470518C18657006218BF /* btnAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470418C18657006218BF /* btnAnswer.png */; };
+		C0F3470918C198C6006218BF /* btnAnswerSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470818C198C6006218BF /* btnAnswerSelected.png */; };
+		C0F3470B18C24151006218BF /* graphBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470A18C24151006218BF /* graphBg.png */; };
 		C0F7889D18BBC5650079618B /* AMHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F7889C18BBC5650079618B /* AMHintView.m */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +115,7 @@
 		C0863E5E18A29F7800F7BA88 /* AMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUtilities.m; sourceTree = "<group>"; };
 		C099C98318BBB8B400730AD9 /* AMStatisticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsVC.h; sourceTree = "<group>"; };
 		C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsVC.m; sourceTree = "<group>"; };
+		C0A2C1D618C12E500002827B /* noteImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = noteImages; path = Images/noteImages; sourceTree = "<group>"; };
 		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
 		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
 		C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVCell.h; sourceTree = "<group>"; };
@@ -125,20 +130,22 @@
 		C0CFA2B7188AD27100583812 /* Piano.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano.aupreset; sourceTree = "<group>"; };
 		C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vibraphone.aupreset; sourceTree = "<group>"; };
 		C0CFA2BB188AD42C00583812 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
+		C0D38AC718C1408000E3C963 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = Images/bg.png; sourceTree = "<group>"; };
+		C0D38AC918C142B100E3C963 /* playAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playAgain.png; path = Images/playAgain.png; sourceTree = "<group>"; };
 		C0DAB20D18BF960E00B41F92 /* AMModesSettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVC.h; sourceTree = "<group>"; };
 		C0DAB20E18BF960E00B41F92 /* AMModesSettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsTVC.m; sourceTree = "<group>"; };
 		C0DAB21018BFA25700B41F92 /* AMTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTabBarViewController.h; sourceTree = "<group>"; };
 		C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTabBarViewController.m; sourceTree = "<group>"; };
-		C0DAB21318BFAC0F00B41F92 /* AMCustomNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCustomNavBar.h; sourceTree = "<group>"; };
-		C0DAB21418BFAC0F00B41F92 /* AMCustomNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomNavBar.m; sourceTree = "<group>"; };
-		C0E0B77D18BFD7CC00C17636 /* AMCustomNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCustomNavViewController.h; sourceTree = "<group>"; };
-		C0E0B77E18BFD7CC00C17636 /* AMCustomNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomNavViewController.m; sourceTree = "<group>"; };
 		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = AncientModes/AMDataManager.h; sourceTree = "<group>"; };
 		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = AncientModes/AMDataManager.m; sourceTree = "<group>"; };
 		C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
 		C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
 		C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
-		C0F7889918BBC5300079618B /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		C0F346FF18C15233006218BF /* btnNext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnNext.png; path = Images/btnNext.png; sourceTree = "<group>"; };
+		C0F3470318C15647006218BF /* TahomaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TahomaBold.ttf; sourceTree = "<group>"; };
+		C0F3470418C18657006218BF /* btnAnswer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnAnswer.png; path = Images/btnAnswer.png; sourceTree = "<group>"; };
+		C0F3470818C198C6006218BF /* btnAnswerSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnAnswerSelected.png; path = Images/btnAnswerSelected.png; sourceTree = "<group>"; };
+		C0F3470A18C24151006218BF /* graphBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphBg.png; path = Images/graphBg.png; sourceTree = "<group>"; };
 		C0F7889B18BBC5650079618B /* AMHintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMHintView.h; sourceTree = "<group>"; };
 		C0F7889C18BBC5650079618B /* AMHintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMHintView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,7 +213,9 @@
 		C00724C018874136001446A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C0F7889918BBC5300079618B /* Images */,
+				C0F3470318C15647006218BF /* TahomaBold.ttf */,
+				C0A2C1DA18C12EDF0002827B /* AppImages */,
+				C0A2C1D618C12E500002827B /* noteImages */,
 				C00724D118874136001446A5 /* Images.xcassets */,
 				C0CFA2B5188AD25F00583812 /* Sounds */,
 				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
@@ -287,8 +296,8 @@
 		C0458FBC18A14921009A1958 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C099C98218BBAF0E00730AD9 /* TestControllers */,
 				C0B89AAD18BB843300CB364A /* LearnControllers */,
+				C099C98218BBAF0E00730AD9 /* TestControllers */,
 				C0082A4618B674E400050FFB /* SettingsControllers */,
 				C099C98618BBB8B900730AD9 /* StatisticsControllers */,
 				C0E0B78018BFD90A00C17636 /* NavigationControllers */,
@@ -361,6 +370,19 @@
 			name = StatisticsControllers;
 			sourceTree = "<group>";
 		};
+		C0A2C1DA18C12EDF0002827B /* AppImages */ = {
+			isa = PBXGroup;
+			children = (
+				C0F3470A18C24151006218BF /* graphBg.png */,
+				C0F3470818C198C6006218BF /* btnAnswerSelected.png */,
+				C0F3470418C18657006218BF /* btnAnswer.png */,
+				C0F346FF18C15233006218BF /* btnNext.png */,
+				C0D38AC918C142B100E3C963 /* playAgain.png */,
+				C0D38AC718C1408000E3C963 /* bg.png */,
+			);
+			name = AppImages;
+			sourceTree = "<group>";
+		};
 		C0B36EE818B242B200962D99 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,10 +408,6 @@
 			children = (
 				C0DAB21018BFA25700B41F92 /* AMTabBarViewController.h */,
 				C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */,
-				C0E0B77D18BFD7CC00C17636 /* AMCustomNavViewController.h */,
-				C0E0B77E18BFD7CC00C17636 /* AMCustomNavViewController.m */,
-				C0DAB21318BFAC0F00B41F92 /* AMCustomNavBar.h */,
-				C0DAB21418BFAC0F00B41F92 /* AMCustomNavBar.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -473,13 +491,19 @@
 			files = (
 				C032E51718B2B79700A13816 /* notes.txt in Resources */,
 				C00724D218874136001446A5 /* Images.xcassets in Resources */,
+				C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */,
+				C0F3470118C15233006218BF /* btnNext.png in Resources */,
+				C0F3470B18C24151006218BF /* graphBg.png in Resources */,
+				C0D38AC818C1408000E3C963 /* bg.png in Resources */,
+				C0A2C1D718C12E500002827B /* noteImages in Resources */,
 				C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */,
+				C0F3470518C18657006218BF /* btnAnswer.png in Resources */,
 				C00724C418874136001446A5 /* InfoPlist.strings in Resources */,
 				C0CFA2B6188AD25F00583812 /* Sounds in Resources */,
 				C00724CD18874136001446A5 /* Main.storyboard in Resources */,
 				C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */,
-				C0F7889A18BBC5300079618B /* Images in Resources */,
 				C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */,
+				C0F3470918C198C6006218BF /* btnAnswerSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,12 +528,10 @@
 				C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */,
 				C0DAB21218BFA25700B41F92 /* AMTabBarViewController.m in Sources */,
 				C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */,
-				C0DAB21518BFAC0F00B41F92 /* AMCustomNavBar.m in Sources */,
 				C01CF27718BFFFA500050C28 /* AMStatisticsByModeTVCell.m in Sources */,
 				C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */,
 				C0082A4518B6721000050FFB /* AMPlayerSettingsVC.m in Sources */,
 				C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */,
-				C0E0B77F18BFD7CC00C17636 /* AMCustomNavViewController.m in Sources */,
 				C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */,
 				C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */,
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,

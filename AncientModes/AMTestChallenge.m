@@ -65,6 +65,12 @@
         _scale = scale;
         _presentedAnswers = [[NSArray alloc]initWithArray:answers];
         _usedHint = NO;
+        for(int i=0; i<_presentedAnswers.count; i++){
+            if([_scale.mode.name compare:[_presentedAnswers objectAtIndex:i]] == NSOrderedSame){
+                _correctAnswerIndex = i;
+                break;
+            }
+        }
     }
 
     return self;

@@ -10,5 +10,4 @@
 
 @interface AMStatisticsGraphV : UIView
 @property NSDictionary *data;
-
 @end

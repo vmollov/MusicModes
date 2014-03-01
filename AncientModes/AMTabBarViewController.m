@@ -7,7 +7,6 @@
 //
 
 #import "AMTabBarViewController.h"
-#import "AMCustomNavBar.h"
 
 @interface AMTabBarViewController ()
 

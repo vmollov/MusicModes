@@ -17,8 +17,7 @@
 
 @implementation AMStatisticsByModeTVC
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -26,11 +25,16 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModes];
+    
+    //set the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg.png"]];
+    [background setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = background;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,8 +43,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -68,7 +71,12 @@
     cell.modeData = modeForCellData;
     float average = [[[modeForCellData allValues] valueForKeyPath:@"@avg.self"] floatValue];
     cell.textLabel.text = modeForCell;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
+    if([[modeForCellData allKeys] count] == 0) {
+        cell.detailTextLabel.text = @"No data";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.userInteractionEnabled = NO;
+    }
+    else cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
     
     return cell;
 }

@@ -30,14 +30,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+            
     //prepare the controls
-    _lbPlayIndicator.text = @"";
     _lbScore.text = @"";
     _answerButtons = @[_btnAnswer1, _btnAnswer2, _btnAnswer3, _btnAnswer4];
     for(int i = 0; i<[_answerButtons count]; i++){
         [[_answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
     }
+    
     _slTempo.value = [[AMScalesPlayer getInstance] tempo];
     _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
     
@@ -64,11 +64,6 @@
     _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
 }
 
-- (IBAction)previousChallenge:(id)sender {
-    [_currentTest getPreviousChallenge];
-    [self presentChallenge];
-}
-
 - (IBAction)nextChallenge:(id)sender {
     [_currentTest getNextChallenge];
     [self presentChallenge];
@@ -79,19 +74,31 @@
 }
 
 - (IBAction)selectAnswer:(id)sender {
+    if(self.currentTest.getCurrentChallenge.answered) return;
+    
     UIButton *currentSelection = sender;
-    for(int i=0; i<[_answerButtons count]; i++){
-        UIButton *item = [_answerButtons objectAtIndex:i];
-        if(currentSelection != item) {
-            item.selected = false;
+    for(UIButton *answerButton in self.answerButtons){
+        if(currentSelection != answerButton) {
+            answerButton.selected = NO;
         }
-        currentSelection.selected = true;
+        currentSelection.selected = YES;
     }
     
+    self.hintView.hidden = YES;
+    
     //determine if selected answer is correct
-    BOOL correct = [_currentTest checkAnswer:currentSelection.titleLabel.text];
-    if(correct) _lbPlayIndicator.text = @"Correct!";
-    else _lbPlayIndicator.text = @"Wrong!";
+    BOOL correct;
+    if((correct = [_currentTest checkAnswer:currentSelection.titleLabel.text])){
+        self.lbCorrect.text = @"Correct!";
+        self.lbCorrect.hidden = NO;
+    }else{
+        self.lbCorrect.text = @"Wrong!";
+        self.lbCorrect.hidden = NO;
+        
+        //highlight the correct answer
+        UIButton *correctAnswer = [self.answerButtons objectAtIndex:self.currentTest.getCurrentChallenge.correctAnswerIndex];
+        correctAnswer.highlighted = YES;
+    }
     
     //update the persistent stats
     [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:!self.hintView.hidden testTimeStamp:_currentTest.timeStamp];
@@ -103,9 +110,9 @@
 
 - (IBAction)showHint:(id)sender {
     NSMutableArray *scaleNotePaths = [[NSMutableArray alloc]initWithCapacity:8];
-    [scaleNotePaths addObject:@"Images/Notes/trblClef"];
+    [scaleNotePaths addObject:@"noteImages/trblClef"];
     for (NSString *scale in _currentTest.getCurrentChallenge.scale.getNotes){
-        [scaleNotePaths addObject:[@"Images/Notes" stringByAppendingPathComponent:scale]];
+        [scaleNotePaths addObject:[@"noteImages" stringByAppendingPathComponent:scale]];
     }
     
     self.hintView.noteImages = scaleNotePaths;
@@ -118,7 +125,9 @@
 -(void) presentChallenge{
     AMTestChallenge *currentChallenge = [_currentTest getCurrentChallenge];
     for(int i = 0; i<[_answerButtons count]; i++){
-        [[_answerButtons objectAtIndex:i] setTitle:[currentChallenge.presentedAnswers objectAtIndex:i] forState:UIControlStateNormal];
+        UIButton *answerButton = [_answerButtons objectAtIndex:i];
+        [answerButton setTitle:[currentChallenge.presentedAnswers objectAtIndex:i] forState:UIControlStateNormal];
+        answerButton.selected = answerButton.highlighted = NO;
     }
     
     //adjust the labels and question navigation buttons
@@ -127,13 +136,13 @@
     //hide the hint
     [self.hintView clear];
     self.hintView.hidden=YES;
+    self.lbCorrect.hidden=YES;
     
     [self playCurrentScale];
 }
 -(void)playCurrentScale{
     //adjust the labels
-    _btnPlayAgain.enabled = _btnNext.enabled = _btnPrevious.enabled = false;
-    _lbPlayIndicator.text = @"Playing...";
+    _btnPlayAgain.enabled = _btnNext.enabled = false;
     for(int i=0; i<[_answerButtons count]; i++){
         UIButton *answerButton = [_answerButtons objectAtIndex:i];
         answerButton.selected = false;
@@ -156,9 +165,7 @@
 #pragma mark ScalesPlayerDelegate Methods
 -(void)playerStoppedPlayback{
     _btnPlayAgain.enabled = true;
-    _lbPlayIndicator.text = @"";
     
-    _btnPrevious.enabled = (_currentTest.hasPreviousChallenge);
     _btnNext.enabled = (_currentTest.hasNextChallenge);
 }
 @end

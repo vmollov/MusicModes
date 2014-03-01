@@ -58,6 +58,7 @@
 -(BOOL) checkAnswer: (NSString *) answer{
     BOOL correct = [self.getCurrentChallenge.scale.mode.name compare:answer] == NSOrderedSame;
     self.getCurrentChallenge.answeredCorrectly = correct;
+    self.getCurrentChallenge.answered = YES;
     if(correct) _correctAnswersCount++;
     return correct;
 }

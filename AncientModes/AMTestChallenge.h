@@ -12,7 +12,7 @@
 @property AMScale *scale;
 @property NSArray *presentedAnswers;
 @property int correctAnswerIndex;
-@property BOOL answeredCorrectly, usedHint;
+@property BOOL answered, answeredCorrectly, usedHint;
 
 -(id)initWithScale:(AMScale *)scale presentedAnsers: (NSArray *) answers;
 -(id)initWithRandModeRandNote;

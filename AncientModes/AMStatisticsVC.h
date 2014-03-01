@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AMStatisticsGraphV.h"
 
-@interface AMStatisticsVC : UIViewController
+@interface AMStatisticsVC : UIViewController<UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet AMStatisticsGraphV *grphOverall;
 @property (strong, nonatomic) IBOutlet UILabel *lbAverage;
+@property (strong, nonatomic) IBOutlet UIButton *btnResetStatistics;
+@property (strong, nonatomic) IBOutlet UIButton *btnStatisticsByMode;
 
+- (IBAction)resetStatistics:(id)sender;
 @end

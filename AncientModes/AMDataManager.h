@@ -13,6 +13,7 @@
 
 -(NSDictionary *) getStatisticsForMode:(NSString *) modeName;
 -(void)updateStatisticsForMode:(NSString *) modeName correct:(BOOL)correct neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp;
+-(void)eraseAllStatistics;
 
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
 -(NSArray *)getListOfAllModes;

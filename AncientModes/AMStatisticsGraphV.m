@@ -8,13 +8,11 @@
 
 #import "AMStatisticsGraphV.h"
 
-//-------------------------------------------------
-//Reamining:
-//    -check if empty data and display a label
-//-------------------------------------------------
-
 @implementation AMStatisticsGraphV
 - (void)drawRect:(CGRect)rect{
+    //clear the subviews
+    for(UIView *subview in self.subviews) [subview removeFromSuperview];
+    
     const int graphStartX = 35;
     const int paddingX = 20;
     const int paddingY = 6;
@@ -43,6 +41,23 @@
     }
     CGContextStrokePath(context);
     
+    //if no data display a label
+    if([[self.data allKeys] count] == 0){
+        UILabel *lbNoData = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.height/4)];
+        lbNoData.text = @"No Data";
+        lbNoData.textAlignment=NSTextAlignmentCenter;
+        lbNoData.backgroundColor = [UIColor clearColor];
+        lbNoData.textColor = [UIColor brownColor];
+        lbNoData.font=[UIFont fontWithName:@"Verdana-Bold" size:39];
+        [self addSubview:lbNoData];
+        [self bringSubviewToFront:lbNoData];
+        return;
+    }
+    
+    //date format for the labels
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateStyle:NSDateFormatterMediumStyle];
+    
     //calculate the scale of the horizontal space based on the timespan between the earliest and latest timestamp
     NSArray *sortedDataKeys = [[self.data allKeys] sortedArrayUsingSelector:@selector(compare:)];
     time_t lowEnd = (time_t)[[sortedDataKeys firstObject] timeIntervalSince1970];
@@ -57,7 +72,22 @@
     
     //draw the initial dot
     int graphX = graphStartX + (paddingX/2);
-    int graphY = graphBlockHeight + (paddingY/2) - ([[self.data objectForKey:[sortedDataKeys firstObject]] intValue] * yZoomFactor);
+    int graphY = graphBlockHeight+(paddingY/2)-([[self.data objectForKey:[sortedDataKeys firstObject]] intValue]*yZoomFactor);
+    if([[self.data allKeys]count] == 1){
+        //this is the only data point
+        graphX = (graphBlockWidth/2) + (paddingX/2);
+        CGContextFillEllipseInRect(context, CGRectMake(graphX-3, graphY-3, 6, 6));
+        CGContextFillPath(context);
+        //add the label
+        UILabel *lbDate = [[UILabel alloc] initWithFrame:CGRectMake(graphX-18, frameHeight, 45, 10)];
+        lbDate.text = [dateFormat stringFromDate:[sortedDataKeys firstObject]];
+        lbDate.textAlignment=NSTextAlignmentCenter;
+        [lbDate setFont:[UIFont systemFontOfSize:7]];
+        [self addSubview:lbDate];
+        
+        return;
+    }
+    
     CGContextFillEllipseInRect(context, CGRectMake(graphX-3, graphY-3, 6, 6));
     CGContextFillPath(context);
     
@@ -80,18 +110,13 @@
     }
     
     //add date labels
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateStyle:NSDateFormatterMediumStyle];
-    
-    UILabel *lbStartDate = [[UILabel alloc] initWithFrame:CGRectMake(graphStartX - 10, frameHeight, 45, 10)];
     UILabel *lbEndDate = [[UILabel alloc] initWithFrame:CGRectMake(frameWidth - 40, frameHeight, 45, 10)];
-    lbStartDate.text = [dateFormat stringFromDate:[sortedDataKeys firstObject]];
+    UILabel *lbStartDate = [[UILabel alloc] initWithFrame:CGRectMake(graphStartX - 10, frameHeight, 45, 10)];
     lbEndDate.text = [dateFormat stringFromDate:[sortedDataKeys lastObject]];
-    [lbStartDate setFont:[UIFont systemFontOfSize:7]];
+    lbStartDate.text = [dateFormat stringFromDate:[sortedDataKeys firstObject]];
     [lbEndDate setFont:[UIFont systemFontOfSize:7]];
-    [self addSubview:lbStartDate];
+    [lbStartDate setFont:[UIFont systemFontOfSize:7]];
     [self addSubview:lbEndDate];
+    [self addSubview:lbStartDate];
 }
-
-
 @end

@@ -14,7 +14,7 @@
     
     //add the new subviews
     int noteStartx = 0;
-    int noteWidth = (self.frame.size.width / self.noteImages.count);
+    float noteWidth = (self.frame.size.width / self.noteImages.count);
     
     for(NSString *note in self.noteImages){
         UIImageView *noteImage = [[UIImageView alloc] initWithFrame:CGRectMake(noteStartx,0, noteWidth, self.frame.size.height)];

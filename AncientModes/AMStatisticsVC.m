@@ -23,20 +23,13 @@
     }
     return self;
 }
-
 - (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
 }
-
 -(void)viewWillAppear:(BOOL)animated{
-    NSDictionary *modeStatistics = [[AMDataManager getInstance] getStatisticsForMode:nil];
-    
-    float average = [[[modeStatistics allValues] valueForKeyPath:@"@avg.self"] floatValue];
-    self.lbAverage.text = [NSString stringWithFormat:@"Average: %.f%%", average];
-    self.grphOverall.data = modeStatistics;
-    [self.grphOverall setNeedsDisplay];
+    [self refreshStatisticsView];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -44,4 +37,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)resetStatistics:(id)sender {
+    UIActionSheet *confirmDialog = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
+    [confirmDialog showInView:[UIApplication sharedApplication].keyWindow];
+}
+#pragma mark - Private Methods
+-(void) refreshStatisticsView{
+    NSDictionary *modeStatistics = [[AMDataManager getInstance] getStatisticsForMode:nil];
+    float average = [[[modeStatistics allValues] valueForKeyPath:@"@avg.self"] floatValue];
+    if([[modeStatistics allKeys] count] == 0) {
+        self.lbAverage.hidden = YES;
+        self.btnResetStatistics.enabled = NO;
+        self.btnStatisticsByMode.enabled = NO;
+    }
+    else {
+        self.lbAverage.hidden = NO;
+        self.lbAverage.text = [NSString stringWithFormat:@"Average: %.f%%", average];
+        self.btnResetStatistics.enabled = YES;  
+        self.btnStatisticsByMode.enabled = YES;
+    }
+    
+    self.grphOverall.data = modeStatistics;
+    [self.grphOverall setNeedsDisplay];
+}
+#pragma mark - UIActionSheetDelegate Methods
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        // Do the delete
+        [[AMDataManager getInstance] eraseAllStatistics];
+        [self refreshStatisticsView];
+    }
+}
 @end
