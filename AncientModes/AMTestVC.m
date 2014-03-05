@@ -9,6 +9,7 @@
 #import "AMTestVC.h"
 #import "AMScalesPlayer.h"
 #import "AMDataManager.h"
+#import "AMEndTestVC.h"
 
 @interface AMTestVC ()
 @property NSArray *answerButtons;
@@ -17,8 +18,7 @@
 
 @implementation AMTestVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -26,24 +26,26 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-            
+    
     //prepare the controls
-    _lbScore.text = @"";
-    _answerButtons = @[_btnAnswer1, _btnAnswer2, _btnAnswer3, _btnAnswer4];
-    for(int i = 0; i<[_answerButtons count]; i++){
-        [[_answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
+    self.lbScore.text = @"";
+    self.answerButtons = @[self.btnAnswer1, self.btnAnswer2, self.btnAnswer3, self.btnAnswer4];
+    for(int i = 0; i<[self.answerButtons count]; i++){
+        [[self.answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
     }
     
-    _slTempo.value = [[AMScalesPlayer getInstance] tempo];
-    _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
+    self.slTempo.value = [[AMScalesPlayer getInstance] tempo];
+    self.lbTempo.text = [NSString stringWithFormat:@"%.f", self.slTempo.value];
+    
+    self.switchAutoAdvance.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"];
     
     //initiate a new test
-    _currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:10];
+    int numberOfChallenges = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"];
+    self.currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges];
     
+    //setup the plyer stopp event observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
     [self presentChallenge];
@@ -52,27 +54,41 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+//this method will make the status bar content colored white
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //remove the navigation bar
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //add back the navigation bar
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Action Handlers
 - (IBAction)changeTempo:(id)sender {
-    [[AMScalesPlayer getInstance] changeTempoTo:_slTempo.value];
-    _lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
+    [[AMScalesPlayer getInstance] changeTempoTo:self.slTempo.value];
+    self.lbTempo.text = [NSString stringWithFormat:@"%.f", _slTempo.value];
 }
 
 - (IBAction)nextChallenge:(id)sender {
-    [_currentTest getNextChallenge];
-    [self presentChallenge];
+    //update the persistent stats
+    if(!self.currentTest.getCurrentChallenge.answered) [self selectAnswer:nil];
+    
+    [self advanceTest];
 }
-
 - (IBAction)playAgain:(id)sender {
     [self playCurrentScale];
 }
-
 - (IBAction)selectAnswer:(id)sender {
     if(self.currentTest.getCurrentChallenge.answered) return;
     
@@ -90,9 +106,12 @@
     BOOL correct;
     if((correct = [_currentTest checkAnswer:currentSelection.titleLabel.text])){
         self.lbCorrect.text = @"Correct!";
+        self.lbCorrect.textColor = [UIColor greenColor];
         self.lbCorrect.hidden = NO;
+        self.btnHint.enabled = YES;
     }else{
-        self.lbCorrect.text = @"Wrong!";
+        self.lbCorrect.text = @"Incorrect!";
+        self.lbCorrect.textColor = [UIColor redColor];
         self.lbCorrect.hidden = NO;
         
         //highlight the correct answer
@@ -103,69 +122,89 @@
     //update the persistent stats
     [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:!self.hintView.hidden testTimeStamp:_currentTest.timeStamp];
     
-    _lbScore.text=[NSString stringWithFormat:@"%i correct!", _currentTest.correctAnswersCount];
+    //update the running score
+    self.lbScore.text=[NSString stringWithFormat:@"%.f%%", _currentTest.getRunningScore];
     
-    if(!_currentTest.hasNextChallenge) [self finalizeTest];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"]) [self performSelector:@selector(advanceTest) withObject:nil afterDelay:1];
 }
 
 - (IBAction)showHint:(id)sender {
     NSMutableArray *scaleNotePaths = [[NSMutableArray alloc]initWithCapacity:8];
     [scaleNotePaths addObject:@"noteImages/trblClef"];
-    for (NSString *scale in _currentTest.getCurrentChallenge.scale.getNotes){
+    for (NSString *scale in _currentTest.getHint){
         [scaleNotePaths addObject:[@"noteImages" stringByAppendingPathComponent:scale]];
     }
     
     self.hintView.noteImages = scaleNotePaths;
+    self.hintView.spacer = @"noteImages/staff";
     [self.hintView refresh];
+    self.lbCorrect.hidden = YES;
     self.hintView.hidden = NO;
+    self.btnHint.enabled = NO;
+}
+
+- (IBAction)changeAutoAdvance:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:self.switchAutoAdvance.on forKey:@"AutoAdvance"];
+    if(self.switchAutoAdvance.on) {
+        if(self.currentTest.getCurrentChallenge.answered) [self nextChallenge:nil];
+    }
 }
 
 #pragma mark
 #pragma mark Private Methods
+-(void)advanceTest{
+    
+    if(!self.currentTest.hasNextChallenge) {
+        [self performSegueWithIdentifier:@"exitTestSegue" sender:nil];
+        return;
+    }
+    
+    //adjust the labels
+    for(int i=0; i<[self.answerButtons count]; i++){
+        UIButton *answerButton = [self.answerButtons objectAtIndex:i];
+        answerButton.selected = false;
+    }
+
+    [self.currentTest getNextChallenge];
+    [self presentChallenge];
+}
 -(void) presentChallenge{
-    AMTestChallenge *currentChallenge = [_currentTest getCurrentChallenge];
-    for(int i = 0; i<[_answerButtons count]; i++){
-        UIButton *answerButton = [_answerButtons objectAtIndex:i];
+    AMTestChallenge *currentChallenge = [self.currentTest getCurrentChallenge];
+    for(int i = 0; i<[self.answerButtons count]; i++){
+        UIButton *answerButton = [self.answerButtons objectAtIndex:i];
         [answerButton setTitle:[currentChallenge.presentedAnswers objectAtIndex:i] forState:UIControlStateNormal];
         answerButton.selected = answerButton.highlighted = NO;
     }
     
     //adjust the labels and question navigation buttons
-    self.navigationItem.title = [NSString stringWithFormat:@"Question %i of %lu", _currentTest.challengeIndex + 1, (unsigned long)[_currentTest.challenges count]];
+    self.lbProgress.text = [NSString stringWithFormat:@"Question %i of %lu", self.currentTest.challengeIndex + 1, (unsigned long)[self.currentTest.challenges count]];
     
-    //hide the hint
+    //hide the hint and correct indicator
     [self.hintView clear];
     self.hintView.hidden=YES;
+    self.btnHint.enabled=YES;
     self.lbCorrect.hidden=YES;
     
     [self playCurrentScale];
 }
 -(void)playCurrentScale{
-    //adjust the labels
-    _btnPlayAgain.enabled = _btnNext.enabled = false;
-    for(int i=0; i<[_answerButtons count]; i++){
-        UIButton *answerButton = [_answerButtons objectAtIndex:i];
-        answerButton.selected = false;
-    }
-    
-    [[AMScalesPlayer getInstance] playScale:_currentTest.getCurrentChallenge.scale];
+    self.btnPlayAgain.enabled = self.btnPlayAgainImg.enabled = false;
+    [[AMScalesPlayer getInstance] playScale:self.currentTest.getCurrentChallenge.scale];
 }
 
--(void)finalizeTest{
-    //adjust the controls
-    for(int i = 0; i<[_answerButtons count]; i++){
-        [[_answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
-    }
-
-    _lbScore.text = [NSString stringWithFormat:@"Your Score is %.f%%", [_currentTest getFinalTestScorePercentage]];
-    
-}
-
-#pragma mark
-#pragma mark ScalesPlayerDelegate Methods
+#pragma mark - ScalesPlayerDelegate Methods
 -(void)playerStoppedPlayback{
-    _btnPlayAgain.enabled = true;
-    
-    _btnNext.enabled = (_currentTest.hasNextChallenge);
+    self.btnPlayAgain.enabled = self.btnPlayAgainImg.enabled = true;
+}
+
+#pragma mark - Navigation
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"exitTestSegue"]){
+        [[AMScalesPlayer getInstance] stop];
+        AMEndTestVC *destination = [segue destinationViewController];
+        destination.test = self.currentTest;
+        destination.questions = (int)self.currentTest.challengeIndex;
+        if(self.currentTest.getCurrentChallenge.answered) destination.questions++;
+    }
 }
 @end

@@ -55,6 +55,10 @@
 }
 
 #pragma mark Score Keeping
+-(NSArray *) getHint{
+    if(!self.getCurrentChallenge.usedHint && !self.getCurrentChallenge.answered) _hintsCount++;
+    return self.getCurrentChallenge.getHint;
+}
 -(BOOL) checkAnswer: (NSString *) answer{
     BOOL correct = [self.getCurrentChallenge.scale.mode.name compare:answer] == NSOrderedSame;
     self.getCurrentChallenge.answeredCorrectly = correct;
@@ -62,9 +66,15 @@
     if(correct) _correctAnswersCount++;
     return correct;
 }
--(double) getFinalTestScorePercentage{
-    float result = ((float)_correctAnswersCount/(float)[_challenges count])*100;
-    return result;
+-(float) getRunningScore{
+    int runningScore = 0;
+    for(int i=0; i<=self.challengeIndex; i++){
+        AMTestChallenge *challenge = [self.challenges objectAtIndex:i];
+        if(challenge.answeredCorrectly){
+            runningScore = challenge.usedHint?runningScore+1:runningScore+3;
+        }
+    }
+    
+    return (((float)runningScore/3)/((float)self.challengeIndex+1))*100;
 }
-
 @end

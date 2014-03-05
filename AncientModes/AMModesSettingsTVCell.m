@@ -32,8 +32,12 @@
         UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Too Few Modes" message:@"You need to have at least 4 modes selected for testing" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
+    self.lbOn.text = self.swModeSetting.on?@"Used":@"Not Used";
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 0) self.swModeSetting.on = YES;
+    if(buttonIndex == 0) {
+        self.swModeSetting.on = YES;
+        self.lbOn.text = @"Used";
+    }
 }
 @end

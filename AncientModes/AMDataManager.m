@@ -133,19 +133,95 @@
 
 
 #pragma mark - Plist Interfaces
-#pragma mark - Mode Settings
+#pragma mark - Mode Data
 -(NSDictionary *)getPropertiesForMode:(NSString *)modeName{
     //Get the mode definitions node
     NSDictionary *modeDefinitions = [self.plApplicationData objectForKey:@"ModeDefinitions"];
     //return the node for the current mode
     return [modeDefinitions objectForKey:modeName];
 }
--(NSArray *)getListOfAllModes{
-    return [[self.plApplicationData objectForKey:@"ModeDefinitions"] allKeys];
+-(NSDictionary *) getListOfAllGroups{
+    return [self.plApplicationData objectForKey:@"ModeGroups"];
+}
+-(NSString *) getNameForGroupId:(int) groupId{
+    return [self.getListOfAllGroups objectForKey:[NSString stringWithFormat:@"%i",groupId]];
+}
+-(NSArray *)getListOfAllModesUseDisplayName:(BOOL) displayName grouped:(BOOL) grouped{
+    NSDictionary *allModes = [self.plApplicationData objectForKey:@"ModeDefinitions"];
+    NSMutableArray *rawList = [NSMutableArray arrayWithArray:[allModes allKeys]];
+    for(int i=0; i<rawList.count; i++){
+        NSString *key = [rawList objectAtIndex:i];
+        NSString *patternOf = [[allModes objectForKey:key] objectForKey:@"PatternOf"];
+        
+        if(patternOf != nil){
+            if(displayName) {
+                [rawList removeObjectIdenticalTo:patternOf];
+            }else{
+                [rawList removeObjectAtIndex:i];
+            }//if(byDisplayName)
+        }//if patternof != nil
+    }
+    
+    if(grouped){
+        NSArray *groupList = [[self.getListOfAllGroups allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        NSMutableArray *categorizedList = [NSMutableArray arrayWithCapacity:groupList.count];
+        for(int i=0; i<groupList.count; i++){
+            int key = [[groupList objectAtIndex:i] intValue];
+            [categorizedList insertObject:[self getListOfModesInGroup:key useDisplayName:displayName] atIndex:i];
+        }
+        return categorizedList;
+    }else{
+        return [self orderListOfModes:rawList];
+
+    }
+}
+-(NSArray *) getListOfModesInGroup:(int) group useDisplayName:(BOOL) displayName{
+    NSDictionary *allModes = [self.plApplicationData objectForKey:@"ModeDefinitions"];
+    NSMutableArray *orderedList = [NSMutableArray arrayWithArray:[self getListOfAllModesUseDisplayName:displayName grouped:NO]];
+    for(int i=0; i<orderedList.count; i++){
+        //get the mode's groupid
+        NSString *key = [orderedList objectAtIndex:i];
+        int groupId = [[[allModes objectForKey:key] objectForKey:@"groupId"] intValue];
+        if(groupId != group){
+            [orderedList removeObjectAtIndex:i];
+            i--;
+        }
+    }
+
+    return orderedList;
+}
+
+-(NSArray *) orderListOfModes:(NSArray *)listOfModes{
+    //assume each groups contains the size of modes - will create an array with a lot of empty slots which will be cleared
+    int groupsNum = (int)self.getListOfAllGroups.count;
+    int groupSize = (int)listOfModes.count;
+    NSMutableArray *sortedList = [NSMutableArray arrayWithCapacity:groupsNum*groupSize];
+    //initialize all the slots in the array with empty string
+    for(int i=0; i<groupsNum*groupSize; i++) [sortedList addObject:@""];
+    //go through the list of modes and check if they have order value assigned
+    for(NSString *mode in listOfModes){
+        //insert the mode at the specified index or if the index is not given put it at the end
+        NSString *orderVal = [[self getPropertiesForMode:mode] objectForKey:@"order"];
+        NSString *groupVal = [[self getPropertiesForMode:mode] objectForKey:@"groupId"];
+        int index;
+        if(orderVal == nil || groupVal == nil) index = (int)sortedList.count - 1;
+        else index = (([groupVal intValue]-1)*groupSize) + ([orderVal intValue] - 1);
+        
+        [sortedList setObject:mode atIndexedSubscript:index];
+    }
+    //remove all empty objects from the array
+    for(int i=0; i<sortedList.count; i++){
+        if([[sortedList objectAtIndex:i] isEqualToString:@""]){
+            [sortedList removeObjectAtIndex:i];
+            i--;
+        }
+    }
+    
+    return sortedList;
 }
 -(NSArray *)getListOfEnabledModes{
     NSMutableArray *enabledModes = [[NSMutableArray alloc] initWithCapacity:1];
-    for(NSString *mode in self.getListOfAllModes){
+    for(NSString *mode in [self getListOfAllModesUseDisplayName:NO grouped:NO]){
         if([[NSUserDefaults standardUserDefaults] boolForKey:mode]) [enabledModes addObject:mode];
     }
     return enabledModes;
@@ -170,10 +246,10 @@
 #pragma mark - User Defaults Interfaces
 -(BOOL) mode:(NSString *) mode setEnabled:(BOOL) enabled{
     long enabledModes = [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberOfEnabledModes"];
+    enabled?enabledModes++:enabledModes--;
+
     //if the number of enabled modes will be 4 or less after this method completes then return false
     if(!enabled && enabledModes < 4) return false;
-    
-    enabled?enabledModes++:enabledModes--;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
     [[NSUserDefaults standardUserDefaults] setInteger:enabledModes forKey:@"NumberOfEnabledModes"];

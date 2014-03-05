@@ -21,7 +21,7 @@
 		C00724E318874136001446A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C00724E118874136001446A5 /* InfoPlist.strings */; };
 		C00724E518874136001446A5 /* AncientModesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724E418874136001446A5 /* AncientModesTests.m */; };
 		C00724F01887534F001446A5 /* AMMode.m in Sources */ = {isa = PBXBuildFile; fileRef = C00724EF1887534F001446A5 /* AMMode.m */; };
-		C0082A4518B6721000050FFB /* AMPlayerSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */; };
+		C0082A4518B6721000050FFB /* AMSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0082A4418B6721000050FFB /* AMSettingsVC.m */; };
 		C01CF27418BFF60500050C28 /* AMStatisticsByModeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27318BFF60500050C28 /* AMStatisticsByModeTVC.m */; };
 		C01CF27718BFFFA500050C28 /* AMStatisticsByModeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27618BFFFA500050C28 /* AMStatisticsByModeTVCell.m */; };
 		C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27918C0051D00050C28 /* AMStatisticsByModeDetailVC.m */; };
@@ -35,7 +35,7 @@
 		C0747BCA18BD39C00073DC15 /* AMStatisticsGraphV.m in Sources */ = {isa = PBXBuildFile; fileRef = C0747BC918BD39C00073DC15 /* AMStatisticsGraphV.m */; };
 		C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0863E5E18A29F7800F7BA88 /* AMUtilities.m */; };
 		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
-		C0A2C1D718C12E500002827B /* noteImages in Resources */ = {isa = PBXBuildFile; fileRef = C0A2C1D618C12E500002827B /* noteImages */; };
+		C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
 		C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */; };
 		C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */; };
@@ -47,16 +47,18 @@
 		C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2BB188AD42C00583812 /* Trombone.aupreset */; };
 		C0D38AC818C1408000E3C963 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D38AC718C1408000E3C963 /* bg.png */; };
 		C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D38AC918C142B100E3C963 /* playAgain.png */; };
-		C0DAB20F18BF960E00B41F92 /* AMModesSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB20E18BF960E00B41F92 /* AMModesSettingsTVC.m */; };
+		C0D55D3818C2C141001B76D0 /* AMEndTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D55D3718C2C141001B76D0 /* AMEndTestVC.m */; };
 		C0DAB21218BFA25700B41F92 /* AMTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */; };
+		C0DB351D18C637D500768113 /* AMEnharmonicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DB351C18C637D500768113 /* AMEnharmonicManager.m */; };
+		C0DB351F18C6C46000768113 /* noteImages in Resources */ = {isa = PBXBuildFile; fileRef = C0DB351E18C6C46000768113 /* noteImages */; };
+		C0E9DF5A18C4F21C000FC648 /* AMTestSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */; };
 		C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */; };
 		C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */; };
 		C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */; };
 		C0F3470118C15233006218BF /* btnNext.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F346FF18C15233006218BF /* btnNext.png */; };
 		C0F3470518C18657006218BF /* btnAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470418C18657006218BF /* btnAnswer.png */; };
 		C0F3470918C198C6006218BF /* btnAnswerSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470818C198C6006218BF /* btnAnswerSelected.png */; };
-		C0F3470B18C24151006218BF /* graphBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F3470A18C24151006218BF /* graphBg.png */; };
-		C0F7889D18BBC5650079618B /* AMHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F7889C18BBC5650079618B /* AMHintView.m */; };
+		C0F7889D18BBC5650079618B /* AMVisualExampleV.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F7889C18BBC5650079618B /* AMVisualExampleV.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +89,8 @@
 		C00724E418874136001446A5 /* AncientModesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AncientModesTests.m; sourceTree = "<group>"; };
 		C00724EE1887534F001446A5 /* AMMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMode.h; sourceTree = "<group>"; };
 		C00724EF1887534F001446A5 /* AMMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMode.m; sourceTree = "<group>"; };
-		C0082A4318B6721000050FFB /* AMPlayerSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPlayerSettingsVC.h; sourceTree = "<group>"; };
-		C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPlayerSettingsVC.m; sourceTree = "<group>"; };
+		C0082A4318B6721000050FFB /* AMSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSettingsVC.h; sourceTree = "<group>"; };
+		C0082A4418B6721000050FFB /* AMSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSettingsVC.m; sourceTree = "<group>"; };
 		C01CF27218BFF60500050C28 /* AMStatisticsByModeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsByModeTVC.h; sourceTree = "<group>"; };
 		C01CF27318BFF60500050C28 /* AMStatisticsByModeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsByModeTVC.m; sourceTree = "<group>"; };
 		C01CF27518BFFFA500050C28 /* AMStatisticsByModeTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsByModeTVCell.h; sourceTree = "<group>"; };
@@ -115,7 +117,8 @@
 		C0863E5E18A29F7800F7BA88 /* AMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUtilities.m; sourceTree = "<group>"; };
 		C099C98318BBB8B400730AD9 /* AMStatisticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsVC.h; sourceTree = "<group>"; };
 		C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsVC.m; sourceTree = "<group>"; };
-		C0A2C1D618C12E500002827B /* noteImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = noteImages; path = Images/noteImages; sourceTree = "<group>"; };
+		C0A1F78618C2B11900EE7DF3 /* AMStartTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStartTestVC.h; sourceTree = "<group>"; };
+		C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStartTestVC.m; sourceTree = "<group>"; };
 		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
 		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
 		C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVCell.h; sourceTree = "<group>"; };
@@ -132,22 +135,25 @@
 		C0CFA2BB188AD42C00583812 /* Trombone.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Trombone.aupreset; sourceTree = "<group>"; };
 		C0D38AC718C1408000E3C963 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = Images/bg.png; sourceTree = "<group>"; };
 		C0D38AC918C142B100E3C963 /* playAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playAgain.png; path = Images/playAgain.png; sourceTree = "<group>"; };
-		C0DAB20D18BF960E00B41F92 /* AMModesSettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVC.h; sourceTree = "<group>"; };
-		C0DAB20E18BF960E00B41F92 /* AMModesSettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsTVC.m; sourceTree = "<group>"; };
+		C0D55D3618C2C141001B76D0 /* AMEndTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEndTestVC.h; sourceTree = "<group>"; };
+		C0D55D3718C2C141001B76D0 /* AMEndTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEndTestVC.m; sourceTree = "<group>"; };
 		C0DAB21018BFA25700B41F92 /* AMTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTabBarViewController.h; sourceTree = "<group>"; };
 		C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTabBarViewController.m; sourceTree = "<group>"; };
+		C0DB351B18C637D500768113 /* AMEnharmonicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEnharmonicManager.h; sourceTree = "<group>"; };
+		C0DB351C18C637D500768113 /* AMEnharmonicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEnharmonicManager.m; sourceTree = "<group>"; };
+		C0DB351E18C6C46000768113 /* noteImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = noteImages; path = Images/noteImages; sourceTree = "<group>"; };
+		C0E9DF5818C4F21C000FC648 /* AMTestSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestSummaryVC.h; sourceTree = "<group>"; };
+		C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestSummaryVC.m; sourceTree = "<group>"; };
 		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = AncientModes/AMDataManager.h; sourceTree = "<group>"; };
 		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = AncientModes/AMDataManager.m; sourceTree = "<group>"; };
 		C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
 		C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
 		C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
 		C0F346FF18C15233006218BF /* btnNext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnNext.png; path = Images/btnNext.png; sourceTree = "<group>"; };
-		C0F3470318C15647006218BF /* TahomaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TahomaBold.ttf; sourceTree = "<group>"; };
 		C0F3470418C18657006218BF /* btnAnswer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnAnswer.png; path = Images/btnAnswer.png; sourceTree = "<group>"; };
 		C0F3470818C198C6006218BF /* btnAnswerSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnAnswerSelected.png; path = Images/btnAnswerSelected.png; sourceTree = "<group>"; };
-		C0F3470A18C24151006218BF /* graphBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphBg.png; path = Images/graphBg.png; sourceTree = "<group>"; };
-		C0F7889B18BBC5650079618B /* AMHintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMHintView.h; sourceTree = "<group>"; };
-		C0F7889C18BBC5650079618B /* AMHintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMHintView.m; sourceTree = "<group>"; };
+		C0F7889B18BBC5650079618B /* AMVisualExampleV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVisualExampleV.h; sourceTree = "<group>"; };
+		C0F7889C18BBC5650079618B /* AMVisualExampleV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVisualExampleV.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,10 +219,9 @@
 		C00724C018874136001446A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C0F3470318C15647006218BF /* TahomaBold.ttf */,
 				C0A2C1DA18C12EDF0002827B /* AppImages */,
-				C0A2C1D618C12E500002827B /* noteImages */,
 				C00724D118874136001446A5 /* Images.xcassets */,
+				C0DB351E18C6C46000768113 /* noteImages */,
 				C0CFA2B5188AD25F00583812 /* Sounds */,
 				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
 				C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */,
@@ -264,9 +269,9 @@
 				C0343BB91895744B009F0934 /* AMEarTest.m */,
 				C0343BBC189574B7009F0934 /* AMTestChallenge.h */,
 				C0343BBD189574B7009F0934 /* AMTestChallenge.m */,
-				C051CAC5189EC1A2009BCBE8 /* Categories */,
-				C0863E5D18A29F7800F7BA88 /* AMUtilities.h */,
-				C0863E5E18A29F7800F7BA88 /* AMUtilities.m */,
+				C051CAC5189EC1A2009BCBE8 /* CategoriesAndUtils */,
+				C0DB351B18C637D500768113 /* AMEnharmonicManager.h */,
+				C0DB351C18C637D500768113 /* AMEnharmonicManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -274,12 +279,10 @@
 		C0082A4618B674E400050FFB /* SettingsControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0082A4318B6721000050FFB /* AMPlayerSettingsVC.h */,
-				C0082A4418B6721000050FFB /* AMPlayerSettingsVC.m */,
+				C0082A4318B6721000050FFB /* AMSettingsVC.h */,
+				C0082A4418B6721000050FFB /* AMSettingsVC.m */,
 				C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */,
 				C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */,
-				C0DAB20D18BF960E00B41F92 /* AMModesSettingsTVC.h */,
-				C0DAB20E18BF960E00B41F92 /* AMModesSettingsTVC.m */,
 			);
 			name = SettingsControllers;
 			sourceTree = "<group>";
@@ -296,10 +299,10 @@
 		C0458FBC18A14921009A1958 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C0B89AAD18BB843300CB364A /* LearnControllers */,
 				C099C98218BBAF0E00730AD9 /* TestControllers */,
-				C0082A4618B674E400050FFB /* SettingsControllers */,
+				C0B89AAD18BB843300CB364A /* LearnControllers */,
 				C099C98618BBB8B900730AD9 /* StatisticsControllers */,
+				C0082A4618B674E400050FFB /* SettingsControllers */,
 				C0E0B78018BFD90A00C17636 /* NavigationControllers */,
 			);
 			name = Controller;
@@ -309,21 +312,23 @@
 			isa = PBXGroup;
 			children = (
 				C00724CB18874136001446A5 /* Main.storyboard */,
-				C0F7889B18BBC5650079618B /* AMHintView.h */,
-				C0F7889C18BBC5650079618B /* AMHintView.m */,
+				C0F7889B18BBC5650079618B /* AMVisualExampleV.h */,
+				C0F7889C18BBC5650079618B /* AMVisualExampleV.m */,
 				C0747BC818BD39C00073DC15 /* AMStatisticsGraphV.h */,
 				C0747BC918BD39C00073DC15 /* AMStatisticsGraphV.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
 		};
-		C051CAC5189EC1A2009BCBE8 /* Categories */ = {
+		C051CAC5189EC1A2009BCBE8 /* CategoriesAndUtils */ = {
 			isa = PBXGroup;
 			children = (
+				C0863E5D18A29F7800F7BA88 /* AMUtilities.h */,
+				C0863E5E18A29F7800F7BA88 /* AMUtilities.m */,
 				C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */,
 				C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */,
 			);
-			name = Categories;
+			name = CategoriesAndUtils;
 			sourceTree = "<group>";
 		};
 		C06892EB18A26FE500B860C2 /* DataAPI */ = {
@@ -351,6 +356,12 @@
 			children = (
 				C04A06AC189D6CD600E4A25F /* AMTestVC.h */,
 				C04A06AD189D6CD600E4A25F /* AMTestVC.m */,
+				C0A1F78618C2B11900EE7DF3 /* AMStartTestVC.h */,
+				C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */,
+				C0D55D3618C2C141001B76D0 /* AMEndTestVC.h */,
+				C0D55D3718C2C141001B76D0 /* AMEndTestVC.m */,
+				C0E9DF5818C4F21C000FC648 /* AMTestSummaryVC.h */,
+				C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */,
 			);
 			name = TestControllers;
 			sourceTree = "<group>";
@@ -373,7 +384,6 @@
 		C0A2C1DA18C12EDF0002827B /* AppImages */ = {
 			isa = PBXGroup;
 			children = (
-				C0F3470A18C24151006218BF /* graphBg.png */,
 				C0F3470818C198C6006218BF /* btnAnswerSelected.png */,
 				C0F3470418C18657006218BF /* btnAnswer.png */,
 				C0F346FF18C15233006218BF /* btnNext.png */,
@@ -493,14 +503,13 @@
 				C00724D218874136001446A5 /* Images.xcassets in Resources */,
 				C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */,
 				C0F3470118C15233006218BF /* btnNext.png in Resources */,
-				C0F3470B18C24151006218BF /* graphBg.png in Resources */,
 				C0D38AC818C1408000E3C963 /* bg.png in Resources */,
-				C0A2C1D718C12E500002827B /* noteImages in Resources */,
 				C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */,
 				C0F3470518C18657006218BF /* btnAnswer.png in Resources */,
 				C00724C418874136001446A5 /* InfoPlist.strings in Resources */,
 				C0CFA2B6188AD25F00583812 /* Sounds in Resources */,
 				C00724CD18874136001446A5 /* Main.storyboard in Resources */,
+				C0DB351F18C6C46000768113 /* noteImages in Resources */,
 				C0CFA2BA188AD27100583812 /* Vibraphone.aupreset in Resources */,
 				C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */,
 				C0F3470918C198C6006218BF /* btnAnswerSelected.png in Resources */,
@@ -524,24 +533,27 @@
 			files = (
 				C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */,
 				C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */,
+				C0D55D3818C2C141001B76D0 /* AMEndTestVC.m in Sources */,
 				C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */,
 				C0EE1F8618BC18330070F6F6 /* AMAncientModesData.xcdatamodeld in Sources */,
 				C0DAB21218BFA25700B41F92 /* AMTabBarViewController.m in Sources */,
 				C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */,
 				C01CF27718BFFFA500050C28 /* AMStatisticsByModeTVCell.m in Sources */,
 				C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */,
-				C0082A4518B6721000050FFB /* AMPlayerSettingsVC.m in Sources */,
+				C0DB351D18C637D500768113 /* AMEnharmonicManager.m in Sources */,
+				C0082A4518B6721000050FFB /* AMSettingsVC.m in Sources */,
 				C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */,
 				C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */,
 				C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */,
+				C0E9DF5A18C4F21C000FC648 /* AMTestSummaryVC.m in Sources */,
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,
 				C0747BCA18BD39C00073DC15 /* AMStatisticsGraphV.m in Sources */,
 				C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */,
-				C0F7889D18BBC5650079618B /* AMHintView.m in Sources */,
-				C0DAB20F18BF960E00B41F92 /* AMModesSettingsTVC.m in Sources */,
+				C0F7889D18BBC5650079618B /* AMVisualExampleV.m in Sources */,
 				C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */,
 				C01CF27418BFF60500050C28 /* AMStatisticsByModeTVC.m in Sources */,
 				C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */,
+				C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */,
 				C00724F01887534F001446A5 /* AMMode.m in Sources */,
 				C0343BC1189578C2009F0934 /* AMScale.m in Sources */,
 				C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */,

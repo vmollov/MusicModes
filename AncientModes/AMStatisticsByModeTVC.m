@@ -28,7 +28,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.listOfModes = [[AMDataManager getInstance] getListOfAllModes];
+    self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     
     //set the background
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg.png"]];
@@ -52,12 +52,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
-    return 1;
+    return self.listOfModes.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     // Return the number of rows in the section.
-    return self.listOfModes.count;
+    return [[self.listOfModes objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -66,7 +66,7 @@
     if(cell==nil) cell=[[AMStatisticsByModeTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     // Configure the cell...
-    NSString *modeForCell = [self.listOfModes objectAtIndex:indexPath.row];
+    NSString *modeForCell = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSDictionary *modeForCellData = [[AMDataManager getInstance] getStatisticsForMode:modeForCell];
     cell.modeData = modeForCellData;
     float average = [[[modeForCellData allValues] valueForKeyPath:@"@avg.self"] floatValue];
@@ -76,59 +76,26 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.userInteractionEnabled = NO;
     }
-    else cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
+    else {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
+        cell.userInteractionEnabled = YES;
+    }
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [[AMDataManager getInstance] getNameForGroupId:(int)section + 1];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 // In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    AMStatisticsByModeDetailVC *destination = [segue destinationViewController];
-    AMStatisticsByModeTVCell *selectedCell = sender;
-    destination.data = selectedCell.modeData;
-    destination.modeName = selectedCell.textLabel.text;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ModeStatisticsDetail"]){
+        AMStatisticsByModeDetailVC *destination = [segue destinationViewController];
+        AMStatisticsByModeTVCell *selectedCell = sender;
+        destination.data = selectedCell.modeData;
+        destination.modeName = selectedCell.textLabel.text;
+    }
 }
 
 @end

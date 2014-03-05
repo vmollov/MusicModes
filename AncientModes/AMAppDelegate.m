@@ -9,6 +9,7 @@
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
 
+
 @implementation AMAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -29,10 +30,14 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"Piano" forKey:@"playSample"];
         [[NSUserDefaults standardUserDefaults] setFloat:120.0 forKey:@"playTempo"];
         
+        [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"numberOfQuestions"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoAdvance"];
+        
         //enable use of all modes
-        NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModes];
+        NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];
         for(NSString *mode in listOfModes){
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:mode];
+            NSDictionary *modeProperties = [[AMDataManager getInstance]getPropertiesForMode:mode];
+            [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
         }
         [[NSUserDefaults standardUserDefaults] setInteger:listOfModes.count forKey:@"NumberOfEnabledModes"];
         
@@ -40,13 +45,8 @@
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        NSLog(@"Loaded defaults.");
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-    
-    //set the background image
-    [self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Images/bg.png"]]];
-    
     
     return YES;
 }

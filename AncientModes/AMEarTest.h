@@ -22,6 +22,7 @@
 -(BOOL) hasNextChallenge;
 -(BOOL) hasPreviousChallenge;
 
+-(NSArray *) getHint;
 -(BOOL) checkAnswer: (NSString *) answer;
--(double) getFinalTestScorePercentage;
+-(float) getRunningScore;
 @end

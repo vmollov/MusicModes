@@ -16,7 +16,10 @@
 -(void)eraseAllStatistics;
 
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
--(NSArray *)getListOfAllModes;
+-(NSDictionary *) getListOfAllGroups;
+-(NSString *) getNameForGroupId:(int) groupId;
+-(NSArray *)getListOfAllModesUseDisplayName:(BOOL) displayName grouped:(BOOL) grouped;
+-(NSArray *) getListOfModesInGroup:(int) group useDisplayName:(BOOL) displayName;
 -(NSArray *)getListOfEnabledModes;
 
 -(NSRange) getCurrentSampleRange;

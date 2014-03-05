@@ -17,23 +17,41 @@ uint32_t randomIntInRange(NSRange range){
     return arc4random_uniform(highBound - lowBound + 1) + lowBound;
 }
 
-#pragma mark - pragma mark Conversion Methods
-UInt8 MIDIValueForNote(NSString* note){
-    //check if the passed note string is a valid note
+#pragma mark - Validation Methods
+BOOL isNoteValid(NSString* noteName){
     NSError *checkError;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[A-G][s,f]?[1-8]$" options:NSRegularExpressionCaseInsensitive error:&checkError];
-    int numberOfMatches = (int)[regex numberOfMatchesInString:note options:0 range:NSMakeRange(0, [note length])];
-    if(numberOfMatches < 1) [NSException raise:@"Invalid Note" format:@"Notes have to be in the format A-G(s,f)1-8"];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[A-G][s,f,x,d]?[1-8]$" options:NSRegularExpressionCaseInsensitive error:&checkError];
+    int numberOfMatches = (int)[regex numberOfMatchesInString:noteName options:0 range:NSMakeRange(0, [noteName length])];
+    return (numberOfMatches > 0);
+}
+
+#pragma mark - pragma mark Conversion Methods
+NSArray* parseNote(NSString* note){
+    if(!isNoteValid(note)) return nil;
     
-    //parse the note and get it into format of A-G{s,f}0-9
     NSString *noteName = [[note substringWithRange:NSMakeRange(0,1)] uppercaseString];
     //check if accidental was passed
     NSString *noteAccidental = [note substringWithRange:NSMakeRange(1, 1)];
-    int octave;
-    if ([[noteAccidental lowercaseString] isEqualToString: @"s"] || [[noteAccidental lowercaseString] isEqualToString:@"f"]){
-        noteName = [[[note substringWithRange:NSMakeRange(0,1)] uppercaseString] stringByAppendingString:[[note substringWithRange:NSMakeRange(1, 1)] lowercaseString]];
-        octave = [[note substringWithRange:NSMakeRange(2,1)] intValue];
-    }else octave = [[note substringWithRange:NSMakeRange(1,1)] intValue];
+    NSString *octave;
+    if ([[noteAccidental lowercaseString] isEqualToString: @"s"] || [[noteAccidental lowercaseString] isEqualToString:@"f"] || [[noteAccidental lowercaseString] isEqualToString:@"x"] || [[noteAccidental lowercaseString] isEqualToString:@"d"]){
+        
+        //noteName = [[[note substringWithRange:NSMakeRange(0,1)] uppercaseString] stringByAppendingString:[[note substringWithRange:NSMakeRange(1, 1)] lowercaseString]];
+        octave = [note substringWithRange:NSMakeRange(2,1)];
+    }else{
+        noteAccidental = @"";
+        octave = [note substringWithRange:NSMakeRange(1,1)];
+    }
+    
+    return @[noteName, noteAccidental, octave];
+}
+
+UInt8 MIDIValueForNote(NSString* note){
+    //check if the passed note string is a valid note
+    if(!isNoteValid(note)) [NSException raise:@"Invalid Note" format:@"Notes have to be in the format A-G(s,f,x,d)1-8"];
+   
+    NSArray *parsedNote = parseNote(note);
+    NSString *noteName = [[parsedNote objectAtIndex:0] stringByAppendingString:[parsedNote objectAtIndex:1]];
+    int octave = [[parsedNote objectAtIndex:2] intValue];
     
     //enumerate the notes and give them integer values
     NSDictionary *noteNumValues = @{
@@ -54,53 +72,4 @@ UInt8 MIDIValueForNote(NSString* note){
     //compute the note - add 12 since the map for C0 starts at value 12 - there is a -1 octave which we are ignoring
     return 12 + (octave*12 + noteValue);
 }
-
-NSString* noteForMIDIValue(UInt8 midiValue){
-    if(midiValue>127)[NSException raise:@"Invalid MIDI Value" format:@"%i is not a valid value.  Must be between 0 and 127.", midiValue];
-    int octave = floor(midiValue/12) -1;
-    int note = midiValue % 12;
-    
-    switch (note) {
-        case 0:
-            return [NSString stringWithFormat:@"C%i", octave];
-            break;
-        case 1:
-            return [NSString stringWithFormat:@"Cs%i", octave];
-            break;
-        case 2:
-            return [NSString stringWithFormat:@"D%i", octave];
-            break;
-        case 3:
-            return [NSString stringWithFormat:@"Ds%i", octave];
-            break;
-        case 4:
-            return [NSString stringWithFormat:@"E%i", octave];
-            break;
-        case 5:
-            return [NSString stringWithFormat:@"F%i", octave];
-            break;
-        case 6:
-            return [NSString stringWithFormat:@"Fs%i", octave];
-            break;
-        case 7:
-            return [NSString stringWithFormat:@"G%i", octave];
-            break;
-        case 8:
-            return [NSString stringWithFormat:@"Gs%i", octave];
-            break;
-        case 9:
-            return [NSString stringWithFormat:@"A%i", octave];
-            break;
-        case 10:
-            return [NSString stringWithFormat:@"As%i", octave];
-            break;
-        case 11:
-            return [NSString stringWithFormat:@"B%i", octave];
-            break;
-        default:
-            break;
-    }
-    return nil;
-}
-
 @end

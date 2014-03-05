@@ -22,12 +22,30 @@
 -(AMMode *) createModeFromName:(NSString *) name{
     NSDictionary *scaleProperties = [[AMDataManager getInstance] getPropertiesForMode:name];
     if(scaleProperties == nil) [NSException raise:@"Invalid Mode" format:@"%@ is not a recognized mode or it does not exist in the main property list file", name];
-    NSString *description = [scaleProperties objectForKey:@"Description"];
+    
+    //if this mode is a pattern of a different mode switch to it
+    NSString *patternOf = [scaleProperties objectForKey:@"PatternOf"];
+    NSString *displayName = [NSString stringWithFormat:@"%@", name];
+    if(patternOf != nil) {
+        scaleProperties = [[AMDataManager getInstance] getPropertiesForMode:patternOf];
+        name = patternOf;
+    }
+    
     NSArray *pattern = [scaleProperties objectForKey:@"Pattern"];
     NSArray *patternDesc = [scaleProperties objectForKey:@"PatternDesc"];
+    NSArray *stepPattern = [scaleProperties objectForKey:@"stepPattern"];
+    NSArray *stepPatternDesc = [scaleProperties objectForKey:@"stepPatternDesc"];
+    
     NSString *variationMode = [scaleProperties objectForKey:@"VariationOf"];
     
-    return [[AMMode alloc] initWithName:name description:description ascPattern:pattern descPattern:patternDesc variationOf:variationMode];
+    return [[AMMode alloc] initWithName:name ascPattern:pattern descPattern:patternDesc stepPattern:stepPattern stepPatternDesc:stepPatternDesc variationOf:variationMode displayName:displayName];
+}
+-(AMMode *) createModeWithDescriptionFromName:(NSString *) name{
+    AMMode *result = [self createModeFromName:name];
+    NSDictionary *scaleProperties = [[AMDataManager getInstance] getPropertiesForMode:name];
+    result.modeDescription = [scaleProperties objectForKey:@"Description"];
+    result.tips = [scaleProperties objectForKey:@"listenFor"];
+    return result;
 }
 
 -(NSString *) generateRandomModeName{

@@ -8,6 +8,7 @@
 
 #import "AMScale.h"
 #import "AMUtilities.h"
+#import "AMEnharmonicManager.h"
 
 @implementation AMScale
 
@@ -22,18 +23,28 @@
 
 #pragma mark - Methods to Build Scales
 //This method produces a string of the note names with a starting note in first octave
--(NSArray *) getNotes{
+-(NSArray *) getNotesUseDescending:(BOOL)descending{
     NSMutableArray *scaleNotes = [[NSMutableArray alloc] initWithCapacity:1];
     UInt8 currentNote = self.baseMIDINote;
     
     //put the starting note in first octave
     while(currentNote<60) currentNote+=12; //C4 is MIDI value 60
     while(currentNote>71) currentNote-=12; //B4 is MIDI value 71
+    if (descending) currentNote+=12; //adjust the octave for a descending scale
     
-    [scaleNotes addObject:noteForMIDIValue(currentNote)];
-    for(int patternPoint=0; patternPoint<self.mode.pattern.count; patternPoint++){
-        currentNote += [[self.mode.pattern objectAtIndex:patternPoint] intValue];
-        [scaleNotes addObject:noteForMIDIValue(currentNote)];
+    NSString *currentNoteString = [[[AMEnharmonicManager getInstance] enharmonicsForMIDIValue:currentNote] objectForKey:@"default"];
+    NSString *nextNoteString;
+    [scaleNotes addObject:currentNoteString];
+    
+    //determine the direction
+    NSArray *currentPattern = descending?self.mode.patternDesc:self.mode.pattern;
+    NSArray *currentStepPattern = descending?self.mode.stepPatternDesc:self.mode.stepPattern;
+    
+    for(int patternPoint=0; patternPoint<currentPattern.count; patternPoint++){
+        currentNote += [[currentPattern objectAtIndex:patternPoint] intValue];
+        nextNoteString = [[AMEnharmonicManager getInstance] getEnharmonicFromNote:currentNoteString toMIDINote:currentNote withBaseDistance:[[currentStepPattern objectAtIndex:patternPoint]intValue]];
+        [scaleNotes addObject:nextNoteString];
+        currentNoteString = nextNoteString;
     }
     
     return scaleNotes;

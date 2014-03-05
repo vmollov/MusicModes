@@ -10,6 +10,7 @@
 
 @interface AMModesSettingsTVCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *lbMode;
+@property (strong, nonatomic) IBOutlet UILabel *lbOn;
 @property (strong, nonatomic) IBOutlet UISwitch *swModeSetting;
 
 @property NSString *mode;

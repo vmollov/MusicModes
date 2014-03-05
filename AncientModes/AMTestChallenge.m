@@ -10,6 +10,7 @@
 #import "AMScalesManager.h"
 #import "NSMutableArray+Shuffling.h"
 #import "AMScalesPlayer.h"
+#import "AMUtilities.h"
 
 @implementation AMTestChallenge
 
@@ -78,7 +79,7 @@
 
 -(NSArray *)getHint{
     self.usedHint = YES;
-    return self.scale.getNotes;
+    return [self.scale getNotesUseDescending:randomIntInRange(NSMakeRange(0, 1))];
 }
 
 @end

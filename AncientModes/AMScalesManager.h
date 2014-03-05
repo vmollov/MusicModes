@@ -11,6 +11,7 @@
 +(AMScalesManager *) getInstance;
 
 -(AMMode *) createModeFromName:(NSString *) name;
+-(AMMode *) createModeWithDescriptionFromName:(NSString *) name;
 
 -(NSString *) generateRandomModeName;
 -(AMScale *)generateRandomScale;

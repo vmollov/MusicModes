@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "AMScale.h"
+#import "AMVisualExampleV.h"
 
 @interface AMModeDetailVC : UIViewController
-@property (strong, nonatomic) IBOutlet UILabel *lbTest;
+@property (strong, nonatomic) IBOutlet UITextView *txtDescription;
+@property (strong, nonatomic) IBOutlet UITextView *txtListenFor;
+@property (strong, nonatomic) IBOutlet AMVisualExampleV *vwExample;
+@property (strong, nonatomic) IBOutlet UIButton *btnPlayExample;
 
 @property NSString *modeName;
 @property AMScale *scale;
 
+- (IBAction)playExample:(id)sender;
 @end
