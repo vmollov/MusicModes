@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C00724B518874136001446A5"
-               BuildableName = "AncientModes.app"
-               BlueprintName = "AncientModes"
-               ReferencedContainer = "container:AncientModes.xcodeproj">
+               BuildableName = "Modes Ear Trainer.app"
+               BlueprintName = "Modes Ear Trainer"
+               ReferencedContainer = "container:Modes Ear Trainer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C00724D618874136001446A5"
-               BuildableName = "AncientModesTests.xctest"
-               BlueprintName = "AncientModesTests"
-               ReferencedContainer = "container:AncientModes.xcodeproj">
+               BuildableName = "Modes Ear TrainerTests.xctest"
+               BlueprintName = "Modes Ear TrainerTests"
+               ReferencedContainer = "container:Modes Ear Trainer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "AncientModes.app"
-            BlueprintName = "AncientModes"
-            ReferencedContainer = "container:AncientModes.xcodeproj">
+            BuildableName = "Modes Ear Trainer.app"
+            BlueprintName = "Modes Ear Trainer"
+            ReferencedContainer = "container:Modes Ear Trainer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,15 +62,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "AncientModes.app"
-            BlueprintName = "AncientModes"
-            ReferencedContainer = "container:AncientModes.xcodeproj">
+            BuildableName = "Modes Ear Trainer.app"
+            BlueprintName = "Modes Ear Trainer"
+            ReferencedContainer = "container:Modes Ear Trainer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -86,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "AncientModes.app"
-            BlueprintName = "AncientModes"
-            ReferencedContainer = "container:AncientModes.xcodeproj">
+            BuildableName = "Modes Ear Trainer.app"
+            BlueprintName = "Modes Ear Trainer"
+            ReferencedContainer = "container:Modes Ear Trainer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
