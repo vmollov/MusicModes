@@ -9,6 +9,8 @@
 #import "AMModeDetailVC.h"
 #import "AMScalesManager.h"
 #import "AMScalesPlayer.h"
+#import "AMNote.h"
+
 #import "AMUtilities.h"
 
 @interface AMModeDetailVC ()
@@ -17,8 +19,7 @@
 
 @implementation AMModeDetailVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     //create the scale for this details scene
     self.mode = [[AMScalesManager getInstance] createModeWithDescriptionFromName:self.modeName];
-    UInt8 baseNote = MIDIValueForNote(@"C4");
+    UInt8 baseNote = [[[AMNote alloc] initWithString:@"C4"] MIDIValue];
     self.scale = [[AMScale alloc] initWithMode:self.mode baseMIDINote:baseNote];
     
     //setting the navigation

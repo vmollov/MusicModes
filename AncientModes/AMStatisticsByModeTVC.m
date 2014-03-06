@@ -78,6 +78,7 @@
     }
     else {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
     }
     

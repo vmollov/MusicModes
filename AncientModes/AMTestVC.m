@@ -43,7 +43,8 @@
     
     //initiate a new test
     int numberOfChallenges = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"];
-    self.currentTest = [[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges];
+    BOOL sameStartNote = [[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"];
+    self.currentTest = sameStartNote?[[AMEarTest alloc] initWithNumberOfChallenges:numberOfChallenges startingNote:@"C4"]:[[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges];
     
     //setup the plyer stopp event observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
@@ -117,6 +118,8 @@
         //highlight the correct answer
         UIButton *correctAnswer = [self.answerButtons objectAtIndex:self.currentTest.getCurrentChallenge.correctAnswerIndex];
         correctAnswer.highlighted = YES;
+        UIColor *highlightColor = [correctAnswer titleColorForState:UIControlStateHighlighted];
+        [correctAnswer setTitleColor:highlightColor forState:UIControlStateNormal];
     }
     
     //update the persistent stats
@@ -163,6 +166,8 @@
     for(int i=0; i<[self.answerButtons count]; i++){
         UIButton *answerButton = [self.answerButtons objectAtIndex:i];
         answerButton.selected = false;
+        [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
     }
 
     [self.currentTest getNextChallenge];
