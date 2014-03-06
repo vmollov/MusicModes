@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMUtilities.h"
-
 @interface AMDataManager : NSObject
 +(AMDataManager *) getInstance;
 
