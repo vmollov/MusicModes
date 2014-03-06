@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface AMEnharmonicManager : NSObject
 
 +(AMEnharmonicManager *) getInstance;

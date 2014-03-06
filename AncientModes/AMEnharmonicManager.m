@@ -7,7 +7,7 @@
 //
 
 #import "AMEnharmonicManager.h"
-#import "AMUtilities.h"
+#import "AMNote.h"
 
 @interface AMEnharmonicManager ()
 @property NSArray *noteToIntMap;
@@ -33,7 +33,7 @@
 -(NSString *)getEnharmonicFromNote:(NSString *)startingNote toMIDINote:(UInt8)destMIDIValue withBaseDistance:(int)baseNoteStep{
     //check if the passed note string is a valid note
     //NSLog(@"Note: %@", startingNote);
-    if(!isNoteValid(startingNote)) [NSException raise:@"Invalid Note" format:@"Notes have to be in the format A-G(s,f)1-8"];
+    AMNote *noteObj = [[AMNote alloc] initWithString:startingNote];
     
     NSDictionary *enharmonicSet = [self enharmonicsForMIDIValue:destMIDIValue];
     NSDictionary *possibleEnharmonics = [enharmonicSet objectForKey:@"all"];
@@ -42,18 +42,22 @@
     if(possibleEnharmonics.count == 1) return [enharmonicSet objectForKey:@"default"];
     
     //get the needed destination base note
-    NSString *destinationBaseNote = [self calculateBaseNoteFromNote:startingNote withInterval:baseNoteStep];
+    NSString *destinationBaseNote = [self calculateBaseNoteFromNote:noteObj withInterval:baseNoteStep];
     NSString *destinationNote = [possibleEnharmonics objectForKey:destinationBaseNote];
     //if destinationNote is nil no legal value was calculated - return the default
     if(destinationNote == nil) destinationNote = [enharmonicSet objectForKey:@"default"];
+    
+    //determine whether to return an explicit natural
+    AMNote *destNoteObj = [[AMNote alloc] initWithString:destinationNote];
+    if([destNoteObj.name isEqualToString:noteObj.name]) destinationNote = destNoteObj.stringValueWithExplicitAccidental;
     
     return destinationNote;
 }
 
 #pragma mark - Utility Methods
--(NSString *) calculateBaseNoteFromNote:(NSString *)startNote withInterval:(int) interval{
-    NSString *baseStartNote = [parseNote(startNote) objectAtIndex:0];
-    int startingBaseNoteMap = [self getIntMappingForBaseNote:baseStartNote];
+-(NSString *) calculateBaseNoteFromNote:(AMNote *)startNote withInterval:(int) interval{
+    //NSString *baseStartNote = [parseNote(startNote) objectAtIndex:0];
+    int startingBaseNoteMap = [self getIntMappingForBaseNote:startNote.name];
     int destinationBaseNoteMap = (startingBaseNoteMap + interval) % 7;
     if (destinationBaseNoteMap<0) destinationBaseNoteMap+=7;
     

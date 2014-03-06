@@ -13,8 +13,10 @@
 @property NSArray *challenges;
 @property int challengeIndex;
 @property (readonly) int correctAnswersCount, hintsCount;
+@property NSString *startingNote;
 
 -(id) initWithNumberOfChallenges: (int) number;
+-(id)initWithNumberOfChallenges:(int)number startingNote:(NSString *)startingNote;
 
 -(AMTestChallenge *) getCurrentChallenge;
 -(AMTestChallenge *) getNextChallenge;

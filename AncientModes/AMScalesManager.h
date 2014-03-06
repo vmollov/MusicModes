@@ -15,4 +15,5 @@
 
 -(NSString *) generateRandomModeName;
 -(AMScale *)generateRandomScale;
+-(AMScale *)generateRandomScaleFromNote:(UInt8)startingNote;
 @end

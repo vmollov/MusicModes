@@ -7,7 +7,6 @@
 //
 
 #import "AMScale.h"
-#import "AMUtilities.h"
 #import "AMEnharmonicManager.h"
 
 @implementation AMScale

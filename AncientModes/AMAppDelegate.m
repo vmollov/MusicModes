@@ -32,6 +32,7 @@
         
         [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"numberOfQuestions"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoAdvance"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ChallengeOnSameNote"];
         
         //enable use of all modes
         NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];

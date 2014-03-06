@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>About</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>Vladimir Mollov</string>
+			<key>Title</key>
+			<string>Created By</string>
+			<key>Key</key>
+			<string>createdBy</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>Joe Ball</string>
+			<key>Title</key>
+			<string>Design Assistance</string>
+			<key>Key</key>
+			<string>designAssistance</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>Annie Mollova</string>
+			<key>Title</key>
+			<string>Research Assistance</string>
+			<key>Key</key>
+			<string>researchAssistance</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>1.0</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>version</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>Vladimir Mollov 2014</string>
+			<key>Title</key>
+			<string>Copyright ©</string>
+			<key>Key</key>
+			<string>copyright</string>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+</dict>
+</plist>

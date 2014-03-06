@@ -8,6 +8,7 @@
 
 #import "AMScalesManager.h"
 #import "AMDataManager.h"
+#import "AMUtilities.h"
 
 @implementation AMScalesManager
 +(AMScalesManager *) getInstance{
@@ -61,11 +62,14 @@
     range.length -= 12;
     //select a random starting MIDI note value
     UInt8 startingNote = (UInt8)randomIntInRange(range);
+    
+    return [self generateRandomScaleFromNote:startingNote];
+}
+-(AMScale *)generateRandomScaleFromNote:(UInt8)startingNote{
     //get a random mode
     NSString *randomModeName = [self generateRandomModeName];
     AMMode *mode = [self createModeFromName:randomModeName];
     
     return [[AMScale alloc] initWithMode:mode baseMIDINote:startingNote];
 }
-
 @end
