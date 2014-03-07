@@ -10,4 +10,5 @@
 
 @interface AMStatisticsByModeTVCell : UITableViewCell
 @property NSDictionary *modeData;
+@property float average;
 @end

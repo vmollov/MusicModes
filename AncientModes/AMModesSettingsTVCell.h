@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMSettingsVC.h"
 
 @interface AMModesSettingsTVCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *lbMode;
@@ -14,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UISwitch *swModeSetting;
 
 @property NSString *mode;
+@property AMSettingsVC *parentVC;
 
 - (IBAction)changeModeUseSetting:(id)sender;
 @end

@@ -28,6 +28,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    //set up the purchase controller
+    _purchaseController = [[AMPurchaseVC alloc] init];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:_purchaseController];
+    
     //set up the table view
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     self.tblModeSettings.delegate = self;
@@ -51,6 +55,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)purchaseModes{
+    _purchaseController.productID = [[AMDataManager getInstance] getTier1ProductID];
+    [self.navigationController  presentViewController:_purchaseController animated:YES completion:nil];
+    [_purchaseController getProductInfo: self];
+}
+-(void)enableAdvancedModes{
+    //NSLog(@"Enabling advanced Modes");
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enableAdvancedModes"];
+}
+
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
@@ -73,6 +87,7 @@
     cell.swModeSetting.on = [[NSUserDefaults standardUserDefaults] boolForKey:currentMode];
     cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
     cell.mode = currentMode;
+    cell.parentVC = self;
     
     cell.backgroundColor =[UIColor clearColor];
     

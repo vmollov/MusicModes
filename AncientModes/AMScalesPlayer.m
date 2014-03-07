@@ -280,7 +280,8 @@
     
     CFDataRef propertyResourceData = 0;
 	Boolean status;
-	SInt32 errorCode = 0;
+	SInt32 errorCode;
+    errorCode = 0;
 	//OSStatus result = noErr;
 	
     NSError *errorCode2;

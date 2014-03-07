@@ -37,7 +37,25 @@
 }
 
 #pragma mark - Core Data Interfaces
--(NSDictionary *) getStatisticsForMode:(NSString *) modeName{
+-(float)getStatisticsAverageForMode:(NSString *)modeName{
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Statistics" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    if(modeName != nil){
+        //return statistics for specific mode
+        NSPredicate *modePredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"mode='%@'", modeName]];
+        [request setPredicate:modePredicate];
+    }
+    NSError *error;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if(error != nil)NSLog(@"Error getting statistics. %@", error.localizedDescription);
+    
+    float totalPresented = [[fetchedObjects valueForKeyPath:@"@sum.numPresented"] floatValue];
+    float totalAnswered = [[fetchedObjects valueForKeyPath:@"@sum.numAnswered"] floatValue];
+    
+    return (totalAnswered/totalPresented)*100;
+}
+-(NSDictionary*)getStatisticsProgressForMode:(NSString *)modeName{
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Statistics" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
@@ -71,13 +89,14 @@
     NSError *error;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
     if(error != nil)NSLog(@"Error getting statistics. %@", error.localizedDescription);
+    float runningTotalAnswered = 0;
+    float runningTotalPresented = 0;
     
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     for(NSDictionary *record in fetchedObjects){
-        float answered = [[record valueForKey:@"sumNumAnswered"] intValue];
-        float presented = [[record valueForKey:@"sumNumPresented"] intValue];
-        int percentage = (answered/presented) *100;
-        
+        runningTotalAnswered += [[record valueForKey:@"sumNumAnswered"] intValue];
+        runningTotalPresented += [[record valueForKey:@"sumNumPresented"] intValue];
+        int percentage = (runningTotalAnswered/runningTotalPresented) *100;
         [result setValue:[NSNumber numberWithInt:percentage] forKey:[record valueForKey:@"testTimeStamp"]];
     }
     
@@ -133,6 +152,10 @@
 
 
 #pragma mark - Plist Interfaces
+#pragma mark - Tier 1 inApp Purchase
+-(NSString *) getTier1ProductID{
+    return [self.plApplicationData objectForKey:@"Tier1ProductID"];
+}
 #pragma mark - Mode Data
 -(NSDictionary *)getPropertiesForMode:(NSString *)modeName{
     //Get the mode definitions node
@@ -255,6 +278,16 @@
     [[NSUserDefaults standardUserDefaults] setInteger:enabledModes forKey:@"NumberOfEnabledModes"];
     
     return true;
+}
+-(BOOL) isModeAvailable:(NSString *) mode{
+    //check if purchase is required for the mode
+    if([[[self getPropertiesForMode:mode] objectForKey:@"startEnabled"] boolValue]) return YES;
+    
+    //check if purchase has been made
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) return YES;
+    
+    //purchase is required and has not been made
+    return NO;
 }
 
 @end

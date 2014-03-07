@@ -21,6 +21,7 @@
     // initialize defaults
     NSString *dateKey    = @"dateKey";
     NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"dateKey"];
+    lastRead = nil;
     if (lastRead == nil){     // App first run: set up user defaults.
         NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
         
@@ -42,13 +43,16 @@
         }
         [[NSUserDefaults standardUserDefaults] setInteger:listOfModes.count forKey:@"NumberOfEnabledModes"];
         
+        //purchasesed advanced modes
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
+        
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
     return YES;
 }
 							

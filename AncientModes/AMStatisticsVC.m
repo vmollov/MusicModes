@@ -43,16 +43,18 @@
 }
 #pragma mark - Private Methods
 -(void) refreshStatisticsView{
-    NSDictionary *modeStatistics = [[AMDataManager getInstance] getStatisticsForMode:nil];
-    float average = [[[modeStatistics allValues] valueForKeyPath:@"@avg.self"] floatValue];
+    NSDictionary *modeStatistics = [[AMDataManager getInstance] getStatisticsProgressForMode:nil];
+    float average = [[AMDataManager getInstance] getStatisticsAverageForMode:nil];
     if([[modeStatistics allKeys] count] == 0) {
         self.lbAverage.hidden = YES;
+        self.lbProgress.hidden = YES;
         self.btnResetStatistics.enabled = NO;
         self.btnStatisticsByMode.enabled = NO;
     }
     else {
         self.lbAverage.hidden = NO;
-        self.lbAverage.text = [NSString stringWithFormat:@"Average: %.f%%", average];
+        self.lbProgress.hidden = NO;
+        self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %.f%%", average];
         self.btnResetStatistics.enabled = YES;  
         self.btnStatisticsByMode.enabled = YES;
     }

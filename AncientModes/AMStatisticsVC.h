@@ -12,6 +12,7 @@
 @interface AMStatisticsVC : UIViewController<UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet AMStatisticsGraphV *grphOverall;
 @property (strong, nonatomic) IBOutlet UILabel *lbAverage;
+@property (strong, nonatomic) IBOutlet UILabel *lbProgress;
 @property (strong, nonatomic) IBOutlet UIButton *btnResetStatistics;
 @property (strong, nonatomic) IBOutlet UIButton *btnStatisticsByMode;
 

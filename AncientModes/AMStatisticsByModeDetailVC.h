@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet AMStatisticsGraphV *vwGraph;
 
 @property NSDictionary *data;
+@property float average;
 @property NSString *modeName;
 @end

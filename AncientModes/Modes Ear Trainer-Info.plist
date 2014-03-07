@@ -1008,6 +1008,8 @@
 				<integer>53</integer>
 			</dict>
 		</dict>
+		<key>Tier1ProductID</key>
+		<string>com.vmollov.ModesEarTrainer_tier1</string>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

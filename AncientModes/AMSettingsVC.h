@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import <StoreKit/StoreKit.h>
+#import "AMPurchaseVC.h"
+
 @interface AMSettingsVC : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPickerView *pkrPlayerSample;
 @property (strong, nonatomic) IBOutlet UITableView *tblModeSettings;
 
+@property (strong, nonatomic) AMPurchaseVC *purchaseController;
+
+-(void)purchaseModes;
+-(void)enableAdvancedModes;
 @end

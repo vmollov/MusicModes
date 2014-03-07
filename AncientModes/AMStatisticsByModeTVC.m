@@ -67,9 +67,9 @@
     
     // Configure the cell...
     NSString *modeForCell = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    NSDictionary *modeForCellData = [[AMDataManager getInstance] getStatisticsForMode:modeForCell];
+    NSDictionary *modeForCellData = [[AMDataManager getInstance] getStatisticsProgressForMode:modeForCell];
     cell.modeData = modeForCellData;
-    float average = [[[modeForCellData allValues] valueForKeyPath:@"@avg.self"] floatValue];
+    cell.average = [[AMDataManager getInstance] getStatisticsAverageForMode:modeForCell];
     cell.textLabel.text = modeForCell;
     if([[modeForCellData allKeys] count] == 0) {
         cell.detailTextLabel.text = @"No data";
@@ -77,7 +77,7 @@
         cell.userInteractionEnabled = NO;
     }
     else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", average];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", cell.average];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
     }
@@ -95,6 +95,7 @@
         AMStatisticsByModeDetailVC *destination = [segue destinationViewController];
         AMStatisticsByModeTVCell *selectedCell = sender;
         destination.data = selectedCell.modeData;
+        destination.average = selectedCell.average;
         destination.modeName = selectedCell.textLabel.text;
     }
 }

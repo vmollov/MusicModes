@@ -28,6 +28,12 @@
 }
 
 - (IBAction)changeModeUseSetting:(id)sender {
+    if (![[AMDataManager getInstance]isModeAvailable:self.mode]) {
+        [self.parentVC purchaseModes];
+        self.swModeSetting.on = NO;
+        self.lbOn.text = @"Not Used";
+    }
+        
     if(![[AMDataManager getInstance] mode:self.mode setEnabled:self.swModeSetting.on]){
         UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Too Few Modes" message:@"You need to have at least 4 modes selected for testing" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];

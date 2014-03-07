@@ -30,9 +30,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.lbMode.text = self.modeName;
-    float average = [[[self.data allValues] valueForKeyPath:@"@avg.self"] floatValue];
     if(self.data.count == 0) self.lbAverage.hidden=YES;
-    else self.lbAverage.text = [NSString stringWithFormat:@"Average: %.f%%", average];
+    else self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %.f%%", self.average];
     self.vwGraph.data = self.data;
     [self.vwGraph setNeedsDisplay];
 }
