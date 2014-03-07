@@ -39,6 +39,8 @@
 		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
 		C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
+		C0B7461918C914AE00FF6127 /* AMPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */; };
+		C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */; };
 		C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */; };
 		C0B89AAC18BB841600CB364A /* AMLearnModesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAB18BB841600CB364A /* AMLearnModesTVC.m */; };
 		C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */; };
@@ -127,6 +129,9 @@
 		C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStartTestVC.m; sourceTree = "<group>"; };
 		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
 		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
+		C0B7461618C914AE00FF6127 /* AMPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPurchaseVC.h; sourceTree = "<group>"; };
+		C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPurchaseVC.m; sourceTree = "<group>"; };
+		C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMPurchaseVC.xib; sourceTree = "<group>"; };
 		C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsTVCell.h; sourceTree = "<group>"; };
 		C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsTVCell.m; sourceTree = "<group>"; };
 		C0B89AAA18BB841600CB364A /* AMLearnModesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLearnModesTVC.h; sourceTree = "<group>"; };
@@ -312,11 +317,13 @@
 		C0458FBC18A14921009A1958 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C00724CB18874136001446A5 /* Main.storyboard */,
 				C099C98218BBAF0E00730AD9 /* TestControllers */,
 				C0B89AAD18BB843300CB364A /* LearnControllers */,
 				C099C98618BBB8B900730AD9 /* StatisticsControllers */,
 				C0082A4618B674E400050FFB /* SettingsControllers */,
 				C0E0B78018BFD90A00C17636 /* NavigationControllers */,
+				C0B7461B18C914BE00FF6127 /* PurchaseController */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,7 +331,6 @@
 		C0458FBD18A14979009A1958 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C00724CB18874136001446A5 /* Main.storyboard */,
 				C0F7889B18BBC5650079618B /* AMVisualExampleV.h */,
 				C0F7889C18BBC5650079618B /* AMVisualExampleV.m */,
 				C0747BC818BD39C00073DC15 /* AMStatisticsGraphV.h */,
@@ -414,6 +420,16 @@
 				C00724C918874136001446A5 /* AMAppDelegate.m */,
 			);
 			name = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		C0B7461B18C914BE00FF6127 /* PurchaseController */ = {
+			isa = PBXGroup;
+			children = (
+				C0B7461618C914AE00FF6127 /* AMPurchaseVC.h */,
+				C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */,
+				C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */,
+			);
+			name = PurchaseController;
 			sourceTree = "<group>";
 		};
 		C0B89AAD18BB843300CB364A /* LearnControllers */ = {
@@ -524,6 +540,7 @@
 				C00724D218874136001446A5 /* Images.xcassets in Resources */,
 				C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */,
 				C0F3470118C15233006218BF /* btnNext.png in Resources */,
+				C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */,
 				C070825218C74C7E007FF7DF /* graphBg.png in Resources */,
 				C0D38AC818C1408000E3C963 /* bg.png in Resources */,
 				C0CFA2BC188AD42C00583812 /* Trombone.aupreset in Resources */,
@@ -580,6 +597,7 @@
 				C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */,
 				C00724F01887534F001446A5 /* AMMode.m in Sources */,
 				C0343BC1189578C2009F0934 /* AMScale.m in Sources */,
+				C0B7461918C914AE00FF6127 /* AMPurchaseVC.m in Sources */,
 				C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */,
 				C00724C618874136001446A5 /* main.m in Sources */,
 				C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */,
