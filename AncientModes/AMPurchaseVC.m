@@ -46,6 +46,10 @@
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
+- (IBAction)cancel:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)getProductInfo:(AMSettingsVC *)viewController{
     self.homeViewController = viewController;
     

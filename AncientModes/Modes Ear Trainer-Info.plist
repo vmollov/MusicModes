@@ -26,7 +26,7 @@
 			<key>Altered</key>
 			<dict>
 				<key>Description</key>
-				<string>The Altered scale is a dominant scale that provides both the raised and lowered ninth, and the raised and lowered fifth. It is built using the pattern half-whole-half-whole-whole-whole-whole.</string>
+				<string>The altered scale is a dominant scale that provides both the raised and lowered ninth, and the raised and lowered fifth. It is built using the pattern half-whole-half-whole-whole-whole-whole.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>1</integer>
@@ -166,7 +166,7 @@
 			<key>Dorian Flat 2</key>
 			<dict>
 				<key>Description</key>
-				<string>The Dorian Flat 2 scale is a natural minor scale with the second scale degree lowered and the sixth scale degree raised by one half step. This creates a scale similar to the Dorian ancient mode with a half step between the first and second scale degrees.</string>
+				<string>The Dorian flat 2 scale is a natural minor scale with the second scale degree lowered and the sixth scale degree raised by one half step. This creates a scale similar to the Dorian ancient mode with a half step between the first and second scale degrees.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>1</integer>
@@ -337,7 +337,7 @@
 			<key>Ionian</key>
 			<dict>
 				<key>Description</key>
-				<string>The Ionian mode is identical to a major scale.</string>
+				<string>The Ionian mode is identical to the major scale.</string>
 				<key>PatternOf</key>
 				<string>Major/Ionian</string>
 				<key>groupId</key>
@@ -354,7 +354,7 @@
 			<key>Locrian</key>
 			<dict>
 				<key>Description</key>
-				<string>The Lociran mode is identical to the Phrygian mode with the addition of a lowered fifth scale degree. This mode is often the most difficult to identify and sounds the "darkest" of the ancient modes.</string>
+				<string>The Locrian mode is a natural minor scale with the second and fifth scale degrees lowered by one half step. This mode is often the most difficult to identify and sounds the "darkest" of the ancient modes.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>1</integer>
@@ -380,7 +380,7 @@
 			<key>Locrian Sharp 2</key>
 			<dict>
 				<key>Description</key>
-				<string>The Locrian Sharp 2 scale is a natural minor scale with the fifth scale degree lowered by one half step. It gets its name from its similarity to the Locrian mode.</string>
+				<string>The Locrian sharp 2 scale is a natural minor scale with the fifth scale degree lowered by one half step. It gets its name from its similarity to the Locrian mode.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -430,7 +430,7 @@
 			<key>Lydian Augmented</key>
 			<dict>
 				<key>Description</key>
-				<string>The Lydian Augmented scale is a major scale with the fourth and fifth scale degrees raised by one half step. The scale gets its name from its similarity to the Lydian mode and the augmented fifth created between the first and fifth scale degrees.</string>
+				<string>The Lydian augmented scale is a major scale with the fourth and fifth scale degrees raised by one half step. The scale gets its name from its similarity to the Lydian mode and the augmented fifth created between the first and fifth scale degrees.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -454,7 +454,7 @@
 			<key>Lydian Dominant</key>
 			<dict>
 				<key>Description</key>
-				<string>The Lydian Dominant scale is a major scale with the fourth scale degree raised and the seventh scale degree lowered by one half step. The scale gets its name from its similarity to the Lydian mode and the dominant sound of the Mixolydian mode.</string>
+				<string>The Lydian dominant scale is a major scale with the fourth scale degree raised and the seventh scale degree lowered by one half step. The scale gets its name from its similarity to the Lydian mode and the dominant sound of the Mixolydian mode.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -793,7 +793,7 @@
 			<key>Mixolydian Flat 6</key>
 			<dict>
 				<key>Description</key>
-				<string>The Mixolydian Flat 6 scale is a major scale with the sixth and seventh scale degrees lowered by one half step. This scale is also identical to the descending form of the melodic major scale.</string>
+				<string>The Mixolydian flat 6 scale is a major scale with the sixth and seventh scale degrees lowered by one half step. This scale is also identical to the descending form of the melodic major scale.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -817,7 +817,7 @@
 			<key>Natural Minor</key>
 			<dict>
 				<key>Description</key>
-				<string>The natural minor scale is the purest, unaltered form of the minor scales. It differs from the major scale by lowering the third, sixth and seventh scale degrees by one half step. This scale is also equivalent to the Aeolian ancient mode.</string>
+				<string>The natural minor scale is formed by taking its relative major scale (the major scale with the same key signature) and building the scale up using the same notes, starting from the major scale’s sixth scale degree. The sound of the natural minor scale differs from the sound of the major scale in that the third, sixth and seventh scale degrees are lowered by one half step.  This scale is also equivalent to the Aeolian ancient mode.</string>
 				<key>PatternOf</key>
 				<string>Natural Minor/Aeolian</string>
 				<key>groupId</key>
@@ -1017,6 +1017,10 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>com.vmollov.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -1030,7 +1034,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>

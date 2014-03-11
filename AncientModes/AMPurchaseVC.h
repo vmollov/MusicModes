@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnBuy;
 
 - (IBAction)buyProduct:(id)sender;
+- (IBAction)cancel:(id)sender;
 
 -(void)getProductInfo:(UIViewController *) viewController;
 
