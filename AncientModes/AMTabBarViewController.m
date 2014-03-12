@@ -25,10 +25,15 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    //fix needed for capturing devices on iOS 7.1 as well as earlier 7
+    BOOL applyVersionPositionFix = ([[[UIDevice currentDevice] systemVersion] compare:@"7.1"] == NSOrderedAscending);
+    
 	// set the tab bar layout and size
     self.tabBar.frame = CGRectMake(0, self.view.frame.size.height-27, self.view.frame.size.width, 27);
     for(UITabBarItem *tabBarItem in self.tabBar.items){
-        [tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -7)];
+        [tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, applyVersionPositionFix?-7:-28)];
+        [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     }
 }
 - (NSUInteger)supportedInterfaceOrientations{
