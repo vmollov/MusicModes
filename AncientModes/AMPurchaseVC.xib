@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMPurchaseVC">
             <connections>
                 <outlet property="btnBuy" destination="GfN-3P-cga" id="mTJ-0y-MGD"/>
+                <outlet property="btnRestore" destination="5DQ-w9-Yck" id="W72-Q6-Jjs"/>
                 <outlet property="lbProductTitle" destination="5EF-9J-i3q" id="PWt-Ev-DS3"/>
                 <outlet property="txtProductDescription" destination="VzW-1S-efU" id="ZZB-nJ-Oew"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -50,7 +51,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QV-5H-T1U">
-                    <rect key="frame" x="143" y="394" width="35" height="30"/>
+                    <rect key="frame" x="20" y="20" width="35" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Back">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,6 +59,19 @@
                     </state>
                     <connections>
                         <action selector="cancel:" destination="-1" eventType="touchUpInside" id="jiv-uW-O93"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DQ-w9-Yck">
+                    <rect key="frame" x="83" y="398" width="154" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Restore Purchases" backgroundImage="btnAnswer.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled" backgroundImage="btnAnswer.png"/>
+                    <state key="selected" backgroundImage="btnAnswerSelected.png"/>
+                    <state key="highlighted" backgroundImage="btnAnswer.png"/>
+                    <connections>
+                        <action selector="restorePurchase:" destination="-1" eventType="touchUpInside" id="bIy-IV-7O8"/>
                     </connections>
                 </button>
             </subviews>

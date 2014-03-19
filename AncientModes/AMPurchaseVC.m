@@ -30,9 +30,8 @@
     // Do any additional setup after loading the view from its nib.
     self.txtProductDescription.backgroundColor = [UIColor clearColor];
     self.btnBuy.hidden = YES;
+    self.btnRestore.hidden = YES;
     
-    //attempt to restore transactions
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +47,10 @@
 
 - (IBAction)cancel:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)restorePurchase:(id)sender {
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 -(void)getProductInfo:(AMSettingsVC *)viewController{
@@ -66,6 +69,14 @@
     [_homeViewController enableAdvancedModes];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+-(void)purchaseRestored{
+    [self unlockTier1];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchases Restored" message:@"Your purchases have been restored" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+/*-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex ==0)
+}*/
 
 #pragma mark - Purchase Delegates
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
@@ -75,6 +86,8 @@
         self.product = products[0];
         self.btnBuy.hidden = NO;
         self.btnBuy.enabled = YES;
+        self.btnRestore.hidden = NO;
+        self.btnRestore.enabled = YES;
         self.lbProductTitle.text = self.product.localizedTitle;
         self.txtProductDescription.text = self.product.localizedDescription;
         self.txtProductDescription.textColor = [UIColor whiteColor];
@@ -92,20 +105,20 @@
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
                 [self unlockTier1];
-                [[SKPaymentQueue defaultQueue]
-                 finishTransaction:transaction];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
             case SKPaymentTransactionStateFailed:
                 NSLog(@"Transaction Failed");
-                [[SKPaymentQueue defaultQueue]
-                 finishTransaction:transaction];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
             case SKPaymentTransactionStateRestored:
                 NSLog(@"Transaction Restored");
-                [self unlockTier1];
+                [self purchaseRestored];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                break;
+                
             default:
                 break;
         }

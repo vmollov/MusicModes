@@ -16,9 +16,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *lbProductTitle;
 @property (strong, nonatomic) IBOutlet UITextView *txtProductDescription;
 @property (strong, nonatomic) IBOutlet UIButton *btnBuy;
+@property (strong, nonatomic) IBOutlet UIButton *btnRestore;
 
 - (IBAction)buyProduct:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction)restorePurchase:(id)sender;
 
 -(void)getProductInfo:(UIViewController *) viewController;
 
