@@ -126,7 +126,10 @@
     [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:!self.hintView.hidden testTimeStamp:_currentTest.timeStamp];
     
     //update the running score
-    self.lbScore.text=[NSString stringWithFormat:@"%.f%%", _currentTest.getRunningScore];
+    NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
+    [floatFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [floatFormatter setMaximumFractionDigits:1];
+    self.lbScore.text=[NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:_currentTest.getRunningScore]]];
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"]) [self performSelector:@selector(advanceTest) withObject:nil afterDelay:1];
 }

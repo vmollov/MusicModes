@@ -46,6 +46,7 @@
         NSPredicate *modePredicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"mode='%@'", modeName]];
         [request setPredicate:modePredicate];
     }
+    
     NSError *error;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:request error:&error];
     if(error != nil)NSLog(@"Error getting statistics. %@", error.localizedDescription);
@@ -93,11 +94,17 @@
     float runningTotalPresented = 0;
     
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    int firstRecordsCounter = 0;
     for(NSDictionary *record in fetchedObjects){
+        //NSDictionary *record = [fetchedObjects objectAtIndex:counter];
         runningTotalAnswered += [[record valueForKey:@"sumNumAnswered"] intValue];
         runningTotalPresented += [[record valueForKey:@"sumNumPresented"] intValue];
-        int percentage = (runningTotalAnswered/runningTotalPresented) *100;
-        [result setValue:[NSNumber numberWithInt:percentage] forKey:[record valueForKey:@"testTimeStamp"]];
+        
+        if(firstRecordsCounter<3 && fetchedObjects.count>=3) firstRecordsCounter++;
+        else{
+            int percentage = (runningTotalAnswered/runningTotalPresented) *100;
+            [result setValue:[NSNumber numberWithInt:percentage] forKey:[record valueForKey:@"testTimeStamp"]];
+        }
     }
     
     return result;
