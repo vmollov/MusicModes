@@ -54,7 +54,12 @@
     else {
         self.lbAverage.hidden = NO;
         self.lbProgress.hidden = NO;
-        self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %.f%%", average];
+        
+        NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
+        floatFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        floatFormatter.maximumFractionDigits = 1;
+        
+        self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:average]]];
         self.btnResetStatistics.enabled = YES;  
         self.btnStatisticsByMode.enabled = YES;
     }

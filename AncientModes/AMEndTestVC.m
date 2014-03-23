@@ -30,7 +30,12 @@
     self.summaryTable.lbQuestions.text = [NSString stringWithFormat:@"%i",self.questions];
     self.summaryTable.lbAnswered.text = [NSString stringWithFormat:@"%i", self.test.correctAnswersCount];
     self.summaryTable.lbHints.text = [NSString stringWithFormat:@"%i", self.test.hintsCount];
-    self.lbFinalScore.text = [NSString stringWithFormat:@"%.f%%", self.test.getRunningScore];
+    
+    NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
+    floatFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    floatFormatter.maximumFractionDigits = 1;
+    
+    self.lbFinalScore.text = [NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:self.test.getRunningScore]]];
 }
 
 - (void)didReceiveMemoryWarning{

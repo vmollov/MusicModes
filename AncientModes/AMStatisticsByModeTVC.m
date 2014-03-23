@@ -77,7 +77,10 @@
         cell.userInteractionEnabled = NO;
     }
     else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f%%", cell.average];
+        NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
+        floatFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        floatFormatter.maximumFractionDigits = 1;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:cell.average]]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
     }

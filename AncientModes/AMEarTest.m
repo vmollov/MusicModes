@@ -75,13 +75,17 @@
 }
 -(float) getRunningScore{
     int runningScore = 0;
+    int answerCount = 0;
     for(int i=0; i<=self.challengeIndex; i++){
         AMTestChallenge *challenge = [self.challenges objectAtIndex:i];
-        if(challenge.answeredCorrectly){
-            runningScore = challenge.usedHint?runningScore+1:runningScore+3;
+        if(challenge.answered){
+            if(challenge.answeredCorrectly){
+                runningScore = challenge.usedHint?runningScore+1:runningScore+3;
+            }
+            answerCount++;
         }
     }
     
-    return (((float)runningScore/3)/((float)self.challengeIndex+1))*100;
+    return (((float)runningScore/3)/((float)answerCount))*100;
 }
 @end

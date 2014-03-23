@@ -31,7 +31,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.lbMode.text = self.modeName;
     if(self.data.count == 0) self.lbAverage.hidden=YES;
-    else self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %.f%%", self.average];
+    
+    else {
+        NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
+        floatFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        floatFormatter.maximumFractionDigits = 1;
+        self.lbAverage.text = [NSString stringWithFormat:@"Current Average: %@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:self.average]]];
+    }
     self.vwGraph.data = self.data;
     [self.vwGraph setNeedsDisplay];
 }

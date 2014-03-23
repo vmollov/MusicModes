@@ -100,7 +100,7 @@
         runningTotalAnswered += [[record valueForKey:@"sumNumAnswered"] intValue];
         runningTotalPresented += [[record valueForKey:@"sumNumPresented"] intValue];
         
-        if(firstRecordsCounter<3 && fetchedObjects.count>=3) firstRecordsCounter++;
+        if(firstRecordsCounter<2 && fetchedObjects.count-1>firstRecordsCounter) firstRecordsCounter++;
         else{
             int percentage = (runningTotalAnswered/runningTotalPresented) *100;
             [result setValue:[NSNumber numberWithInt:percentage] forKey:[record valueForKey:@"testTimeStamp"]];

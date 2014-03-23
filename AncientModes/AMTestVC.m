@@ -123,7 +123,7 @@
     }
     
     //update the persistent stats
-    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:!self.hintView.hidden testTimeStamp:_currentTest.timeStamp];
+    [[AMDataManager getInstance] updateStatisticsForMode:_currentTest.getCurrentChallenge.scale.mode.name correct:correct neededHint:self.currentTest.getCurrentChallenge.usedHint testTimeStamp:_currentTest.timeStamp];
     
     //update the running score
     NSNumberFormatter *floatFormatter = [[NSNumberFormatter alloc]init];
