@@ -11,6 +11,7 @@
 #import "AMDataManager.h"
 #import "AMEndTestVC.h"
 
+
 @interface AMTestVC ()
 @property NSArray *answerButtons;
 @property AMEarTest *currentTest;
@@ -48,6 +49,10 @@
     
     //setup the plyer stopp event observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
+    
+    //setup audio interruption observer
+    //Handle Interruptions
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
     
     [self presentChallenge];
     
@@ -131,7 +136,7 @@
     [floatFormatter setMaximumFractionDigits:1];
     self.lbScore.text=[NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:_currentTest.getRunningScore]]];
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"]) [self performSelector:@selector(advanceTest) withObject:nil afterDelay:1];
+    if(sender != nil && [[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"]) [self performSelector:@selector(advanceTest) withObject:nil afterDelay:1];
 }
 
 - (IBAction)showHint:(id)sender {
@@ -196,8 +201,8 @@
     [self playCurrentScale];
 }
 -(void)playCurrentScale{
-    self.btnPlayAgain.enabled = self.btnPlayAgainImg.enabled = false;
     [[AMScalesPlayer getInstance] playScale:self.currentTest.getCurrentChallenge.scale];
+    self.btnPlayAgain.enabled = self.btnPlayAgainImg.enabled = false;
 }
 
 #pragma mark - ScalesPlayerDelegate Methods

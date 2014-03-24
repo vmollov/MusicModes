@@ -35,22 +35,36 @@
 }
 -(id)init{
     if(self = [super init]){
-        //initialize the player
-        NewMusicPlayer(&_player);
-        
-        //setup the audio session and the AUGraph
-        if (![self setupAudioSession]) { NSLog(@"Could not set up audio session"); return false;}
-        if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
-        [self configureAndStartAudioProcessingGraph:self.processingGraph];
-        
-        //Load the default player settings
-        NSString *defaultSample = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"];
-        [self loadSample:defaultSample]; //also sets _currentSample
-        Float64 defaultTempo = [[NSUserDefaults standardUserDefaults] floatForKey:@"playTempo"];
-        [self changeTempoTo:defaultTempo]; //also sets _tempo
+        if(![self setup]) return nil;
     }
     
     return self;
+}
+
+-(BOOL)setup{
+    //initialize the player
+    NewMusicPlayer(&_player);
+    
+    //setup the audio session and the AUGraph
+    if (![self setupAudioSession]) { NSLog(@"Could not set up audio session"); return false;}
+    if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
+    [self configureAndStartAudioProcessingGraph:self.processingGraph];
+    
+    //Load the default player settings
+    NSString *defaultSample = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"];
+    [self loadSample:defaultSample]; //also sets _currentSample
+    Float64 defaultTempo = [[NSUserDefaults standardUserDefaults] floatForKey:@"playTempo"];
+    [self changeTempoTo:defaultTempo]; //also sets _tempo
+
+    return true;
+}
+-(BOOL)takeDown{
+    DisposeMusicPlayer(_player);
+    DisposeAUGraph(_processingGraph);
+    AudioUnitUninitialize(_samplerUnit);
+    AudioUnitUninitialize(_ioUnit);
+    
+    return true;
 }
 
 #pragma mark - Samples Control Methods
@@ -155,29 +169,44 @@
 }
 
 #pragma mark - Audio Configuration Methods
+-(void)AudioInterruption:(NSNotification *) notification{
+    NSNumber *interruptionType = [[notification userInfo] objectForKey:@"AVAudioSessionInterruptionTypeKey"];
+    
+    switch (interruptionType.unsignedIntegerValue) {
+        case AVAudioSessionInterruptionTypeBegan:
+            [self stop];
+            break;
+            
+        case AVAudioSessionInterruptionTypeEnded:
+            [self setup];
+            break;
+        default:
+            break;
+    }
+}
+
 -(BOOL)setupAudioSession{
     AVAudioSession *playerAudioSession = [AVAudioSession sharedInstance];
    
-    //Specify delegate for the audio session
-    //[playerAudioSession dele: self]; //deprecated - use notifications instead
+    //Handle Interruptions
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AudioInterruption:) name:AVAudioSessionInterruptionNotification object:playerAudioSession];
 
-    // Assign the Playback category to the audio session. This category supports
-    //    audio output with the Ring/Silent switch in the Silent position.
+    //Assign the Playback category to the audio session. This category supports audio output with the Ring/Silent switch in the Silent position.
     NSError *audioSessionError = nil;
     [playerAudioSession setCategory: AVAudioSessionCategoryPlayback error: &audioSessionError];
     if (audioSessionError != nil) {
         NSLog (@"Error setting audio session category."); return NO;}
     
-    // Request a desired hardware sample rate.
+    //Request a desired hardware sample rate.
     self.graphSampleRate = 44100.0;    // Hertz
     [playerAudioSession setPreferredSampleRate: self.graphSampleRate error: &audioSessionError];
     if (audioSessionError != nil) {NSLog (@"Error setting preferred hardware sample rate."); return NO;}
     
-    // Activate the audio session
+    //Activate the audio session
     [playerAudioSession setActive: YES error: &audioSessionError];
     if (audioSessionError != nil) {NSLog (@"Error activating the audio session."); return NO;}
     
-    // Obtain the actual hardware sample rate and store it for later use in the audio processing graph.
+    //Obtain the actual hardware sample rate and store it for later use in the audio processing graph.
     self.graphSampleRate = [playerAudioSession sampleRate];
     
     return YES;
@@ -187,13 +216,13 @@
     OSStatus result = noErr;
 	AUNode samplerNode, ioNode;
     
-    // Specify the common portion of an audio unit's identify, used for both audio units in the graph.
+    //Specify the common portion of an audio unit's identify, used for both audio units in the graph.
 	AudioComponentDescription cd = {};
 	cd.componentManufacturer     = kAudioUnitManufacturer_Apple;
 	cd.componentFlags            = 0;
 	cd.componentFlagsMask        = 0;
     
-    // Instantiate an audio processing graph
+    //Instantiate an audio processing graph
 	result = NewAUGraph (&_processingGraph);
     NSCAssert (result == noErr, @"Unable to create an AUGraph object. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
@@ -201,19 +230,19 @@
 	cd.componentType = kAudioUnitType_MusicDevice;
 	cd.componentSubType = kAudioUnitSubType_Sampler;
 	
-    // Add the Sampler unit node to the graph
+    //Add the Sampler unit node to the graph
 	result = AUGraphAddNode (self.processingGraph, &cd, &samplerNode);
     NSCAssert (result == noErr, @"Unable to add the Sampler unit to the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-	// Specify the Output unit, to be used as the second and final node of the graph
+	//Specify the Output unit, to be used as the second and final node of the graph
 	cd.componentType = kAudioUnitType_Output;
 	cd.componentSubType = kAudioUnitSubType_RemoteIO;
     
-    // Add the Output unit node to the graph
+    //Add the Output unit node to the graph
 	result = AUGraphAddNode (self.processingGraph, &cd, &ioNode);
     NSCAssert (result == noErr, @"Unable to add the Output unit to the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-    // Open the graph
+    //Open the graph
 	result = AUGraphOpen (self.processingGraph);
     NSCAssert (result == noErr, @"Unable to open the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
@@ -221,11 +250,11 @@
 	result = AUGraphConnectNodeInput (self.processingGraph, samplerNode, 0, ioNode, 0);
     NSCAssert (result == noErr, @"Unable to interconnect the nodes in the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-	// Obtain a reference to the Sampler unit from its node
+	//Obtain a reference to the Sampler unit from its node
 	result = AUGraphNodeInfo (self.processingGraph, samplerNode, 0, &_samplerUnit);
     NSCAssert (result == noErr, @"Unable to obtain a reference to the Sampler unit. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-	// Obtain a reference to the I/O unit from its node
+	//Obtain a reference to the I/O unit from its node
 	result = AUGraphNodeInfo (self.processingGraph, ioNode, 0, &_ioUnit);
     NSCAssert (result == noErr, @"Unable to obtain a reference to the I/O unit. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
@@ -241,32 +270,32 @@
     result = AudioUnitInitialize (self.ioUnit);
     NSCAssert (result == noErr, @"Unable to initialize the I/O unit. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-    // Set the I/O unit's output sample rate.
+    //Set the I/O unit's output sample rate.
     result = AudioUnitSetProperty (self.ioUnit, kAudioUnitProperty_SampleRate, kAudioUnitScope_Output, 0, &_graphSampleRate, sampleRatePropertySize);
     NSAssert (result == noErr, @"AudioUnitSetProperty (set Sampler unit output stream sample rate). Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-    // Obtain the value of the maximum-frames-per-slice from the I/O unit.
+    //Obtain the value of the maximum-frames-per-slice from the I/O unit.
     result = AudioUnitGetProperty (self.ioUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &framesPerSlice, &framesPerSlicePropertySize);
     NSCAssert (result == noErr, @"Unable to retrieve the maximum frames per slice property from the I/O unit. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-    // Set the Sampler unit's output sample rate.
+    //Set the Sampler unit's output sample rate.
     result = AudioUnitSetProperty (self.samplerUnit, kAudioUnitProperty_SampleRate, kAudioUnitScope_Output, 0, &_graphSampleRate, sampleRatePropertySize);
     NSAssert (result == noErr, @"AudioUnitSetProperty (set Sampler unit output stream sample rate). Error code: %d '%.4s'", (int) result, (const char *)&result);
     
-    // Set the Sampler unit's maximum frames-per-slice.
+    //Set the Sampler unit's maximum frames-per-slice.
     result = AudioUnitSetProperty (self.samplerUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &framesPerSlice, framesPerSlicePropertySize);
     NSAssert( result == noErr, @"AudioUnitSetProperty (set Sampler unit maximum frames per slice). Error code: %d '%.4s'", (int) result, (const char *)&result);
     
     if (graph) {
-        // Initialize the audio processing graph.
+        //Initialize the audio processing graph.
         result = AUGraphInitialize (graph);
         NSAssert (result == noErr, @"Unable to initialze AUGraph object. Error code: %d '%.4s'", (int) result, (const char *)&result);
         
-        // Start the graph
+        //Start the graph
         result = AUGraphStart (graph);
         NSAssert (result == noErr, @"Unable to start audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
         
-        // Print out the graph to the console
+        //Print out the graph to the console
         //CAShow (graph); //Requires import of AudioToolbox.h
     }
 }
