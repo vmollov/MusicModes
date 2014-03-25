@@ -340,7 +340,7 @@
     _currentSample = samplePreset;
     [[NSUserDefaults standardUserDefaults] setObject:samplePreset forKey:@"playSample"];
     
-    NSLog(@"%@ sample loaded succesfully!", samplePreset);
+    //NSLog(@"%@ sample loaded succesfully!", samplePreset);
 }
 
 @end
