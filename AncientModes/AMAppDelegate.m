@@ -8,6 +8,7 @@
 
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
+#import "AMScalesPlayer.h"
 
 
 @implementation AMAppDelegate
@@ -52,6 +53,9 @@
         
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
+    
+    //initiallize the player
+    [AMScalesPlayer getInstance];
     
     return YES;
 }

@@ -15,6 +15,8 @@
 
 @interface AMModeDetailVC ()
 @property AMMode *mode;
+
+@property NSDictionary *noteImageIndexes;
 @end
 
 @implementation AMModeDetailVC
@@ -48,24 +50,42 @@
     
     //create the visual example
     NSMutableArray *scaleNotePaths = [[NSMutableArray alloc]initWithCapacity:8];
-    [scaleNotePaths addObject:@"noteImages/trblClef"];
+    self.noteImageIndexes = [NSMutableDictionary dictionaryWithCapacity:8];
     
-    for (NSString *scale in [self.scale getNotesUseDescending:[self.mode.name isEqualToString:@"Melodic Major"]]){
-        [scaleNotePaths addObject:[@"noteImages" stringByAppendingPathComponent:scale]];
+    [scaleNotePaths addObject:@"noteImages/trblClef"];
+    NSArray *scaleNotes = [self.scale getNotesUseDescending:[self.mode.name isEqualToString:@"Melodic Major"]];
+    
+    for(int index = 0; index<scaleNotes.count; index++){
+        NSString *scaleNote = [scaleNotes objectAtIndex:index];
+        [scaleNotePaths addObject:[@"noteImages" stringByAppendingPathComponent:scaleNote]];
+        
+        AMNote *aNote = [[AMNote alloc]initWithString:scaleNote];
+        if(aNote != nil) [self.noteImageIndexes setValue:[NSNumber numberWithInt:index+1] forKey:[NSString stringWithFormat:@"%i", aNote.MIDIValue]];
     }
     
     self.vwExample.noteImages = scaleNotePaths;
     self.vwExample.spacer = @"noteImages/staff";
     self.vwExample.hidden = NO;
     [self.vwExample refresh];
-    
-    //setup the plyer stopp event observer
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
 }
 -(void) viewDidAppear:(BOOL)animated{
+    //setup the plyer stop event observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
+    
+    //setup the note highlight observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightPlayedNoteNotification:) name:@"MIDINotePlayed" object:nil];
+
+    
     [self.txtDescription flashScrollIndicators];
     [self.txtListenFor flashScrollIndicators];
     
+}
+-(void) viewDidDisappear:(BOOL)animated{
+    [[AMScalesPlayer getInstance] stop];
+    
+    //remove observers
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScalesPlayerStoppedPlayback" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MIDINotePlayed" object:nil];
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -82,8 +102,18 @@
     }
 }
 
-#pragma mark - ScalesPlayerDelegate Methods
+#pragma mark - ScalesPlayer Methods
 -(void)playerStoppedPlayback{
     [self.btnPlayExample setTitle:@"Play Example" forState:UIControlStateNormal];
+    [self.vwExample removeHighlights];
+}
+-(void)highlightPlayedNoteNotification:(NSNotification *) notification{
+    NSString *MIDINote = [notification.userInfo objectForKey:@"MIDINote"];
+    NSInteger noteIndex = [[self.noteImageIndexes objectForKey:MIDINote] integerValue];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.vwExample highlightNoteAtIndex:noteIndex];
+    });
+    
 }
 @end

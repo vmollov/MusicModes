@@ -15,4 +15,6 @@
 -(void) refresh;
 -(void)clear;
 
+-(void)highlightNoteAtIndex:(NSInteger) index;
+-(void)removeHighlights;
 @end

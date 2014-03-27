@@ -16,6 +16,7 @@
 @property double graphSampleRate;
 @property AudioUnit samplerUnit;
 @property AudioUnit ioUnit;
+@property MIDIEndpointRef virtualEndpoint;
 
 @property MusicTrack tempoTrack;
 @property MusicTimeStamp playEndMark;
@@ -49,6 +50,7 @@
     if (![self setupAudioSession]) { NSLog(@"Could not set up audio session"); return false;}
     if(![self createAUGraph]) { NSLog(@"Could not create AUGraph"); return false; }
     [self configureAndStartAudioProcessingGraph:self.processingGraph];
+    [self createVirtualEndpoint];
     
     //Load the default player settings
     NSString *defaultSample = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"];
@@ -101,7 +103,11 @@
     if ([self isPlaying]) [self stop];
     
     //set the graph to the sequence
-    MusicSequenceSetAUGraph(sequence, self.processingGraph);
+    //MusicSequenceSetAUGraph(sequence, self.processingGraph);
+    
+    //Set the endpoint of the sequence
+    MusicSequenceSetMIDIEndpoint(sequence, self.virtualEndpoint);
+
     // Load the sequence into the music player
     MusicPlayerSetSequence(_player, sequence);
     
@@ -296,9 +302,45 @@
         NSAssert (result == noErr, @"Unable to start audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
         
         //Print out the graph to the console
-        //CAShow (graph); //Requires import of AudioToolbox.h
+        CAShow (graph); //Requires import of AudioToolbox.h
     }
 }
+-(void)createVirtualEndpoint{
+    OSStatus result = noErr;
+    // Create a client
+    MIDIClientRef virtualMidi;
+    result = MIDIClientCreate(CFSTR("Virtual Client"), nil, NULL, &virtualMidi);
+    
+    NSAssert( result == noErr, @"MIDIClientCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
+    
+    // Create an endpoint
+    result = MIDIDestinationCreate(virtualMidi, CFSTR("Virtual Destination"), MIDIReadProcess, _samplerUnit, &_virtualEndpoint);
+    
+    NSAssert( result == noErr, @"MIDIDestinationCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
+}
+
+static void MIDIReadProcess(const MIDIPacketList *pktlist, void *refCon, void *connRefCon) {
+    MIDIPacket *packet = (MIDIPacket *)pktlist->packet;
+    
+    for (int i=0; i < pktlist->numPackets; i++) {
+        Byte midiStatus = packet->data[0];
+        Byte midiCommand = midiStatus >> 4;
+        
+        if (midiCommand == 0x09) {
+            Byte note = packet->data[1] & 0x7F;
+            Byte velocity = packet->data[2] & 0x7F;
+            
+            OSStatus result = noErr;
+            result = MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
+            NSLog(@"Note: %i", (int) note);
+            //get the highest MIDI note value
+            if(i+1 == pktlist->numPackets)
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MIDINotePlayed" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", (int) note] forKey:@"MIDINote"]];
+        }
+        packet = MIDIPacketNext(packet);
+    }
+}
+
 
 -(void)loadSample:(NSString *) samplePreset{
     NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:samplePreset ofType:@"aupreset"]];

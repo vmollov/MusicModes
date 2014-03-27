@@ -32,22 +32,14 @@
         _octave = [octave intValue];
         
         //calculate the midi value for note
-        //enumerate the notes and give them integer values
-        NSDictionary *noteNumValues = @{
-                                        @"C":@0, @"Bs":@0,
-                                        @"Cs":@1, @"Df":@1,
-                                        @"D":@2,
-                                        @"Ds":@3, @"Ef":@3,
-                                        @"E":@4, @"Ff":@4,
-                                        @"F":@5, @"Es":@5,
-                                        @"Fs":@6, @"Gf":@6,
-                                        @"G":@7,
-                                        @"Gs":@8, @"Af":@8,
-                                        @"A":@9,
-                                        @"As":@10, @"Bf":@10,
-                                        @"B":@11, @"Cf":@11,
-                                        };
+        NSDictionary *noteNumValues = @{@"C":@0, @"D":@2, @"E":@4, @"F":@5, @"G":@7, @"A":@9, @"B":@11};
+        
         UInt8 noteValue =[[noteNumValues objectForKey:_name] intValue];
+        if([_accidental isEqualToString:@"d"]) noteValue = noteValue - 2;
+        if([_accidental isEqualToString:@"f"]) noteValue = noteValue - 1;
+        if([_accidental isEqualToString:@"s"]) noteValue = noteValue + 1;
+        if([_accidental isEqualToString:@"x"]) noteValue = noteValue + 2;
+        
         //compute the note - add 12 since the map for C0 starts at value 12 - there is a -1 octave which we are ignoring
         _MIDIValue =  12 + (_octave *12 + noteValue);
     }

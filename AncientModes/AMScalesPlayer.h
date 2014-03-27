@@ -7,7 +7,7 @@
 //
 
 #import <AVFoundation/AVAudioSession.h>
-#import <AudioToolbox/MusicPlayer.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "AMScale.h"
 
 @interface AMScalesPlayer : NSObject
@@ -16,6 +16,8 @@
 @property Float64 tempo;
 
 +(id)getInstance;
+-(BOOL)setup;
+-(BOOL)takeDown;
 
 -(void)playScale:(AMScale *) scale;
 -(void)playSequence:(MusicSequence) sequence;

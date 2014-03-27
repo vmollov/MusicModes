@@ -57,6 +57,9 @@
     [self presentChallenge];
     
 }
+-(void)viewDidDisappear:(BOOL)animated{
+    [[AMScalesPlayer getInstance]stop];
+}
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
