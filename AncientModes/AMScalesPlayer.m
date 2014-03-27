@@ -302,7 +302,7 @@
         NSAssert (result == noErr, @"Unable to start audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
         
         //Print out the graph to the console
-        CAShow (graph); //Requires import of AudioToolbox.h
+        //CAShow (graph); //Requires import of AudioToolbox.h
     }
 }
 -(void)createVirtualEndpoint{
