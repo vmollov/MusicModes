@@ -332,7 +332,7 @@ static void MIDIReadProcess(const MIDIPacketList *pktlist, void *refCon, void *c
             
             OSStatus result = noErr;
             result = MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
-            NSLog(@"Note: %i", (int) note);
+            
             //get the highest MIDI note value
             if(i+1 == pktlist->numPackets)
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MIDINotePlayed" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", (int) note] forKey:@"MIDINote"]];
