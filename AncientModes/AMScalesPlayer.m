@@ -65,6 +65,7 @@
     DisposeAUGraph(_processingGraph);
     AudioUnitUninitialize(_samplerUnit);
     AudioUnitUninitialize(_ioUnit);
+    MIDIEndpointDispose(self.virtualEndpoint);
     
     return true;
 }
@@ -102,14 +103,26 @@
     //stop player if it is currently playing
     if ([self isPlaying]) [self stop];
     
-    //set the graph to the sequence
-    //MusicSequenceSetAUGraph(sequence, self.processingGraph);
-    
-    //Set the endpoint of the sequence
-    MusicSequenceSetMIDIEndpoint(sequence, self.virtualEndpoint);
-
     // Load the sequence into the music player
     MusicPlayerSetSequence(_player, sequence);
+    self.playEndMark = [self getLoadedSequenceLength];
+    
+    //copy the track and assign the copy to the virtual endpoint for midi notifications
+    //  -assigning the whole sequence to the virtual endpoint results in uneven playback
+    MusicTrack track1, track2;
+    MusicSequenceNewTrack(sequence, &track2);
+    MusicSequenceGetIndTrack(sequence, 0, &track1);
+    MusicSequenceGetIndTrack(sequence, 1, &track2);
+    MusicTrackCopyInsert(track1, 0.0, self.playEndMark, track2, 0);
+    
+    //set the graph to the sequence
+    MusicSequenceSetAUGraph(sequence, self.processingGraph);
+
+    //set the tracks to their respective nodes
+    AUNode samplerNode;
+    AUGraphGetIndNode (self.processingGraph, 0, &samplerNode);
+    MusicTrackSetDestNode(track1, samplerNode);
+    MusicTrackSetDestMIDIEndpoint(track2, self.virtualEndpoint);
     
     //get the tempo track and set the tempo
     MusicSequenceGetTempoTrack(sequence, &_tempoTrack);
@@ -119,7 +132,6 @@
     MusicPlayerPreroll(_player);
     //start playback
     MusicPlayerStart(_player);
-    self.playEndMark = [self getLoadedSequenceLength];
     
     [self autoStopAtSequenceEnd];
 }
@@ -305,17 +317,16 @@
         //CAShow (graph); //Requires import of AudioToolbox.h
     }
 }
+
 -(void)createVirtualEndpoint{
     OSStatus result = noErr;
     // Create a client
     MIDIClientRef virtualMidi;
     result = MIDIClientCreate(CFSTR("Virtual Client"), nil, NULL, &virtualMidi);
-    
     NSAssert( result == noErr, @"MIDIClientCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
     // Create an endpoint
-    result = MIDIDestinationCreate(virtualMidi, CFSTR("Virtual Destination"), MIDIReadProcess, _samplerUnit, &_virtualEndpoint);
-    
+    result = MIDIDestinationCreate(virtualMidi, CFSTR("Virtual Destination"), MIDIReadProcess, NULL, &_virtualEndpoint);
     NSAssert( result == noErr, @"MIDIDestinationCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
 }
 
@@ -331,11 +342,14 @@ static void MIDIReadProcess(const MIDIPacketList *pktlist, void *refCon, void *c
             Byte velocity = packet->data[2] & 0x7F;
             
             OSStatus result = noErr;
-            result = MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
             
-            //get the highest MIDI note value
-            if(i+1 == pktlist->numPackets)
+            if(velocity==0){
+                UInt32 noteOff = 0x8 << 4 | 0;
+                result = MusicDeviceMIDIEvent (refCon, noteOff, note, velocity, 0);
+            }else{
+                result = MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MIDINotePlayed" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", (int) note] forKey:@"MIDINote"]];
+            }
         }
         packet = MIDIPacketNext(packet);
     }
