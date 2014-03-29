@@ -92,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="61" y="-919"/>
         </scene>
-        <!--Learn ModesVC-->
+        <!--Learn ModesVC - Learn about Music Modes-->
         <scene sceneID="Cf6-1r-HAg">
             <objects>
                 <viewController id="BH9-4z-w4C" customClass="AMLearnModesVC" sceneMemberID="viewController">
@@ -134,7 +134,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aT9-Nu-ODQ"/>
+                    <navigationItem key="navigationItem" title="Learn about Music Modes" id="aT9-Nu-ODQ"/>
                     <connections>
                         <outlet property="imgBackground" destination="2bb-z3-RaT" id="ha2-zD-kkv"/>
                         <outlet property="tblListOfModes" destination="ScQ-9u-1no" id="rTC-pi-gKh"/>
@@ -243,7 +243,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="m22-TV-rZ6">
-                                <rect key="frame" x="0.0" y="267" width="320" height="277"/>
+                                <rect key="frame" x="0.0" y="266.9999990084541" width="320" height="277"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
@@ -734,7 +734,7 @@
             </objects>
             <point key="canvasLocation" x="468" y="400"/>
         </scene>
-        <!--Statistics By ModeVC-->
+        <!--Statistics By ModeVC - By Mode-->
         <scene sceneID="3AZ-12-Ni7">
             <objects>
                 <viewController id="pJC-cF-5SL" customClass="AMStatisticsByModeVC" sceneMemberID="viewController">
@@ -783,7 +783,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sQl-HN-gha"/>
+                    <navigationItem key="navigationItem" title="By Mode" id="sQl-HN-gha"/>
                     <connections>
                         <outlet property="imgBackground" destination="cs0-oa-Ep1" id="DCm-fA-In0"/>
                         <outlet property="tblListOfModes" destination="771-qM-buV" id="Sip-rP-Ysb"/>
@@ -848,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qH4-jo-uqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1288" y="400"/>
+            <point key="canvasLocation" x="1313" y="400"/>
         </scene>
         <!--SettingsVC - Settings-->
         <scene sceneID="0Zq-Kk-ZLR">
