@@ -66,6 +66,9 @@
     AudioUnitUninitialize(_samplerUnit);
     AudioUnitUninitialize(_ioUnit);
     MIDIEndpointDispose(self.virtualEndpoint);
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setActive:NO error:&error];
+    if(error != nil)NSLog(@"Error deactivating audio session: %@", error.localizedDescription);
     
     return true;
 }

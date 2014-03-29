@@ -7,6 +7,7 @@
 //
 
 #import "AMStatisticsByModeDetailVC.h"
+#import "UIViewController+Parallax.h"
 
 @interface AMStatisticsByModeDetailVC ()
 
@@ -26,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    [self setParallaxToView:self.imgBackground];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.lbMode.text = self.modeName;

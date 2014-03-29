@@ -51,7 +51,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="edc-N5-TrA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-10" y="-10" width="338" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" id="y6Q-6m-gkk">
@@ -102,6 +102,7 @@
                     <navigationItem key="navigationItem" id="zP4-5c-P56"/>
                     <connections>
                         <outlet property="btnPlayExample" destination="Lng-8w-yge" id="42g-Zr-QZ4"/>
+                        <outlet property="imgBackground" destination="edc-N5-TrA" id="NB2-Ki-SXP"/>
                         <outlet property="txtDescription" destination="y6Q-6m-gkk" id="fGo-yp-kcz"/>
                         <outlet property="txtListenFor" destination="Hsu-WW-ALq" id="kk6-sB-syP"/>
                         <outlet property="vwExample" destination="g8p-ZM-iO8" id="z6A-r8-Zap"/>
@@ -206,6 +207,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Listening Test" id="Wyi-78-72v"/>
                     <connections>
+                        <outlet property="imgBackground" destination="rTD-Z6-XBS" id="SRV-T9-bMN"/>
                         <outlet property="pkrNumQuestions" destination="O9b-pj-WMJ" id="J8a-m8-THW"/>
                         <outlet property="sgmSameNote" destination="bb2-XM-h5m" id="xe8-sR-e3H"/>
                     </connections>
@@ -227,7 +229,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="m22-TV-rZ6">
-                                <rect key="frame" x="0.0" y="266.9999990084541" width="320" height="277"/>
+                                <rect key="frame" x="0.0" y="267" width="320" height="277"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
@@ -440,6 +442,7 @@
                         <outlet property="btnPlayAgain" destination="NTN-b0-THH" id="Chh-zW-CIB"/>
                         <outlet property="btnPlayAgainImg" destination="MZg-uI-SHH" id="HdO-wW-h7V"/>
                         <outlet property="hintView" destination="fcm-fU-0EA" id="vLp-HA-KzK"/>
+                        <outlet property="imgBackground" destination="Dew-6K-aWN" id="WBP-M3-ePR"/>
                         <outlet property="lbCorrect" destination="uG3-Sd-bVL" id="Ixh-Qg-ss6"/>
                         <outlet property="lbProgress" destination="Dq2-08-Y6s" id="g14-Yk-boD"/>
                         <outlet property="lbScore" destination="TVY-F2-rmG" id="B2a-Rh-Ptm"/>
@@ -460,8 +463,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="xTU-la-el9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="m58-Lh-dHy">
+                                <rect key="frame" x="-10" y="0.0" width="338" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <containerView contentMode="scaleToFill" id="PLF-MR-Hw4">
@@ -499,6 +502,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="imgBackground" destination="m58-Lh-dHy" id="Ady-Wl-NIN"/>
                         <outlet property="lbFinalScore" destination="Dtt-Tv-Urk" id="6a5-6y-SxH"/>
                         <outlet property="vwResults" destination="PLF-MR-Hw4" id="ppb-ps-MN6"/>
                     </connections>
@@ -506,7 +510,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qe-5i-e9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="j8Y-yB-j7V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1288" y="-255"/>
+            <point key="canvasLocation" x="1313" y="-260"/>
         </scene>
         <!--Test SummaryVC-->
         <scene sceneID="PVs-da-Jsp">
@@ -651,7 +655,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="0bS-ay-ebt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-10" y="-10" width="338" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphBg.png" id="Ybz-e5-asJ">
@@ -707,6 +711,7 @@
                         <outlet property="btnResetStatistics" destination="fRK-pV-aWa" id="jmd-cs-hgC"/>
                         <outlet property="btnStatisticsByMode" destination="xyQ-LF-aS3" id="S8L-we-CpL"/>
                         <outlet property="grphOverall" destination="lM2-al-QMM" id="dsR-la-doX"/>
+                        <outlet property="imgBackground" destination="0bS-ay-ebt" id="Eb7-MI-duw"/>
                         <outlet property="lbAverage" destination="yi8-hF-ty5" id="BY6-Wr-Sdc"/>
                         <outlet property="lbProgress" destination="Kb6-Ha-LYs" id="hSd-7x-vo3"/>
                     </connections>
@@ -724,7 +729,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="ZoM-LP-5k5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-10" y="-10" width="338" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qlo-U6-Kd2">
@@ -762,6 +767,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8De-sV-0i6"/>
                     <connections>
+                        <outlet property="imgBackground" destination="ZoM-LP-5k5" id="rR9-yn-fna"/>
                         <outlet property="lbAverage" destination="Qpy-J8-mBX" id="yQE-rQ-FAa"/>
                         <outlet property="lbMode" destination="kqd-QD-LTJ" id="KPA-nb-09z"/>
                         <outlet property="vwGraph" destination="KPd-NJ-Gvj" id="QQ2-f5-KmB"/>
@@ -830,7 +836,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="rmY-Xp-odk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-10" y="-10" width="338" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <pickerView contentMode="scaleToFill" id="n8o-BB-1jI">
@@ -895,6 +901,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="Fzt-fQ-EKa"/>
                     <connections>
+                        <outlet property="imgBackground" destination="rmY-Xp-odk" id="Ahd-f1-iNU"/>
                         <outlet property="pkrPlayerSample" destination="n8o-BB-1jI" id="aFZ-tv-JxG"/>
                         <outlet property="tblModeSettings" destination="v0T-6V-hG5" id="S1b-ws-6Mj"/>
                     </connections>

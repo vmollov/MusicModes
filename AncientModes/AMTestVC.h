@@ -11,6 +11,7 @@
 #import "AMVisualExampleV.h"
 
 @interface AMTestVC : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UILabel *lbTempo;
 @property (strong, nonatomic) IBOutlet UILabel *lbCorrect;
 @property (strong, nonatomic) IBOutlet UILabel *lbProgress;
@@ -26,7 +27,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnHint;
 @property (strong, nonatomic) IBOutlet AMVisualExampleV *hintView;
 @property (strong, nonatomic) IBOutlet UISwitch *switchAutoAdvance;
-@property (strong, nonatomic) IBOutlet UIImageView *imgNavBar;
 
 - (IBAction)changeTempo:(id)sender;
 - (IBAction)nextChallenge:(id)sender;

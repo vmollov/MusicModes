@@ -10,6 +10,7 @@
 #import "AMStatisticsGraphV.h"
 
 @interface AMStatisticsVC : UIViewController<UIActionSheetDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet AMStatisticsGraphV *grphOverall;
 @property (strong, nonatomic) IBOutlet UILabel *lbAverage;
 @property (strong, nonatomic) IBOutlet UILabel *lbProgress;

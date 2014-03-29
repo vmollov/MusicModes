@@ -11,6 +11,7 @@
 #import "AMVisualExampleV.h"
 
 @interface AMModeDetailVC : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 @property (strong, nonatomic) IBOutlet UITextView *txtListenFor;
 @property (strong, nonatomic) IBOutlet AMVisualExampleV *vwExample;

@@ -7,6 +7,7 @@
 //
 
 #import "AMStartTestVC.h"
+#import "UIViewController+Parallax.h"
 
 @interface AMStartTestVC ()
 
@@ -25,6 +26,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self setParallaxToView:self.imgBackground];
     
     self.pkrNumQuestions.delegate = self;
     self.pkrNumQuestions.dataSource = self;
@@ -55,9 +57,6 @@
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return 100;
 }
-/*-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [NSString stringWithFormat:@"%d", row];
-}*/
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     UILabel *lbNumber = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 45)];
     lbNumber.text = [NSString stringWithFormat:@"%i", (int)row+1];

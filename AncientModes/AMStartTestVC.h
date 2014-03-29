@@ -11,6 +11,7 @@
 @interface AMStartTestVC : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) IBOutlet UIPickerView *pkrNumQuestions;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *sgmSameNote;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 
 
 - (IBAction)changeStartNote:(id)sender;

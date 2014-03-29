@@ -10,7 +10,7 @@
 #import "AMScalesPlayer.h"
 #import "AMDataManager.h"
 #import "AMEndTestVC.h"
-
+#import "UIViewController+Parallax.h"
 
 @interface AMTestVC ()
 @property NSArray *answerButtons;
@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [self setParallaxToView:self.imgBackground];
     
     //prepare the controls
     self.lbScore.text = @"";

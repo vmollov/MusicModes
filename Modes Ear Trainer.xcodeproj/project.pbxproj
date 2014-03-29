@@ -55,6 +55,7 @@
 		C0DAB21218BFA25700B41F92 /* AMTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DAB21118BFA25700B41F92 /* AMTabBarViewController.m */; };
 		C0DB351D18C637D500768113 /* AMEnharmonicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DB351C18C637D500768113 /* AMEnharmonicManager.m */; };
 		C0DB351F18C6C46000768113 /* noteImages in Resources */ = {isa = PBXBuildFile; fileRef = C0DB351E18C6C46000768113 /* noteImages */; };
+		C0E92AFE18E6338400D4E718 /* UIViewController+Parallax.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E92AFD18E6338400D4E718 /* UIViewController+Parallax.m */; };
 		C0E9DF5A18C4F21C000FC648 /* AMTestSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */; };
 		C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */; };
 		C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */; };
@@ -153,6 +154,8 @@
 		C0DB351B18C637D500768113 /* AMEnharmonicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEnharmonicManager.h; sourceTree = "<group>"; };
 		C0DB351C18C637D500768113 /* AMEnharmonicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEnharmonicManager.m; sourceTree = "<group>"; };
 		C0DB351E18C6C46000768113 /* noteImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = noteImages; path = Images/noteImages; sourceTree = "<group>"; };
+		C0E92AFC18E6338400D4E718 /* UIViewController+Parallax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Parallax.h"; sourceTree = "<group>"; };
+		C0E92AFD18E6338400D4E718 /* UIViewController+Parallax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Parallax.m"; sourceTree = "<group>"; };
 		C0E9DF5818C4F21C000FC648 /* AMTestSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestSummaryVC.h; sourceTree = "<group>"; };
 		C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestSummaryVC.m; sourceTree = "<group>"; };
 		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = AncientModes/AMDataManager.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				C0082A4618B674E400050FFB /* SettingsControllers */,
 				C0E0B78018BFD90A00C17636 /* NavigationControllers */,
 				C0B7461B18C914BE00FF6127 /* PurchaseController */,
+				C0E92AFC18E6338400D4E718 /* UIViewController+Parallax.h */,
+				C0E92AFD18E6338400D4E718 /* UIViewController+Parallax.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				C00724CA18874136001446A5 /* AMAppDelegate.m in Sources */,
 				C0747BCA18BD39C00073DC15 /* AMStatisticsGraphV.m in Sources */,
 				C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */,
+				C0E92AFE18E6338400D4E718 /* UIViewController+Parallax.m in Sources */,
 				C0F7889D18BBC5650079618B /* AMVisualExampleV.m in Sources */,
 				C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */,
 				C01CF27418BFF60500050C28 /* AMStatisticsByModeTVC.m in Sources */,

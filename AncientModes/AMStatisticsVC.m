@@ -8,6 +8,7 @@
 
 #import "AMStatisticsVC.h"
 #import "AMDataManager.h"
+#import "UIViewController+Parallax.h"
 
 @interface AMStatisticsVC ()
 
@@ -27,6 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self setParallaxToView:self.imgBackground];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self refreshStatisticsView];

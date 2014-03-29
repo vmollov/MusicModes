@@ -12,6 +12,7 @@
 #import "AMPurchaseVC.h"
 
 @interface AMSettingsVC : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UIPickerView *pkrPlayerSample;
 @property (strong, nonatomic) IBOutlet UITableView *tblModeSettings;
 

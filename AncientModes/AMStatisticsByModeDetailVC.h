@@ -10,6 +10,7 @@
 #import "AMStatisticsGraphV.h"
 
 @interface AMStatisticsByModeDetailVC : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UILabel *lbMode;
 @property (strong, nonatomic) IBOutlet UILabel *lbAverage;
 @property (strong, nonatomic) IBOutlet AMStatisticsGraphV *vwGraph;

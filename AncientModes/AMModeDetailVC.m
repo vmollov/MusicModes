@@ -11,6 +11,7 @@
 #import "AMScalesPlayer.h"
 #import "AMNote.h"
 
+#import "UIViewController+Parallax.h"
 #import "AMUtilities.h"
 
 @interface AMModeDetailVC ()
@@ -31,6 +32,9 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [self setParallaxToView:self.imgBackground];
+    
     //create the scale for this details scene
     self.mode = [[AMScalesManager getInstance] createModeWithDescriptionFromName:self.modeName];
     UInt8 baseNote = [[[AMNote alloc] initWithString:@"C4"] MIDIValue];

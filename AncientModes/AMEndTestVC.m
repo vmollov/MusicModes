@@ -7,6 +7,7 @@
 //
 
 #import "AMEndTestVC.h"
+#import "UIViewController+Parallax.h"
 
 @interface AMEndTestVC ()
 
@@ -24,7 +25,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    [self setParallaxToView:self.imgBackground];
+    self.vwResults.backgroundColor = [UIColor clearColor];
+    
     self.summaryTable = [self.childViewControllers lastObject];
 
     self.summaryTable.lbQuestions.text = [NSString stringWithFormat:@"%i",self.questions];
@@ -35,7 +39,7 @@
     floatFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     floatFormatter.maximumFractionDigits = 1;
     
-    self.lbFinalScore.text = [NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:self.test.getRunningScore]]];
+    self.lbFinalScore.text = isnan(self.test.getRunningScore)? @"": [NSString stringWithFormat:@"%@%%", [floatFormatter stringFromNumber:[NSNumber numberWithFloat:self.test.getRunningScore]]];
 }
 
 - (void)didReceiveMemoryWarning{

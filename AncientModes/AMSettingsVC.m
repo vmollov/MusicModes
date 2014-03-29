@@ -10,6 +10,7 @@
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
 #import "AMModesSettingsTVCell.h"
+#import "UIViewController+Parallax.h"
 
 @interface AMSettingsVC ()
 @property NSArray *listOfSamples, *listOfModes;
@@ -27,6 +28,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [self setParallaxToView:self.imgBackground];
     
     //set up the purchase controller
     _purchaseController = [[AMPurchaseVC alloc] init];

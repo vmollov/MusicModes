@@ -13,6 +13,7 @@
 @interface AMEndTestVC : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *vwResults;
 @property (strong, nonatomic) IBOutlet UILabel *lbFinalScore;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 
 @property AMEarTest *test;
 @property AMTestSummaryVC *summaryTable;
