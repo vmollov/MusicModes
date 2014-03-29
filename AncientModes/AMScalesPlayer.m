@@ -196,6 +196,7 @@
     switch (interruptionType.unsignedIntegerValue) {
         case AVAudioSessionInterruptionTypeBegan:
             [self stop];
+            [self takeDown];
             break;
             
         case AVAudioSessionInterruptionTypeEnded:
