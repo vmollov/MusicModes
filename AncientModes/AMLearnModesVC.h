@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AMDataManager.h"
 
-@interface AMLearnModesTVC : UITableViewController
+@interface AMLearnModesVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tblListOfModes;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 
 @end

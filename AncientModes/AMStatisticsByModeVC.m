@@ -6,19 +6,20 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMStatisticsByModeTVC.h"
+#import "AMStatisticsByModeVC.h"
 #import "AMStatisticsByModeTVCell.h"
 #import "AMStatisticsByModeDetailVC.h"
 #import "AMDataManager.h"
+#import "UIViewController+Parallax.h"
 
-@interface AMStatisticsByModeTVC ()
+@interface AMStatisticsByModeVC ()
 @property NSArray *listOfModes;
 @end
 
-@implementation AMStatisticsByModeTVC
+@implementation AMStatisticsByModeVC
 
-- (id)initWithStyle:(UITableViewStyle)style{
-    self = [super initWithStyle:style];
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -30,17 +31,12 @@
     
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     
-    //set the background
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg.png"]];
-    [background setFrame:self.tableView.frame];
+    //setup the tableview
+    self.tblListOfModes.delegate = self;
+    self.tblListOfModes.dataSource = self;
+    self.tblListOfModes.backgroundColor = [UIColor clearColor];
     
-    self.tableView.backgroundView = background;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setParallaxToView:self.imgBackground];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -84,6 +80,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
     }
+    
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

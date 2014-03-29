@@ -6,26 +6,17 @@
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
-#import "AMLearnModesTVC.h"
+#import "AMLearnModesVC.h"
 #import "AMModeDetailVC.h"
+#import "UIViewController+Parallax.h"
 
-@interface AMLearnModesTVC ()
+@interface AMLearnModesVC ()
 @property NSArray *listOfModes;
 @end
 
-@implementation AMLearnModesTVC
+@implementation AMLearnModesVC
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -35,13 +26,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:YES grouped:YES];
+    self.tblListOfModes.dataSource = self;
+    self.tblListOfModes.delegate = self;
     
-    //set the background
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg.png"]];
-    [background setFrame:self.tableView.frame];
+    self.tblListOfModes.backgroundColor = [UIColor clearColor];
     
-    self.tableView.backgroundView = background;
-
+    [self setParallaxToView:self.imgBackground];
+     
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +58,7 @@
     
     // Configure the cell...
     cell.textLabel.text = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
@@ -83,7 +75,7 @@
     
     if([[segue identifier] isEqualToString:@"LearnModeDetailSegue"]){
         AMModeDetailVC *detailVC = [segue destinationViewController];
-        NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+        NSIndexPath *indexPath = self.tblListOfModes.indexPathForSelectedRow;
         detailVC.modeName = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
 }
