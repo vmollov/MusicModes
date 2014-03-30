@@ -61,9 +61,8 @@
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [[AMScalesPlayer getInstance]stop];
-}
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScalesPlayerStoppedPlayback" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVAudioSessionInterruptionNotification" object:[AVAudioSession sharedInstance]];
 }
 //this method will make the status bar content colored white
 - (UIStatusBarStyle)preferredStatusBarStyle{
