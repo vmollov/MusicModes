@@ -16,6 +16,8 @@
 @property double graphSampleRate;
 @property AudioUnit samplerUnit;
 @property AudioUnit ioUnit;
+
+@property MIDIClientRef virtualMidi;
 @property MIDIEndpointRef virtualEndpoint;
 
 @property MusicTrack tempoTrack;
@@ -62,13 +64,24 @@
 }
 -(BOOL)takeDown{
     DisposeMusicPlayer(_player);
-    DisposeAUGraph(_processingGraph);
+    AUGraphStop(_processingGraph);
+    AUGraphClearConnections(_processingGraph);
     AudioUnitUninitialize(_samplerUnit);
     AudioUnitUninitialize(_ioUnit);
-    MIDIEndpointDispose(self.virtualEndpoint);
+    AUGraphClose(_processingGraph);
+    AUGraphUninitialize(_processingGraph);
+    DisposeAUGraph(_processingGraph);
+    MIDIEndpointDispose(_virtualEndpoint);
+    MIDIClientDispose(_virtualMidi);
+    
     NSError *error = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&error];
     if(error != nil)NSLog(@"Error deactivating audio session: %@", error.localizedDescription);
+    
+    _player = nil;
+    _processingGraph = nil;
+    _samplerUnit = nil;
+    _ioUnit = nil; 
     
     return true;
 }
@@ -325,12 +338,11 @@
 -(void)createVirtualEndpoint{
     OSStatus result = noErr;
     // Create a client
-    MIDIClientRef virtualMidi;
-    result = MIDIClientCreate(CFSTR("Virtual Client"), nil, NULL, &virtualMidi);
+    result = MIDIClientCreate(CFSTR("Virtual Client"), nil, NULL, &_virtualMidi);
     NSAssert( result == noErr, @"MIDIClientCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
     // Create an endpoint
-    result = MIDIDestinationCreate(virtualMidi, CFSTR("Virtual Destination"), MIDIReadProcess, NULL, &_virtualEndpoint);
+    result = MIDIDestinationCreate(_virtualMidi, CFSTR("Virtual Destination"), MIDIReadProcess, NULL, &_virtualEndpoint);
     NSAssert( result == noErr, @"MIDIDestinationCreate failed. Error code: %d '%.4s'", (int) result, (const char *)&result);
 }
 
