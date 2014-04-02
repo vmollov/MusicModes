@@ -49,20 +49,7 @@
     BOOL sameStartNote = [[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"];
     self.currentTest = sameStartNote?[[AMEarTest alloc] initWithNumberOfChallenges:numberOfChallenges startingNote:@"C4"]:[[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges];
     
-    //setup the plyer stopp event observer
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
-    
-    //setup audio interruption observer
-    //Handle Interruptions
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
-    
     [self presentChallenge];
-    
-}
--(void)viewDidDisappear:(BOOL)animated{
-    [[AMScalesPlayer getInstance]stop];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScalesPlayerStoppedPlayback" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVAudioSessionInterruptionNotification" object:[AVAudioSession sharedInstance]];
 }
 //this method will make the status bar content colored white
 - (UIStatusBarStyle)preferredStatusBarStyle{
@@ -72,14 +59,27 @@
     [super viewWillAppear:animated];
     //remove the navigation bar
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    //setup the plyer stopp event observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
+    
+    //setup audio interruption observer
+    //Handle Interruptions
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
 }
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //add back the navigation bar
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-- (void)didReceiveMemoryWarning
-{
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [[AMScalesPlayer getInstance]stop];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScalesPlayerStoppedPlayback" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVAudioSessionInterruptionNotification" object:[AVAudioSession sharedInstance]];
+}
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

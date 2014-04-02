@@ -72,21 +72,25 @@
     self.vwExample.hidden = NO;
     [self.vwExample refresh];
 }
--(void) viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     //setup the plyer stop event observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStoppedPlayback) name:@"ScalesPlayerStoppedPlayback" object:nil];
     
     //setup the note highlight observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightPlayedNoteNotification:) name:@"MIDINotePlayed" object:nil];
-
+}
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
     [self.txtDescription flashScrollIndicators];
     [self.txtListenFor flashScrollIndicators];
-    
 }
 -(void) viewDidDisappear:(BOOL)animated{
-    [[AMScalesPlayer getInstance] stop];
+    [super viewDidDisappear:animated];
     
+    [[AMScalesPlayer getInstance] stop];
     //remove observers
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScalesPlayerStoppedPlayback" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MIDINotePlayed" object:nil];
