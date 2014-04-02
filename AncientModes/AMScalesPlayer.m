@@ -68,8 +68,8 @@
     AUGraphClearConnections(_processingGraph);
     AudioUnitUninitialize(_samplerUnit);
     AudioUnitUninitialize(_ioUnit);
-    AUGraphClose(_processingGraph);
     AUGraphUninitialize(_processingGraph);
+    AUGraphClose(_processingGraph);
     DisposeAUGraph(_processingGraph);
     MIDIEndpointDispose(_virtualEndpoint);
     MIDIClientDispose(_virtualMidi);
