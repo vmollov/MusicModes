@@ -19,5 +19,4 @@
 @property (strong, nonatomic) AMPurchaseVC *purchaseController;
 
 -(void)purchaseModes;
--(void)enableAdvancedModes;
 @end

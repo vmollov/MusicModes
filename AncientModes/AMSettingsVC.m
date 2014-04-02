@@ -63,10 +63,6 @@
     [self.navigationController  presentViewController:_purchaseController animated:YES completion:nil];
     [_purchaseController getProductInfo: self];
 }
--(void)enableAdvancedModes{
-    //NSLog(@"Enabling advanced Modes");
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enableAdvancedModes"];
-}
 
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -88,7 +84,9 @@
     
     cell.lbMode.text = currentMode;
     cell.swModeSetting.on = [[NSUserDefaults standardUserDefaults] boolForKey:currentMode];
-    cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
+    BOOL isModeAvailable = [[AMDataManager getInstance]isModeAvailable:currentMode];
+    if (isModeAvailable) cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
+    else cell.lbOn.text = @"Requires a Purchase";
     cell.mode = currentMode;
     cell.parentVC = self;
     

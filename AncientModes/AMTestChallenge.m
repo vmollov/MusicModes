@@ -86,7 +86,7 @@
 }
 
 -(NSArray *)getHint{
-    self.usedHint = YES;
+    if(!self.answered)self.usedHint = YES;
     return [self.scale getNotesUseDescending:randomIntInRange(NSMakeRange(0, 1))];
 }
 

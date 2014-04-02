@@ -65,8 +65,7 @@
 }
 
 -(void)unlockTier1{
-    //NSLog(@"Purchase complete");
-    [_homeViewController enableAdvancedModes];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enableAdvancedModes"];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)purchaseRestored{
