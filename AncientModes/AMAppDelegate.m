@@ -42,7 +42,6 @@
             NSDictionary *modeProperties = [[AMDataManager getInstance]getPropertiesForMode:mode];
             [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
         }
-        [[NSUserDefaults standardUserDefaults] setInteger:listOfModes.count forKey:@"NumberOfEnabledModes"];
         
         //purchasesed advanced modes
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
