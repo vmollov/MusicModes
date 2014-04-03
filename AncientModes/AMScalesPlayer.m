@@ -45,6 +45,8 @@
 }
 
 -(BOOL)setup{
+    if(_player != nil && _processingGraph != nil && _samplerUnit != nil && _ioUnit != nil) return true;
+    
     //initialize the player
     NewMusicPlayer(&_player);
     
