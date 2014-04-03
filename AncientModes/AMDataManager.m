@@ -278,8 +278,6 @@
     long enabledModes = self.getListOfEnabledModes.count;
     enabled?enabledModes++:enabledModes--;
     
-    NSLog(@"Enabled: %li", enabledModes);
-
     //if the number of enabled modes will be 4 or less after this method completes then return false
     if(!enabled && enabledModes < 4) return false;
     
