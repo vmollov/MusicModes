@@ -44,8 +44,9 @@
         }
         [[NSUserDefaults standardUserDefaults] setInteger:listOfModes.count forKey:@"NumberOfEnabledModes"];
         
-        //purchasesed advanced modes
+        //purchases
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
         
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];

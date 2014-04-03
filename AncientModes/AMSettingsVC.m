@@ -59,7 +59,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)purchaseModes{
-    _purchaseController.productID = [[AMDataManager getInstance] getTier1ProductID];
+    _purchaseController.productID = [[AMDataManager getInstance] getIdForProductPurchase:@"AdvancedModesProductID"];
+    _purchaseController.productKey = @"enableAdvancedModes";
     [self.navigationController  presentViewController:_purchaseController animated:YES completion:nil];
     [_purchaseController getProductInfo: self];
 }

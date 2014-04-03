@@ -15,7 +15,8 @@
 -(void)updateStatisticsForMode:(NSString *) modeName correct:(BOOL)correct neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp;
 -(void)eraseAllStatistics;
 
--(NSString *) getTier1ProductID;
+-(NSString *) getIdForProductPurchase:(NSString *) theProduct;
+
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
 -(NSDictionary *) getListOfAllGroups;
 -(NSString *) getNameForGroupId:(int) groupId;

@@ -160,8 +160,8 @@
 
 #pragma mark - Plist Interfaces
 #pragma mark - Tier 1 inApp Purchase
--(NSString *) getTier1ProductID{
-    return [self.plApplicationData objectForKey:@"Tier1ProductID"];
+-(NSString *) getIdForProductPurchase:(NSString *) theProduct{
+    return [[self.plApplicationData objectForKey:@"Purchases"] objectForKey:theProduct];
 }
 #pragma mark - Mode Data
 -(NSDictionary *)getPropertiesForMode:(NSString *)modeName{

@@ -354,7 +354,7 @@
 			<key>Locrian</key>
 			<dict>
 				<key>Description</key>
-				<string>The Locrian mode is a natural minor scale with the second and fifth scale degrees lowered by one half step. This mode is often the most difficult to identify and sounds the "darkest" of the ancient modes.</string>
+				<string>The Locrian mode is a natural minor scale with the second and fifth scale degrees lowered by one half step. This mode is often the most difficult to identify and sounds the &quot;darkest&quot; of the ancient modes.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>1</integer>
@@ -404,7 +404,7 @@
 			<key>Lydian</key>
 			<dict>
 				<key>Description</key>
-				<string>The Lydian mode is a major scale with the fourth scale degree raised by one half step. This gives the mode a "brighter" feel than the major scale.</string>
+				<string>The Lydian mode is a major scale with the fourth scale degree raised by one half step. This gives the mode a &quot;brighter&quot; feel than the major scale.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -479,14 +479,14 @@
 			<key>Major</key>
 			<dict>
 				<key>Description</key>
-				<string>The major scale is one of the most common scales and the foundation upon which to learn the other scales and modes. It is the one taught in the song "Do-Re-Mi" from Rodgers and Hammerstein's The Sound of Music. This scale is also equivalent to the Ionian ancient mode.</string>
+				<string>The major scale is one of the most common scales and the foundation upon which to learn the other scales and modes. It is the one taught in the song &quot;Do-Re-Mi&quot; from Rodgers and Hammerstein&apos;s The Sound of Music. This scale is also equivalent to the Ionian ancient mode.</string>
 				<key>PatternOf</key>
 				<string>Major/Ionian</string>
 				<key>groupId</key>
 				<string>1</string>
 				<key>listenFor</key>
 				<array>
-					<string>Familiar "do-re-mi-fa-sol-la-ti-do" sequence</string>
+					<string>Familiar &quot;do-re-mi-fa-sol-la-ti-do&quot; sequence</string>
 				</array>
 				<key>order</key>
 				<string>1</string>
@@ -604,7 +604,7 @@
 			<key>Melodic Major</key>
 			<dict>
 				<key>Description</key>
-				<string>The melodic major scale's notes alter depending on whether one is playing it ascending from bottom to top, or descending from top to bottom.  When ascending, it is identical to a major scale.  When descending, the sixth and seventh scale degrees are lowered by one half step.</string>
+				<string>The melodic major scale&apos;s notes alter depending on whether one is playing it ascending from bottom to top, or descending from top to bottom.  When ascending, it is identical to a major scale.  When descending, the sixth and seventh scale degrees are lowered by one half step.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -639,7 +639,7 @@
 			<key>Melodic Minor</key>
 			<dict>
 				<key>Description</key>
-				<string>The melodic minor scale's notes alter depending on whether one is playing it ascending from bottom to top, or descending from top to bottom. When ascending, it is the natural minor scale with the sixth and seventh scale degrees raised one half step. When descending, it is identical to the natural minor scale.</string>
+				<string>The melodic minor scale&apos;s notes alter depending on whether one is playing it ascending from bottom to top, or descending from top to bottom. When ascending, it is the natural minor scale with the sixth and seventh scale degrees raised one half step. When descending, it is identical to the natural minor scale.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>2</integer>
@@ -851,7 +851,7 @@
 			<key>Phrygian</key>
 			<dict>
 				<key>Description</key>
-				<string>The Phrygian mode is a natural minor scale with the second scale degree lowered by one half step. This gives the mode its characteristic "flamenco" flavor.</string>
+				<string>The Phrygian mode is a natural minor scale with the second scale degree lowered by one half step. This gives the mode its characteristic &quot;flamenco&quot; flavor.</string>
 				<key>Pattern</key>
 				<array>
 					<integer>1</integer>
@@ -1008,8 +1008,13 @@
 				<integer>53</integer>
 			</dict>
 		</dict>
-		<key>Tier1ProductID</key>
-		<string>com.vmollov.ModesEarTrainer_tier1</string>
+		<key>Purchases</key>
+		<dict>
+			<key>RemoveAdsProductID</key>
+			<string>com.vmollov.ModesEarTrainer_removeAds</string>
+			<key>AdvancedModesProductID</key>
+			<string>com.vmollov.ModesEarTrainer_tier1</string>
+		</dict>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

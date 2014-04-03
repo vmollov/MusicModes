@@ -64,12 +64,12 @@
     }else self.txtProductDescription.text = @"Please enable In App Purchase in Settings";
 }
 
--(void)unlockTier1{
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enableAdvancedModes"];
+-(void)markProductPurchased{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.productKey];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)purchaseRestored{
-    [self unlockTier1];
+    [self markProductPurchased];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchases Restored" message:@"Your purchases have been restored" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
@@ -103,7 +103,7 @@
     for (SKPaymentTransaction *transaction in transactions){
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                [self unlockTier1];
+                [self markProductPurchased];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 

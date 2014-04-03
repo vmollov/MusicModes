@@ -11,7 +11,7 @@
 
 @interface AMPurchaseVC : UIViewController<SKPaymentTransactionObserver, SKProductsRequestDelegate>
 @property (strong, nonatomic)SKProduct *product;
-@property (strong, nonatomic)NSString *productID;
+@property (strong, nonatomic)NSString *productID, *productKey;
 
 @property (strong, nonatomic) IBOutlet UILabel *lbProductTitle;
 @property (strong, nonatomic) IBOutlet UITextView *txtProductDescription;
