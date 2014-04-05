@@ -275,15 +275,14 @@
 
 #pragma mark - User Defaults Interfaces
 -(BOOL) mode:(NSString *) mode setEnabled:(BOOL) enabled{
-    long enabledModes = [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberOfEnabledModes"];
+    long enabledModes = [[self getListOfEnabledModes] count];
     enabled?enabledModes++:enabledModes--;
 
     //if the number of enabled modes will be 4 or less after this method completes then return false
     if(!enabled && enabledModes < 4) return false;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
-    [[NSUserDefaults standardUserDefaults] setInteger:enabledModes forKey:@"NumberOfEnabledModes"];
-    
+        
     return true;
 }
 -(BOOL) isModeAvailable:(NSString *) mode{

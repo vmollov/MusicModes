@@ -28,10 +28,9 @@
 }
 
 - (IBAction)changeModeUseSetting:(id)sender {
-    NSLog(@"switching mode: %@", self.mode);
     if (![[AMDataManager getInstance]isModeAvailable:self.mode]) {
         self.swModeSetting.on = NO;
-        [self.parentVC purchaseModes];
+        [self.parentVC purchaseAdvancedModes:nil];
         return;
     }
     

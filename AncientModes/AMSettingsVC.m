@@ -1,8 +1,8 @@
 //
-//  AMSettingsViewController.m
-//  AncientModes
+//  AMSettingsNewVC.m
+//  Modes Ear Trainer
 //
-//  Created by Vladimir Mollov on 2/20/14.
+//  Created by Vladimir Mollov on 4/4/14.
 //  Copyright (c) 2014 Vladimir Mollov. All rights reserved.
 //
 
@@ -10,10 +10,31 @@
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
 #import "AMModesSettingsTVCell.h"
+#import "AMSampleSettingsTVCell.h"
 #import "UIViewController+Parallax.h"
 
+static NSString *kPlayBackInstrumentCellID = @"cPlayBackInstrument";
+static NSString *kPlayBackInstrumentPickerCellID = @"cPlayBackInstrumentPicker";
+static NSString *kModesToUseCellID = @"cChooseModesToUse";
+static NSString *kModesToUseTableCellID = @"cModesToUseTableCell";
+static NSString *kEnableAdvancedModesCellID = @"cEnableAdvancedModes";
+static NSString *kRemoveAdsCellID = @"cRemoveAds";
+
+static int kTblModeSettingsTag = 2;
+static int kPkrPlayerSampleIndexPathRow = 1;
+static int kTblModeSettingsIndexPathRow = 2;
+
+static int kContentTableNumberOfSections = 2;
+static int kContentTableNumberOfItemsPerSection = 2;
+
 @interface AMSettingsVC ()
-@property NSArray *listOfSamples, *listOfModes;
+@property NSArray *listOfModes, *listOfSamples;
+
+@property float playerSamplePickerHeight;
+@property (strong) UITableView *tblModeSettings;
+@property float modeSettingsTableHeight;
+
+@property BOOL samplePickerIsShown, modeSettingsTableIsShown;
 @end
 
 @implementation AMSettingsVC
@@ -21,62 +42,173 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-    }
+}
     return self;
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
     [self setParallaxToView:self.imgBackground];
     
     //set up the purchase controller
     _purchaseController = [[AMPurchaseVC alloc] init];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:_purchaseController];
     
-    //set up the table view
-    self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
-    self.tblModeSettings.delegate = self;
-    self.tblModeSettings.dataSource = self;
-    //set the background
-    self.tblModeSettings.backgroundColor = [UIColor clearColor];
-
+    self.tblContent.backgroundColor = [UIColor clearColor];
     
-	//set up the sample picker view
+    //setup the data
+    self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     self.listOfSamples = [[AMDataManager getInstance] getListOfSamples];
-    self.pkrPlayerSample.delegate = self;
-    self.pkrPlayerSample.dataSource = self;
-    //set the initial state
-    NSInteger selectedIndex = [self.listOfSamples indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"]];
-    [self.pkrPlayerSample selectRow:selectedIndex inComponent:0 animated:YES];
+    
+    //get the modes table view height
+    UITableViewCell *cellToCheck = [self.tblContent dequeueReusableCellWithIdentifier:kModesToUseTableCellID];
+    self.modeSettingsTableHeight = cellToCheck.frame.size.height;
+         
+    //get the sample picker view height
+    cellToCheck = [self.tblContent dequeueReusableCellWithIdentifier:kPlayBackInstrumentPickerCellID];
+    self.playerSamplePickerHeight = cellToCheck.frame.size.height;
+    
+    self.tblContent.backgroundColor = [UIColor clearColor];
+   
+    self.samplePickerIsShown = YES;
+    
+    [self.tblContent flashScrollIndicators];
 }
--(void)viewDidAppear:(BOOL)animated{
-    [self.tblModeSettings flashScrollIndicators];
-}
+
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
--(void)purchaseModes{
+
+-(BOOL)embededViewIsShown{
+    return (self.samplePickerIsShown || self.modeSettingsTableIsShown);
+}
+
+- (IBAction)purchaseAdvancedModes:(id)sender {
     _purchaseController.productID = [[AMDataManager getInstance] getIdForProductPurchase:@"AdvancedModesProductID"];
     _purchaseController.productKey = @"enableAdvancedModes";
-    [self.navigationController  presentViewController:_purchaseController animated:YES completion:nil];
+    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
     [_purchaseController getProductInfo: self];
+}
+
+- (IBAction)purchaseRemoveAds:(id)sender {
+    _purchaseController.productID = [[AMDataManager getInstance] getIdForProductPurchase:@"RemoveAdsProductID"];
+    _purchaseController.productKey = @"enableRemoveAds";
+    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
+    [_purchaseController getProductInfo: self];
+
 }
 
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    // Return the number of sections.
-    return self.listOfModes.count;
+    if(tableView.tag == kTblModeSettingsTag) {
+        tableView.backgroundColor = [UIColor clearColor];
+        return self.listOfModes.count;
+    }else return kContentTableNumberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    // Return the number of rows in the section.
-    return [[self.listOfModes objectAtIndex:section] count];
+    if(tableView.tag == kTblModeSettingsTag) return [[self.listOfModes objectAtIndex:section] count];
+    else if(section == 0)return [self embededViewIsShown]?3:2;
+    else return kContentTableNumberOfItemsPerSection;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell;
+    
+    if(tableView.tag == kTblModeSettingsTag) cell = [self cellForModeSettingsTable:tableView ForIndexPath:indexPath];
+    else{
+        switch (indexPath.section) {
+            case 0:
+                if (indexPath.row == 0) {
+                    cell= [tableView dequeueReusableCellWithIdentifier:kPlayBackInstrumentCellID];
+                    cell.accessoryType = self.samplePickerIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                    break;
+                }
+                if ([self embededViewIsShown]){
+                    if(self.samplePickerIsShown && indexPath.row == kPkrPlayerSampleIndexPathRow)cell = [self cellForSamplesPickerInTableView:tableView];
+                    else if(self.modeSettingsTableIsShown && indexPath.row == kTblModeSettingsIndexPathRow) cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseTableCellID];
+                    else{
+                        cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseCellID];
+                        cell.accessoryType = self.modeSettingsTableIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                    }
+                }else {
+                    cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseCellID];
+                    cell.accessoryType = self.samplePickerIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                }                break;
+            case 1:
+                if(indexPath.row == 0) cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
+                if(indexPath.row == 1)cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                break;
+            
+            default:
+                break;
+        }
+    }
+    
+    cell.backgroundColor =[UIColor clearColor];
+    
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat rowHeight = self.tblContent.rowHeight;
+    if(tableView.tag != kTblModeSettingsTag){
+        if(self.samplePickerIsShown && indexPath.row == kPkrPlayerSampleIndexPathRow) rowHeight = self.playerSamplePickerHeight;
+        if(self.modeSettingsTableIsShown && indexPath.row == kTblModeSettingsIndexPathRow) rowHeight = self.modeSettingsTableHeight;
+    }
+    return rowHeight;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(tableView.tag == kTblModeSettingsTag) return [[AMDataManager getInstance] getNameForGroupId:(int)section + 1];
+    else return @"";
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(tableView.tag != kTblModeSettingsTag){
+        [self.tblContent beginUpdates];
+        
+        if([self embededViewIsShown]){
+            if(self.samplePickerIsShown){
+                [self hidePlayerSamplePicker];
+                if(indexPath.row == kTblModeSettingsIndexPathRow && indexPath.section == 0)[self showModeSettingsTable];
+            }else if(self.modeSettingsTableIsShown){
+                [self hideModeSettingsTable];
+                if(indexPath.row == kPkrPlayerSampleIndexPathRow - 1 && indexPath.section == 0)[self showPlayerSamplePicker];
+            }
+        }else{
+            if(indexPath.section == 0){
+                switch (indexPath.row) {
+                    case 0:
+                        [self showPlayerSamplePicker];
+                        break;
+                    case 1:
+                        [self showModeSettingsTable];
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        [self.tblContent deselectRowAtIndexPath:indexPath animated:YES];
+        [self.tblContent endUpdates];
+        [self.tblContent performSelector:@selector(reloadData) withObject:nil afterDelay:0.54];
+    }
+    
+}
+
+#pragma mark - TableView helper methods
+-(AMSampleSettingsTVCell *)cellForSamplesPickerInTableView:(UITableView *) tableView{
+    AMSampleSettingsTVCell *pickerCell = [tableView dequeueReusableCellWithIdentifier:kPlayBackInstrumentPickerCellID];
+    pickerCell.listOfSamples = self.listOfSamples;
+    pickerCell.pkrPlayerSample.delegate = pickerCell;
+    pickerCell.pkrPlayerSample.dataSource = pickerCell;
+    
+    //set the picker's initial state
+    NSInteger selectedIndex = [self.listOfSamples indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"playSample"  ]];
+    [pickerCell.pkrPlayerSample selectRow:selectedIndex inComponent:0 animated:YES];
+    
+    return pickerCell;
+}
+-(UITableViewCell *)cellForModeSettingsTable:(UITableView *) tableView ForIndexPath:(NSIndexPath *)indexPath{
     static NSString *reuseIdentifier = @"scalesCell";
     AMModesSettingsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if(cell ==nil) cell = [[AMModesSettingsTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
@@ -89,35 +221,34 @@
     if (isModeAvailable) cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
     else cell.lbOn.text = @"Requires a Purchase";
     cell.mode = currentMode;
-    //cell.parentVC = self;
-    
-    cell.backgroundColor =[UIColor clearColor];
+    cell.parentVC = self;
     
     return cell;
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [[AMDataManager getInstance] getNameForGroupId:(int)section + 1];
+
+-(void)hidePlayerSamplePicker{
+    if(self.samplePickerIsShown){
+        [self.tblContent deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        self.samplePickerIsShown = NO;
+    }
+}
+-(void)showPlayerSamplePicker{
+    if(!self.samplePickerIsShown){
+        [self.tblContent insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        self.samplePickerIsShown = YES;
+    }
+}
+-(void)hideModeSettingsTable{
+    if(self.modeSettingsTableIsShown){
+        [self.tblContent deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kTblModeSettingsIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+        self.modeSettingsTableIsShown = NO;
+    }
+}
+-(void)showModeSettingsTable{
+    if(!self.modeSettingsTableIsShown){
+        [self.tblContent insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kTblModeSettingsIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+        self.modeSettingsTableIsShown = YES;
+    }
 }
 
-#pragma mark - UIPicker Delegates
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return 3;
-}
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel *lbNumber = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 45)];
-    lbNumber.text = [NSString stringWithFormat:@"%@", [self.listOfSamples objectAtIndex:row]];
-    lbNumber.textColor = [UIColor whiteColor];
-    lbNumber.textAlignment=NSTextAlignmentCenter;
-    lbNumber.font = [UIFont fontWithName:@"Verdana" size:21];
- 
-    return lbNumber;
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    [[NSUserDefaults standardUserDefaults] setObject:[self.listOfSamples objectAtIndex:row] forKey:@"playSample"];
-    [[AMScalesPlayer getInstance] loadSample:[self.listOfSamples objectAtIndex:row]];
-}
 @end

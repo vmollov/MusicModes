@@ -7,16 +7,10 @@
 //
 
 #import "AMPurchaseVC.h"
-#import "AMSettingsVC.h"
-
-@interface AMPurchaseVC ()
-@property AMSettingsVC *homeViewController;
-@end
 
 @implementation AMPurchaseVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -24,8 +18,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.txtProductDescription.backgroundColor = [UIColor clearColor];
@@ -34,10 +27,12 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (IBAction)buyProduct:(id)sender {
@@ -46,16 +41,25 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissPurchaseScene];
 }
 
 - (IBAction)restorePurchase:(id)sender {
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
--(void)getProductInfo:(AMSettingsVC *)viewController{
-    self.homeViewController = viewController;
-    
+-(void)dismissPurchaseScene{
+    self.product = nil;
+    self.btnBuy.hidden = YES;
+    self.btnBuy.enabled = NO;
+    self.btnRestore.hidden = YES;
+    self.btnRestore.enabled = NO;
+    self.lbProductTitle.text = nil;
+    self.txtProductDescription.text = nil;
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)getProductInfo:(UIViewController *)viewController{
     if ([SKPaymentQueue canMakePayments]){
         SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers: [NSSet setWithObject:self.productID]];
         request.delegate = self;
@@ -66,7 +70,7 @@
 
 -(void)markProductPurchased{
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.productKey];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissPurchaseScene];
 }
 -(void)purchaseRestored{
     [self markProductPurchased];
