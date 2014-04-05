@@ -44,6 +44,7 @@
 		C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */; };
 		C0B89AAC18BB841600CB364A /* AMLearnModesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAB18BB841600CB364A /* AMLearnModesVC.m */; };
 		C0B89AB018BB87EF00CB364A /* AMModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */; };
+		C0C830C118EEEC6B00846C20 /* AMSettingsNewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C830C018EEEC6B00846C20 /* AMSettingsNewVC.m */; };
 		C0CFA2B4188AC3B000583812 /* AMScalesPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */; };
 		C0CFA2B6188AD25F00583812 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B5188AD25F00583812 /* Sounds */; };
 		C0CFA2B9188AD27100583812 /* Piano.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C0CFA2B7188AD27100583812 /* Piano.aupreset */; };
@@ -139,6 +140,8 @@
 		C0B89AAB18BB841600CB364A /* AMLearnModesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLearnModesVC.m; sourceTree = "<group>"; };
 		C0B89AAE18BB87EF00CB364A /* AMModeDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModeDetailVC.h; sourceTree = "<group>"; };
 		C0B89AAF18BB87EF00CB364A /* AMModeDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModeDetailVC.m; sourceTree = "<group>"; };
+		C0C830BF18EEEC6B00846C20 /* AMSettingsNewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSettingsNewVC.h; sourceTree = "<group>"; };
+		C0C830C018EEEC6B00846C20 /* AMSettingsNewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSettingsNewVC.m; sourceTree = "<group>"; };
 		C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesPlayer.h; sourceTree = "<group>"; };
 		C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesPlayer.m; sourceTree = "<group>"; };
 		C0CFA2B5188AD25F00583812 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 		C0082A4618B674E400050FFB /* SettingsControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C0C830BF18EEEC6B00846C20 /* AMSettingsNewVC.h */,
+				C0C830C018EEEC6B00846C20 /* AMSettingsNewVC.m */,
 				C0082A4318B6721000050FFB /* AMSettingsVC.h */,
 				C0082A4418B6721000050FFB /* AMSettingsVC.m */,
 				C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */,
@@ -608,6 +613,7 @@
 				C00724C618874136001446A5 /* main.m in Sources */,
 				C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */,
 				C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */,
+				C0C830C118EEEC6B00846C20 /* AMSettingsNewVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

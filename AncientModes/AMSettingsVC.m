@@ -89,7 +89,7 @@
     if (isModeAvailable) cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
     else cell.lbOn.text = @"Requires a Purchase";
     cell.mode = currentMode;
-    cell.parentVC = self;
+    //cell.parentVC = self;
     
     cell.backgroundColor =[UIColor clearColor];
     
