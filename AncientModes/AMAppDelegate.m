@@ -43,9 +43,13 @@
             [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
         }
         
-        //purchases
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
+        //mark purchases as not completed
+        NSDictionary *listOfPurchases = [[AMDataManager getInstance] getListOfPurchases];
+        for(NSString *itemName in [listOfPurchases allKeys]){
+            NSDictionary *item = [listOfPurchases objectForKey:itemName];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:[item objectForKey:@"TrackingKey"]];
+        }
         
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
@@ -56,6 +60,26 @@
     
     //Initialize the Scales Player
     [AMScalesPlayer getInstance];
+    
+    //testing ----------------
+    /*NSDictionary *listOfPurchases = [[AMDataManager getInstance] getListOfPurchases];
+    for(NSString *itemName in [listOfPurchases allKeys]){
+        NSDictionary *item = [listOfPurchases objectForKey:itemName];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:[item objectForKey:@"TrackingKey"]];
+    }
+    //enable use of all modes
+    NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];
+    for(NSString *mode in listOfModes){
+        NSDictionary *modeProperties = [[AMDataManager getInstance]getPropertiesForMode:mode];
+        [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
+    }*/
+    
+    NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]);
+    NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]);
+    
+    //testing --------------------
+    
     return YES;
 }
 							

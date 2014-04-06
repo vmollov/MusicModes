@@ -19,13 +19,14 @@ static NSString *kModesToUseCellID = @"cChooseModesToUse";
 static NSString *kModesToUseTableCellID = @"cModesToUseTableCell";
 static NSString *kEnableAdvancedModesCellID = @"cEnableAdvancedModes";
 static NSString *kRemoveAdsCellID = @"cRemoveAds";
+static NSString *kRestorePurchasesCellID = @"cRestorePurchases";
 
 static int kTblModeSettingsTag = 2;
 static int kPkrPlayerSampleIndexPathRow = 1;
 static int kTblModeSettingsIndexPathRow = 2;
 
 static int kContentTableNumberOfSections = 2;
-static int kContentTableNumberOfItemsPerSection = 2;
+static int kContentTableNumberOfItemsPerSection = 3;
 
 @interface AMSettingsVC ()
 @property NSArray *listOfModes, *listOfSamples;
@@ -33,6 +34,7 @@ static int kContentTableNumberOfItemsPerSection = 2;
 @property float playerSamplePickerHeight;
 @property (strong) UITableView *tblModeSettings;
 @property float modeSettingsTableHeight;
+@property NSInteger modeSettingsButtonIndexPathRow;
 
 @property BOOL samplePickerIsShown, modeSettingsTableIsShown;
 @end
@@ -52,7 +54,7 @@ static int kContentTableNumberOfItemsPerSection = 2;
     
     //set up the purchase controller
     _purchaseController = [[AMPurchaseVC alloc] init];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:_purchaseController];
+    //[[SKPaymentQueue defaultQueue] addTransactionObserver:_purchaseController];
     
     self.tblContent.backgroundColor = [UIColor clearColor];
     
@@ -73,10 +75,20 @@ static int kContentTableNumberOfItemsPerSection = 2;
     self.samplePickerIsShown = YES;
     
     [self.tblContent flashScrollIndicators];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchasesCompleted) name:@"PurchaseControllerFinished" object:nil];
 }
-
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PurchaseControllerFinished" object:nil];
+}
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+}
+
+-(void)purchasesCompleted{
+    NSLog(@"purchases completed");
+    [self.tblContent reloadData];
+    [self.tblModeSettings reloadData];
 }
 
 -(BOOL)embededViewIsShown{
@@ -84,24 +96,28 @@ static int kContentTableNumberOfItemsPerSection = 2;
 }
 
 - (IBAction)purchaseAdvancedModes:(id)sender {
-    _purchaseController.productID = [[AMDataManager getInstance] getIdForProductPurchase:@"AdvancedModesProductID"];
-    _purchaseController.productKey = @"enableAdvancedModes";
+    _purchaseController.productName = @"AdvancedModes";
     [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
-    [_purchaseController getProductInfo: self];
+    [_purchaseController getProductInfo];
 }
 
 - (IBAction)purchaseRemoveAds:(id)sender {
-    _purchaseController.productID = [[AMDataManager getInstance] getIdForProductPurchase:@"RemoveAdsProductID"];
-    _purchaseController.productKey = @"enableRemoveAds";
+    _purchaseController.productName = @"RemoveAds";
     [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
-    [_purchaseController getProductInfo: self];
+    [_purchaseController getProductInfo];
 
+}
+
+- (IBAction)restorePurchases:(id)sender {
+    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
+    [_purchaseController restorePurchase];
 }
 
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(tableView.tag == kTblModeSettingsTag) {
         tableView.backgroundColor = [UIColor clearColor];
+        self.tblModeSettings = tableView;
         return self.listOfModes.count;
     }else return kContentTableNumberOfSections;
 }
@@ -122,6 +138,12 @@ static int kContentTableNumberOfItemsPerSection = 2;
                 if (indexPath.row == 0) {
                     cell= [tableView dequeueReusableCellWithIdentifier:kPlayBackInstrumentCellID];
                     cell.accessoryType = self.samplePickerIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                   
+                    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+                    iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+                    iv.transform = CGAffineTransformMakeRotation(self.samplePickerIsShown?-(M_PI/2):M_PI/2);
+                    cell.accessoryView = iv;
+
                     break;
                 }
                 if ([self embededViewIsShown]){
@@ -129,15 +151,26 @@ static int kContentTableNumberOfItemsPerSection = 2;
                     else if(self.modeSettingsTableIsShown && indexPath.row == kTblModeSettingsIndexPathRow) cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseTableCellID];
                     else{
                         cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseCellID];
-                        cell.accessoryType = self.modeSettingsTableIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                        //cell.accessoryType = self.modeSettingsTableIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
+                        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+                        iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+                        iv.transform = CGAffineTransformMakeRotation(self.modeSettingsTableIsShown?-(M_PI/2):M_PI/2);
+                        cell.accessoryView = iv;
+                        self.modeSettingsButtonIndexPathRow = indexPath.row;
                     }
                 }else {
                     cell = [tableView dequeueReusableCellWithIdentifier:kModesToUseCellID];
-                    cell.accessoryType = self.samplePickerIsShown?UITableViewCellAccessoryNone:UITableViewCellAccessoryDisclosureIndicator;
-                }                break;
+                    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+                    iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+                    iv.transform = CGAffineTransformMakeRotation(self.modeSettingsTableIsShown?-(M_PI/2):M_PI/2);
+                    cell.accessoryView = iv;
+                    self.modeSettingsButtonIndexPathRow = indexPath.row;
+                }
+                break;
             case 1:
                 if(indexPath.row == 0) cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
-                if(indexPath.row == 1)cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                if(indexPath.row == 1) cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                if(indexPath.row == 2) cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
                 break;
             
             default:
@@ -151,7 +184,7 @@ static int kContentTableNumberOfItemsPerSection = 2;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat rowHeight = self.tblContent.rowHeight;
-    if(tableView.tag != kTblModeSettingsTag){
+    if(tableView.tag != kTblModeSettingsTag && indexPath.section == 0){
         if(self.samplePickerIsShown && indexPath.row == kPkrPlayerSampleIndexPathRow) rowHeight = self.playerSamplePickerHeight;
         if(self.modeSettingsTableIsShown && indexPath.row == kTblModeSettingsIndexPathRow) rowHeight = self.modeSettingsTableHeight;
     }
@@ -168,8 +201,8 @@ static int kContentTableNumberOfItemsPerSection = 2;
         
         if([self embededViewIsShown]){
             if(self.samplePickerIsShown){
-                [self hidePlayerSamplePicker];
                 if(indexPath.row == kTblModeSettingsIndexPathRow && indexPath.section == 0)[self showModeSettingsTable];
+                [self hidePlayerSamplePicker];
             }else if(self.modeSettingsTableIsShown){
                 [self hideModeSettingsTable];
                 if(indexPath.row == kPkrPlayerSampleIndexPathRow - 1 && indexPath.section == 0)[self showPlayerSamplePicker];
@@ -188,9 +221,9 @@ static int kContentTableNumberOfItemsPerSection = 2;
                 }
             }
         }
-        [self.tblContent deselectRowAtIndexPath:indexPath animated:YES];
-        [self.tblContent endUpdates];
-        [self.tblContent performSelector:@selector(reloadData) withObject:nil afterDelay:0.54];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView endUpdates];
+        //[tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.54];
     }
     
 }
@@ -228,26 +261,53 @@ static int kContentTableNumberOfItemsPerSection = 2;
 
 -(void)hidePlayerSamplePicker{
     if(self.samplePickerIsShown){
-        [self.tblContent deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tblContent deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
         self.samplePickerIsShown = NO;
+        self.modeSettingsButtonIndexPathRow = 1;
+        
+        UITableViewCell *cell = [self.tblContent cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+        iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+        iv.transform = CGAffineTransformMakeRotation(M_PI/2);
+        cell.accessoryView = iv;
     }
 }
 -(void)showPlayerSamplePicker{
     if(!self.samplePickerIsShown){
-        [self.tblContent insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tblContent insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kPkrPlayerSampleIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
         self.samplePickerIsShown = YES;
+        self.modeSettingsButtonIndexPathRow = 2;
+        
+        UITableViewCell *cell = [self.tblContent cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+        iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+        iv.transform = CGAffineTransformMakeRotation(-(M_PI/2));
+        cell.accessoryView = iv;
+
     }
 }
 -(void)hideModeSettingsTable{
     if(self.modeSettingsTableIsShown){
         [self.tblContent deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kTblModeSettingsIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
         self.modeSettingsTableIsShown = NO;
+        
+        UITableViewCell *cell = [self.tblContent cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.modeSettingsButtonIndexPathRow inSection:0]];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+        iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+        iv.transform = CGAffineTransformMakeRotation(M_PI/2);
+        cell.accessoryView = iv;
     }
 }
 -(void)showModeSettingsTable{
     if(!self.modeSettingsTableIsShown){
         [self.tblContent insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kTblModeSettingsIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
         self.modeSettingsTableIsShown = YES;
+        UITableViewCell *cell = [self.tblContent cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.modeSettingsButtonIndexPathRow inSection:0]];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
+        iv.image = [UIImage imageNamed:@"disclosureIndicator.png"];
+        iv.transform = CGAffineTransformMakeRotation(-(M_PI/2));
+        cell.accessoryView = iv;
+
     }
 }
 

@@ -30,6 +30,7 @@
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
 		C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestVC.m */; };
 		C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */; };
+		C063115318F0F9BE00CBB9E3 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */; };
 		C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06892E918A26FB800B860C2 /* CoreData.framework */; };
 		C070825218C74C7E007FF7DF /* graphBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C070825118C74C7E007FF7DF /* graphBg.png */; };
 		C070825518C75F46007FF7DF /* AMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C070825418C75F46007FF7DF /* AMNote.m */; };
@@ -113,6 +114,7 @@
 		C04A06AD189D6CD600E4A25F /* AMTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestVC.m; sourceTree = "<group>"; };
 		C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureIndicator.png; sourceTree = "<group>"; };
 		C06892E918A26FB800B860C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C070825118C74C7E007FF7DF /* graphBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphBg.png; path = Images/graphBg.png; sourceTree = "<group>"; };
 		C070825318C75F46007FF7DF /* AMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNote.h; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 		C0A2C1DA18C12EDF0002827B /* AppImages */ = {
 			isa = PBXGroup;
 			children = (
+				C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */,
 				C070825118C74C7E007FF7DF /* graphBg.png */,
 				C0F3470818C198C6006218BF /* btnAnswerSelected.png */,
 				C0F3470418C18657006218BF /* btnAnswer.png */,
@@ -550,6 +553,7 @@
 				C00724D218874136001446A5 /* Images.xcassets in Resources */,
 				C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */,
 				C0F3470118C15233006218BF /* btnNext.png in Resources */,
+				C063115318F0F9BE00CBB9E3 /* disclosureIndicator.png in Resources */,
 				C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */,
 				C070825218C74C7E007FF7DF /* graphBg.png in Resources */,
 				C0D38AC818C1408000E3C963 /* bg.png in Resources */,

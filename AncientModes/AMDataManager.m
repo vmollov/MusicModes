@@ -159,10 +159,6 @@
 
 
 #pragma mark - Plist Interfaces
-#pragma mark - Tier 1 inApp Purchase
--(NSString *) getIdForProductPurchase:(NSString *) theProduct{
-    return [[self.plApplicationData objectForKey:@"Purchases"] objectForKey:theProduct];
-}
 #pragma mark - Mode Data
 -(NSDictionary *)getPropertiesForMode:(NSString *)modeName{
     //Get the mode definitions node
@@ -296,4 +292,24 @@
     return NO;
 }
 
+#pragma mark - inApp Purchases
+-(NSDictionary *) getListOfPurchases{
+    return [self.plApplicationData objectForKey:@"Purchases"];
+}
+-(NSString *) getIdForProductPurchase:(NSString *) theProduct{
+    return [[self.getListOfPurchases objectForKey:theProduct] objectForKey:@"ProductId"];
+}
+-(NSString *) getTrackingKeyForProductPurchase:(NSString *) theProduct{
+    return [[self.getListOfPurchases objectForKey:theProduct] objectForKey:@"TrackingKey"];
+}
+-(NSString *) getProductNameForProductId:(NSString *) productId{
+    NSDictionary *listOfPurchases = [self getListOfPurchases];
+    for(NSString *key in [listOfPurchases allKeys]){
+        if([productId isEqualToString:[[listOfPurchases objectForKey:key] objectForKey:@"ProductId"]]) return key;
+    }
+    return nil;
+}
+-(NSString *) getProductDisplayNameForProductName:(NSString *) theProduct{
+    return [[[self getListOfPurchases] objectForKey:theProduct] objectForKey:@"DisplayName"];
+}
 @end

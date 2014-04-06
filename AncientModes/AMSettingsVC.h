@@ -19,4 +19,5 @@
 
 - (IBAction)purchaseAdvancedModes:(id)sender;
 - (IBAction)purchaseRemoveAds:(id)sender;
+- (IBAction)restorePurchases:(id)sender;
 @end
