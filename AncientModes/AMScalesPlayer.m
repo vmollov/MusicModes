@@ -71,10 +71,10 @@
     AudioUnitUninitialize(_samplerUnit);
     AudioUnitUninitialize(_ioUnit);
     AUGraphUninitialize(_processingGraph);
+    //MIDIEndpointDispose(_virtualEndpoint);
+    //MIDIClientDispose(_virtualMidi);
     AUGraphClose(_processingGraph);
     DisposeAUGraph(_processingGraph);
-    MIDIEndpointDispose(_virtualEndpoint);
-    MIDIClientDispose(_virtualMidi);
     
     NSError *error = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&error];
@@ -83,7 +83,9 @@
     _player = nil;
     _processingGraph = nil;
     _samplerUnit = nil;
-    _ioUnit = nil; 
+    _ioUnit = nil;
+    //_virtualMidi = 0;
+    //_virtualEndpoint = 0;
     
     return true;
 }

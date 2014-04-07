@@ -54,7 +54,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
     
     //set up the purchase controller
     _purchaseController = [[AMPurchaseVC alloc] init];
-    //[[SKPaymentQueue defaultQueue] addTransactionObserver:_purchaseController];
     
     self.tblContent.backgroundColor = [UIColor clearColor];
     

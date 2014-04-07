@@ -12,8 +12,7 @@
 @implementation AMPurchaseVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     
     }
     return self;
@@ -48,8 +47,6 @@
 }
 
 -(void)restorePurchase {
-    NSLog(@"Restore started");
-
     [[SKPaymentQueue defaultQueue]restoreCompletedTransactions];
 }
 -(void)dismissPurchaseScene{
@@ -62,6 +59,7 @@
     self.lbProductTitle.text = nil;
     self.txtProductDescription.text = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PurchaseControllerFinished" object:self];
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -77,6 +75,9 @@
 }
 
 -(void)markProductPurchased:(NSString *) productName{
+    NSLog(@"Marking purchase: %@", productName);
+    if (productName == nil) return;
+    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[[AMDataManager getInstance] getTrackingKeyForProductPurchase:productName]];
     NSLog(@"purchased: %@ with id: %@",productName, [[AMDataManager getInstance] getIdForProductPurchase:productName]);
 }
@@ -125,11 +126,11 @@
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
-            /*case SKPaymentTransactionStateRestored:
-                NSLog(@"Transaction Restored");
-                //[self purchaseRestored];
+            case SKPaymentTransactionStateRestored:
+                [self purchaseRestored:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                break;*/
+                [self dismissPurchaseScene];
+                break;
                 
             default:
                 break;
@@ -147,7 +148,7 @@
     for (SKPaymentTransaction *transaction in queue.transactions) {
         NSString *productID = transaction.payment.productIdentifier;
         [purchasedItemIDs addObject:productID];
-        NSLog (@"product id is %@" , productID);
+        //NSLog (@"product id is %@" , productID);
         [self purchaseRestored:productID];
     }
     [self dismissPurchaseScene];
