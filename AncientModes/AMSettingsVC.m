@@ -37,6 +37,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
 @property NSInteger modeSettingsButtonIndexPathRow;
 
 @property BOOL samplePickerIsShown, modeSettingsTableIsShown;
+@property BOOL purchaseModesDisplayed, purchaseRemoveAdsDisplayed;
 @end
 
 @implementation AMSettingsVC
@@ -83,6 +84,9 @@ static int kContentTableNumberOfItemsPerSection = 3;
 
 -(void)purchasesCompleted{
     [self.tblContent reloadData];
+    //reset the purchase button display trackers
+    self.purchaseModesDisplayed = NO;
+    self.purchaseRemoveAdsDisplayed = NO;
     [self.tblModeSettings reloadData];
 }
 
@@ -111,19 +115,31 @@ static int kContentTableNumberOfItemsPerSection = 3;
     [purchaseController restorePurchase];
 }
 
+#pragma mark - content table structure methods
+-(int) calculateNumberOfSections{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) return kContentTableNumberOfSections - 1;
+    return kContentTableNumberOfSections;
+}
+-(int) calculateNumberOfRowsForPurchasesSection{
+    int rowNum = kContentTableNumberOfItemsPerSection;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) rowNum--;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) rowNum--;
+    return rowNum;
+}
+
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(tableView.tag == kTblModeSettingsTag) {
         tableView.backgroundColor = [UIColor clearColor];
         self.tblModeSettings = tableView;
         return self.listOfModes.count;
-    }else return kContentTableNumberOfSections;
+    }else return [self calculateNumberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(tableView.tag == kTblModeSettingsTag) return [[self.listOfModes objectAtIndex:section] count];
     else if(section == 0)return [self embededViewIsShown]?3:2;
-    else return kContentTableNumberOfItemsPerSection;
+    else return [self calculateNumberOfRowsForPurchasesSection];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,9 +182,16 @@ static int kContentTableNumberOfItemsPerSection = 3;
                 }
                 break;
             case 1:
-                if(indexPath.row == 0) cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
-                if(indexPath.row == 1) cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
-                if(indexPath.row == 2) cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
+                if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] && !self.purchaseModesDisplayed) {
+                    cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
+                    self.purchaseModesDisplayed = YES;
+                }
+                else if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"] && !self.purchaseRemoveAdsDisplayed){
+                    cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                    self.purchaseRemoveAdsDisplayed = YES;
+                }
+                else cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
+                
                 break;
             
             default:
