@@ -82,7 +82,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
 }
 
 -(void)purchasesCompleted{
-    NSLog(@"purchases completed");
     [self.tblContent reloadData];
     [self.tblModeSettings reloadData];
 }

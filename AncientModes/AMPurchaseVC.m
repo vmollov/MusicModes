@@ -55,7 +55,6 @@
     [[SKPaymentQueue defaultQueue]restoreCompletedTransactions];
 }
 -(void)dismissPurchaseScene{
-    NSLog(@"Dismissing scene");
     self.productName = nil;
     self.product = nil;
     self.btnBuy.hidden = YES;
@@ -97,12 +96,10 @@
 }
 -(void)processPurchasesFromArray:(NSArray *)purchases{
     for(NSString *productID in purchases) [self markPurchasedProductID:productID];
-    NSLog(@"processed purchase");
     [self dismissPurchaseScene];
 }
 -(void)processRestoresFromArray:(NSArray *) purchases{
     for(NSString *productID in purchases) [self restorePurchaseForProductID:productID];
-    NSLog(@"processed restore");
     [self dismissPurchaseScene];
 }
 -(void)failTransaction{
@@ -134,26 +131,22 @@
     for (SKProduct *product in products) NSLog(@"Product not found: %@", product);
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
-    NSLog(@"did receive response");
     NSMutableArray *purchasedTransactions = [[NSMutableArray alloc] init];
     NSMutableArray *restoredTransactions = [[NSMutableArray alloc]init];
     
     for (SKPaymentTransaction *transaction in transactions){
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                NSLog(@"transaction state = purchased");
                 [purchasedTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
             case SKPaymentTransactionStateFailed:
-                NSLog(@"Transaction Failed");
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 [self failTransaction];
                 break;
                 
             case SKPaymentTransactionStateRestored:
-                NSLog(@"Transaction state = restored");
                 [restoredTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
@@ -166,20 +159,5 @@
     if(restoredTransactions.count > 0)[self processRestoresFromArray:restoredTransactions];
 }
 
-/*- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
-    NSLog(@"%@",queue );
-    NSLog(@"Restored Transactions are once again in Queue for purchasing %@",[queue transactions]);
-    
-    NSMutableArray *purchasedItemIDs = [[NSMutableArray alloc] init];
-    NSLog(@"received restored transactions: %lu", (unsigned long)queue.transactions.count);
-    
-    for (SKPaymentTransaction *transaction in queue.transactions) {
-        NSString *productID = transaction.payment.productIdentifier;
-        [purchasedItemIDs addObject:productID];
-        //NSLog (@"product id is %@" , productID);
-        [self restorePurchaseForProductID:productID];
-    }
-    [self dismissPurchaseScene];
-}*/
 
 @end
