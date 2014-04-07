@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UITableView *tblContent;
 
-@property (strong, nonatomic) AMPurchaseVC *purchaseController;
+//@property (strong, nonatomic) AMPurchaseVC *purchaseController;
 
 - (IBAction)purchaseAdvancedModes:(id)sender;
 - (IBAction)purchaseRemoveAds:(id)sender;

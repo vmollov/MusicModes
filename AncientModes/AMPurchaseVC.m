@@ -25,10 +25,15 @@
     self.txtProductDescription.backgroundColor = [UIColor clearColor];
     self.btnBuy.hidden = YES;
     self.btnCancel.hidden = YES;
-    
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,16 +55,17 @@
     [[SKPaymentQueue defaultQueue]restoreCompletedTransactions];
 }
 -(void)dismissPurchaseScene{
+    NSLog(@"Dismissing scene");
     self.productName = nil;
     self.product = nil;
     self.btnBuy.hidden = YES;
     self.btnBuy.enabled = NO;
-    self.btnCancel.hidden = YES;
-    self.btnCancel.enabled = NO;
+    self.btnCancel.hidden = NO;
+    self.btnCancel.enabled = YES;
+    self.btnCancel.titleLabel.text = @"Done";
     self.lbProductTitle.text = nil;
     self.txtProductDescription.text = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PurchaseControllerFinished" object:self];
-    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -74,20 +80,35 @@
     }else self.txtProductDescription.text = @"Please enable In App Purchase in Settings";
 }
 
--(void)markProductPurchased:(NSString *) productName{
-    NSLog(@"Marking purchase: %@", productName);
-    if (productName == nil) return;
+-(void)markPurchasedProductID:(NSString *) productID{
+    if (productID == nil) return;
     
+    NSString *productName =[[AMDataManager getInstance] getProductNameForProductId:productID];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[[AMDataManager getInstance] getTrackingKeyForProductPurchase:productName]];
     NSLog(@"purchased: %@ with id: %@",productName, [[AMDataManager getInstance] getIdForProductPurchase:productName]);
 }
--(void)purchaseRestored:(NSString *)productID{
+-(void)restorePurchaseForProductID:(NSString *)productID{
     NSString *productName = [[AMDataManager getInstance] getProductNameForProductId:productID];
-    [self markProductPurchased:productName];
+    [self markPurchasedProductID:productID];
     
     NSString *messageString = [NSString stringWithFormat:@"%@ purchase has been restored.", [[AMDataManager getInstance] getProductDisplayNameForProductName:productName]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchases Restored" message:messageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchases Restored" message:messageString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
+}
+-(void)processPurchasesFromArray:(NSArray *)purchases{
+    for(NSString *productID in purchases) [self markPurchasedProductID:productID];
+    NSLog(@"processed purchase");
+    [self dismissPurchaseScene];
+}
+-(void)processRestoresFromArray:(NSArray *) purchases{
+    for(NSString *productID in purchases) [self restorePurchaseForProductID:productID];
+    NSLog(@"processed restore");
+    [self dismissPurchaseScene];
+}
+-(void)failTransaction{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Something went wrong.  Please try again.  Sorry for the inconvenience!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [self dismissPurchaseScene];
 }
 
 #pragma mark - Purchase Delegates
@@ -113,32 +134,39 @@
     for (SKProduct *product in products) NSLog(@"Product not found: %@", product);
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
+    NSLog(@"did receive response");
+    NSMutableArray *purchasedTransactions = [[NSMutableArray alloc] init];
+    NSMutableArray *restoredTransactions = [[NSMutableArray alloc]init];
+    
     for (SKPaymentTransaction *transaction in transactions){
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                [self markProductPurchased:self.productName];
+                NSLog(@"transaction state = purchased");
+                [purchasedTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                [self dismissPurchaseScene];
                 break;
                 
             case SKPaymentTransactionStateFailed:
                 NSLog(@"Transaction Failed");
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                [self failTransaction];
                 break;
                 
             case SKPaymentTransactionStateRestored:
-                [self purchaseRestored:transaction.originalTransaction.payment.productIdentifier];
+                NSLog(@"Transaction state = restored");
+                [restoredTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                [self dismissPurchaseScene];
                 break;
                 
             default:
                 break;
         }
     }
+    if(purchasedTransactions.count > 0)[self processPurchasesFromArray:purchasedTransactions];
+    if(restoredTransactions.count > 0)[self processRestoresFromArray:restoredTransactions];
 }
 
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+/*- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     NSLog(@"%@",queue );
     NSLog(@"Restored Transactions are once again in Queue for purchasing %@",[queue transactions]);
     
@@ -149,9 +177,9 @@
         NSString *productID = transaction.payment.productIdentifier;
         [purchasedItemIDs addObject:productID];
         //NSLog (@"product id is %@" , productID);
-        [self purchaseRestored:productID];
+        [self restorePurchaseForProductID:productID];
     }
     [self dismissPurchaseScene];
-}
+}*/
 
 @end

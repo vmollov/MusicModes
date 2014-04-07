@@ -52,9 +52,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
     [super viewDidLoad];
     [self setParallaxToView:self.imgBackground];
     
-    //set up the purchase controller
-    _purchaseController = [[AMPurchaseVC alloc] init];
-    
     self.tblContent.backgroundColor = [UIColor clearColor];
     
     //setup the data
@@ -95,21 +92,24 @@ static int kContentTableNumberOfItemsPerSection = 3;
 }
 
 - (IBAction)purchaseAdvancedModes:(id)sender {
-    _purchaseController.productName = @"AdvancedModes";
-    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
-    [_purchaseController getProductInfo];
+    AMPurchaseVC *purchaseController = [[AMPurchaseVC alloc] init];
+    purchaseController.productName = @"AdvancedModes";
+    [self.navigationController presentViewController:purchaseController animated:YES completion:nil];
+    [purchaseController getProductInfo];
 }
 
 - (IBAction)purchaseRemoveAds:(id)sender {
-    _purchaseController.productName = @"RemoveAds";
-    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
-    [_purchaseController getProductInfo];
+    AMPurchaseVC *purchaseController = [[AMPurchaseVC alloc]init];
+    purchaseController.productName = @"RemoveAds";
+    [self.navigationController presentViewController:purchaseController animated:YES completion:nil];
+    [purchaseController getProductInfo];
 
 }
 
 - (IBAction)restorePurchases:(id)sender {
-    [self.navigationController presentViewController:_purchaseController animated:YES completion:nil];
-    [_purchaseController restorePurchase];
+    AMPurchaseVC *purchaseController = [[AMPurchaseVC alloc] init];
+    [self.navigationController presentViewController:purchaseController animated:YES completion:nil];
+    [purchaseController restorePurchase];
 }
 
 #pragma mark - UITableView Delegates
