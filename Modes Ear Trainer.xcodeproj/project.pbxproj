@@ -39,6 +39,7 @@
 		C099378418F045E7007303FE /* AMSampleSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C099378318F045E7007303FE /* AMSampleSettingsTVCell.m */; };
 		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
 		C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */; };
+		C0A4D46118F42EC2004A0EF8 /* AMSettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A4D46018F42EC2004A0EF8 /* AMSettingsItem.m */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
 		C0B7461918C914AE00FF6127 /* AMPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */; };
 		C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */; };
@@ -131,6 +132,8 @@
 		C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsVC.m; sourceTree = "<group>"; };
 		C0A1F78618C2B11900EE7DF3 /* AMStartTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStartTestVC.h; sourceTree = "<group>"; };
 		C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStartTestVC.m; sourceTree = "<group>"; };
+		C0A4D45F18F42EC2004A0EF8 /* AMSettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSettingsItem.h; sourceTree = "<group>"; };
+		C0A4D46018F42EC2004A0EF8 /* AMSettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSettingsItem.m; sourceTree = "<group>"; };
 		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
 		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
 		C0B7461618C914AE00FF6127 /* AMPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPurchaseVC.h; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				C099378318F045E7007303FE /* AMSampleSettingsTVCell.m */,
 				C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */,
 				C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */,
+				C0A4D45F18F42EC2004A0EF8 /* AMSettingsItem.h */,
+				C0A4D46018F42EC2004A0EF8 /* AMSettingsItem.m */,
 			);
 			name = SettingsControllers;
 			sourceTree = "<group>";
@@ -606,6 +611,7 @@
 				C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */,
 				C0E92AFE18E6338400D4E718 /* UIViewController+Parallax.m in Sources */,
 				C0F7889D18BBC5650079618B /* AMVisualExampleV.m in Sources */,
+				C0A4D46118F42EC2004A0EF8 /* AMSettingsItem.m in Sources */,
 				C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */,
 				C01CF27418BFF60500050C28 /* AMStatisticsByModeVC.m in Sources */,
 				C0EE1F8018BC177A0070F6F6 /* AMDataManager.m in Sources */,
