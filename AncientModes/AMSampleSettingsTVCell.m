@@ -51,6 +51,7 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     [[NSUserDefaults standardUserDefaults] setObject:[self.listOfSamples objectAtIndex:row] forKey:@"playSample"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[AMScalesPlayer getInstance] loadSample:[self.listOfSamples objectAtIndex:row]];
 }
 

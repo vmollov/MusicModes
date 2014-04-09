@@ -18,25 +18,24 @@
 @end
 
 @implementation AMTestVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
     
     [self setParallaxToView:self.imgBackground];
     
     //prepare the controls
+    BOOL testOutOf8 = [[NSUserDefaults standardUserDefaults] boolForKey:@"testOutOf8Answers"];
     self.lbScore.text = @"";
-    self.answerButtons = @[self.btnAnswer1, self.btnAnswer2, self.btnAnswer3, self.btnAnswer4];
-    for(int i = 0; i<[self.answerButtons count]; i++){
-        [[self.answerButtons objectAtIndex:i] setTitle:@"" forState:UIControlStateNormal];
+    self.answerButtons = testOutOf8? @[self.btnAnswer1, self.btnAnswer2, self.btnAnswer3, self.btnAnswer4, self.btnAnswer5, self.btnAnswer6, self.btnAnswer7, self.btnAnswer8] : @[self.btnAnswer1, self.btnAnswer2, self.btnAnswer3, self.btnAnswer4];
+    
+    for(UIButton * aButton in self.answerButtons){
+        [aButton setTitle:@"" forState:UIControlStateNormal];
+        aButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        if(!testOutOf8){
+            CGRect frame = aButton.frame;
+            frame.size.width = 319;
+            aButton.frame = frame;
+        }
     }
     
     self.slTempo.value = [[AMScalesPlayer getInstance] tempo];
@@ -45,9 +44,10 @@
     self.switchAutoAdvance.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"AutoAdvance"];
     
     //initiate a new test
+    int numberOfPresentedAnswers = testOutOf8?8:4;
     int numberOfChallenges = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"];
     BOOL sameStartNote = [[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"];
-    self.currentTest = sameStartNote?[[AMEarTest alloc] initWithNumberOfChallenges:numberOfChallenges startingNote:@"C4"]:[[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges];
+    self.currentTest = sameStartNote?[[AMEarTest alloc] initWithNumberOfChallenges:numberOfChallenges startingNote:@"C4" numberOfPresentedAnswers:numberOfPresentedAnswers]:[[AMEarTest alloc]initWithNumberOfChallenges:numberOfChallenges numberOfPresentedAnswers:numberOfPresentedAnswers];
     
     [self presentChallenge];
 }
@@ -160,6 +160,7 @@
 
 - (IBAction)changeAutoAdvance:(id)sender {
     [[NSUserDefaults standardUserDefaults] setBool:self.switchAutoAdvance.on forKey:@"AutoAdvance"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     if(self.switchAutoAdvance.on) {
         if(self.currentTest.getCurrentChallenge.answered) [self nextChallenge:nil];
     }

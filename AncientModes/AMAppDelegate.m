@@ -35,6 +35,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"numberOfQuestions"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoAdvance"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ChallengeOnSameNote"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"testOutOf8Answers"];
         
         //enable use of all modes
         NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];
@@ -64,6 +65,8 @@
     
     
     //testing -------------------
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"testOutOf8Answers"];
+    
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
     

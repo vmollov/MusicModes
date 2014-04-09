@@ -13,7 +13,7 @@
 
 @implementation AMTestChallenge
 
--(id)initWithScale:(AMScale *)scale{
+-(id)initWithScale:(AMScale *)scale numberOfPresentedAnswers:(int)presentedAnswersCount{
     if(self = [super init]){
         _scale = scale;
         
@@ -22,7 +22,7 @@
         NSString *variationMode = _scale.mode.variationMode;
         
         //generate the answers
-        int presentedAnswersCount = 4;
+        //int presentedAnswersCount = 8;
         int index = 0;
         NSMutableArray *randomAnswers = [[NSMutableArray alloc] initWithCapacity:presentedAnswersCount];
         
@@ -74,15 +74,15 @@
     return self;
 }
 
--(id)initWithRandModeRandNote{
+-(id)initWithRandModeRandNoteAndnumberOfPresentedAnswers:(int)presentedAnswersCount{
     AMScale *challengeScale = [[AMScalesManager getInstance] generateRandomScale];
     
-    return [self initWithScale:challengeScale];
+    return [self initWithScale:challengeScale numberOfPresentedAnswers:presentedAnswersCount];
 }
--(id)initWithRandModeStartingOnNote:(UInt8)startingNote{
+-(id)initWithRandModeStartingOnNote:(UInt8)startingNote numberOfPresentedAnswers:(int)presentedAnswersCount{
     AMScale *challengeScale = [[AMScalesManager getInstance] generateRandomScaleFromNote:startingNote];
     
-    return [self initWithScale:challengeScale];
+    return [self initWithScale:challengeScale numberOfPresentedAnswers:presentedAnswersCount];
 }
 
 -(NSArray *)getHint{

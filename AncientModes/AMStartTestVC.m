@@ -48,6 +48,7 @@
     UISegmentedControl *button = sender;
     BOOL sameNote = (button.selectedSegmentIndex == 0);
     [[NSUserDefaults standardUserDefaults] setBool:sameNote forKey:@"ChallengeOnSameNote"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - UIPicker Delegates
@@ -67,6 +68,7 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     [[NSUserDefaults standardUserDefaults] setInteger:(row + 1) forKey:@"numberOfQuestions"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{

@@ -414,7 +414,8 @@ static void MIDIReadProcess(const MIDIPacketList *pktlist, void *refCon, void *c
 	CFRelease (propertyResourceData);
     
     _currentSample = samplePreset;
-    [[NSUserDefaults standardUserDefaults] setObject:samplePreset forKey:@"playSample"];
+    //[[NSUserDefaults standardUserDefaults] setObject:samplePreset forKey:@"playSample"];
+    //[[NSUserDefaults standardUserDefaults] synchronize];
     
     //NSLog(@"%@ sample loaded succesfully!", samplePreset);
 }

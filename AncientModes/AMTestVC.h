@@ -24,6 +24,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnAnswer2;
 @property (strong, nonatomic) IBOutlet UIButton *btnAnswer3;
 @property (strong, nonatomic) IBOutlet UIButton *btnAnswer4;
+@property (strong, nonatomic) IBOutlet UIButton *btnAnswer5;
+@property (strong, nonatomic) IBOutlet UIButton *btnAnswer6;
+@property (strong, nonatomic) IBOutlet UIButton *btnAnswer7;
+@property (strong, nonatomic) IBOutlet UIButton *btnAnswer8;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnHint;
 @property (strong, nonatomic) IBOutlet AMVisualExampleV *hintView;
 @property (strong, nonatomic) IBOutlet UISwitch *switchAutoAdvance;

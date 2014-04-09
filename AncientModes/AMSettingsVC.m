@@ -206,17 +206,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
                     default:
                         break;
                 }
-                
-                /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] && !self.purchaseModesDisplayed) {
-                    cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
-                    self.purchaseModesDisplayed = YES;
-                }
-                else if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"] && !self.purchaseRemoveAdsDisplayed){
-                    cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
-                    self.purchaseRemoveAdsDisplayed = YES;
-                }
-                else cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];*/
-                
                 break;
             
             default:

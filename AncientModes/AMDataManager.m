@@ -278,6 +278,7 @@
     if(!enabled && enabledModes < 4) return false;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
+    [[NSUserDefaults standardUserDefaults] synchronize];
         
     return true;
 }

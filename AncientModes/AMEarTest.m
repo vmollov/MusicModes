@@ -10,18 +10,18 @@
 #import "AMNote.h"
 
 @implementation AMEarTest
--(id)initWithNumberOfChallenges: (int) number{
-    return [self initWithNumberOfChallenges:number startingNote:nil];
+-(id)initWithNumberOfChallenges: (int) number numberOfPresentedAnswers:(int)presentedAnswersCount{
+    return [self initWithNumberOfChallenges:number startingNote:nil numberOfPresentedAnswers:presentedAnswersCount];
 }
--(id)initWithNumberOfChallenges:(int)number startingNote:(NSString *)startingNote{
+-(id)initWithNumberOfChallenges:(int)number startingNote:(NSString *)startingNote numberOfPresentedAnswers:(int)presentedAnswersCount{
     if(self = [super init]){
         NSMutableArray *theChallenges = [[NSMutableArray alloc] initWithCapacity:number];
         for(int i=0; i<number; i++){
             //create a random challenge and add it to the mutable array
-            if(startingNote == nil)[theChallenges addObject:[[AMTestChallenge alloc] initWithRandModeRandNote]];
+            if(startingNote == nil)[theChallenges addObject:[[AMTestChallenge alloc] initWithRandModeRandNoteAndnumberOfPresentedAnswers:presentedAnswersCount]];
             else {
                 UInt8 note = [[[AMNote alloc] initWithString:startingNote] MIDIValue];
-                [theChallenges addObject:[[AMTestChallenge alloc] initWithRandModeStartingOnNote:note]];
+                [theChallenges addObject:[[AMTestChallenge alloc] initWithRandModeStartingOnNote:note numberOfPresentedAnswers:presentedAnswersCount]];
             }
         }
         _challenges = [[NSArray alloc] initWithArray:theChallenges];
