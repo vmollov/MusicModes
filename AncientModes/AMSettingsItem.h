@@ -11,7 +11,6 @@
 @interface AMSettingsItem : NSObject
 @property NSString *titleCellID, *contentCellID;
 @property BOOL isShown;
-@property BOOL contentIsDisplayed, titleIsDisplayed;
 @property int indexPathRow;
 @property float contentCellHeight;
 

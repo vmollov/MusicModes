@@ -104,6 +104,8 @@
 					<integer>1</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Major Bebop</string>
 				<key>groupId</key>
 				<string>3</string>
 				<key>listenFor</key>
@@ -201,6 +203,8 @@
 					<integer>3</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Double Harmonic Minor</string>
 				<key>groupId</key>
 				<string>4</string>
 				<key>listenFor</key>
@@ -224,6 +228,8 @@
 					<integer>3</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Double Harmonic Major</string>
 				<key>groupId</key>
 				<string>4</string>
 				<key>listenFor</key>
@@ -298,6 +304,8 @@
 					<integer>3</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Harmonic Minor</string>
 				<key>groupId</key>
 				<string>4</string>
 				<key>listenFor</key>
@@ -322,6 +330,8 @@
 					<integer>3</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Harmonic Major</string>
 				<key>groupId</key>
 				<string>1</string>
 				<key>listenFor</key>
@@ -365,6 +375,8 @@
 					<integer>2</integer>
 					<integer>2</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Phrygian</string>
 				<key>groupId</key>
 				<string>2</string>
 				<key>listenFor</key>
@@ -490,6 +502,8 @@
 				</array>
 				<key>order</key>
 				<string>1</string>
+				<key>startEnabled</key>
+				<true/>
 			</dict>
 			<key>Major Bebop</key>
 			<dict>
@@ -506,6 +520,8 @@
 					<integer>2</integer>
 					<integer>1</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Dominant Bebop</string>
 				<key>groupId</key>
 				<string>3</string>
 				<key>listenFor</key>
@@ -828,6 +844,8 @@
 				</array>
 				<key>order</key>
 				<string>2</string>
+				<key>startEnabled</key>
+				<true/>
 			</dict>
 			<key>Natural Minor/Aeolian</key>
 			<dict>
@@ -862,6 +880,8 @@
 					<integer>2</integer>
 					<integer>2</integer>
 				</array>
+				<key>VariationOf</key>
+				<string>Locrian</string>
 				<key>groupId</key>
 				<string>2</string>
 				<key>listenFor</key>

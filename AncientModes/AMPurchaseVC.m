@@ -61,7 +61,7 @@
     self.btnBuy.enabled = NO;
     self.btnCancel.hidden = NO;
     self.btnCancel.enabled = YES;
-    self.btnCancel.titleLabel.text = @"Done";
+    //self.btnCancel.titleLabel.text = @"Done";
     self.lbProductTitle.text = nil;
     self.txtProductDescription.text = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PurchaseControllerFinished" object:self];
@@ -84,6 +84,7 @@
     
     NSString *productName =[[AMDataManager getInstance] getProductNameForProductId:productID];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[[AMDataManager getInstance] getTrackingKeyForProductPurchase:productName]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"purchased: %@ with id: %@",productName, [[AMDataManager getInstance] getIdForProductPurchase:productName]);
 }
 -(void)restorePurchaseForProductID:(NSString *)productID{

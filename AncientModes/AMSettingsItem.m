@@ -15,8 +15,6 @@
         _contentCellID = contentCellID;
         _indexPathRow = indexPathRow;
         _isShown = NO;
-        _contentIsDisplayed = NO;
-        _titleIsDisplayed = NO;
     }
     return self;
 }
