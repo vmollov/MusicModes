@@ -10,8 +10,8 @@
 #import "AMScalesPlayer.h"
 #import "AMDataManager.h"
 #import "AMEndTestVC.h"
-#import <iAd/iAd.h>
 #import "UIViewController+Parallax.h"
+//#import <iAd/iAd.h>
 
 @interface AMTestVC ()
 @property NSArray *answerButtons;

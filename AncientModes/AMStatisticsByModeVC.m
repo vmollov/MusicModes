@@ -11,7 +11,7 @@
 #import "AMStatisticsByModeDetailVC.h"
 #import "AMDataManager.h"
 #import "UIViewController+Parallax.h"
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
 
 @interface AMStatisticsByModeVC ()
 @property NSArray *listOfModes;

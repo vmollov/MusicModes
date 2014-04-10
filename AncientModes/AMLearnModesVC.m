@@ -10,7 +10,7 @@
 #import "AMModeDetailVC.h"
 #import "AMPurchaseVC.h"
 #import "UIViewController+Parallax.h"
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
 
 @interface AMLearnModesVC ()
 @property NSArray *listOfModes;

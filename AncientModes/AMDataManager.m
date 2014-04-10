@@ -275,7 +275,8 @@
     enabled?enabledModes++:enabledModes--;
 
     //if the number of enabled modes will be 4 or less after this method completes then return false
-    if(!enabled && enabledModes < 4) return false;
+    int minimumAllowed = [[NSUserDefaults standardUserDefaults] boolForKey:@"testOutOf8Answers"]? 8 : 4;
+    if(!enabled && enabledModes < minimumAllowed) return false;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
     [[NSUserDefaults standardUserDefaults] synchronize];

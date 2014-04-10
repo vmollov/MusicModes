@@ -30,6 +30,7 @@
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
 		C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestVC.m */; };
 		C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */; };
+		C05C145D18F6DC67000EC7CF /* AMTestSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05C145C18F6DC67000EC7CF /* AMTestSettingsTVCell.m */; };
 		C063115318F0F9BE00CBB9E3 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */; };
 		C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06892E918A26FB800B860C2 /* CoreData.framework */; };
 		C070825218C74C7E007FF7DF /* graphBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C070825118C74C7E007FF7DF /* graphBg.png */; };
@@ -40,7 +41,6 @@
 		C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C099C98418BBB8B400730AD9 /* AMStatisticsVC.m */; };
 		C0A1F78818C2B11900EE7DF3 /* AMStartTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F78718C2B11900EE7DF3 /* AMStartTestVC.m */; };
 		C0A4D46118F42EC2004A0EF8 /* AMSettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A4D46018F42EC2004A0EF8 /* AMSettingsItem.m */; };
-		C0A7439A18F6C27A00F08DDD /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A7439918F6C27A00F08DDD /* iAd.framework */; };
 		C0B2CFEB18B6330200DB025A /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B2CFEA18B6330200DB025A /* Statistics.m */; };
 		C0B7461918C914AE00FF6127 /* AMPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */; };
 		C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */; };
@@ -116,6 +116,8 @@
 		C04A06AD189D6CD600E4A25F /* AMTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestVC.m; sourceTree = "<group>"; };
 		C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		C05C145B18F6DC67000EC7CF /* AMTestSettingsTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestSettingsTVCell.h; sourceTree = "<group>"; };
+		C05C145C18F6DC67000EC7CF /* AMTestSettingsTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestSettingsTVCell.m; sourceTree = "<group>"; };
 		C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosureIndicator.png; sourceTree = "<group>"; };
 		C06892E918A26FB800B860C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C070825118C74C7E007FF7DF /* graphBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphBg.png; path = Images/graphBg.png; sourceTree = "<group>"; };
@@ -186,7 +188,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0A7439A18F6C27A00F08DDD /* iAd.framework in Frameworks */,
 				C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */,
 				C00724BC18874136001446A5 /* CoreGraphics.framework in Frameworks */,
 				C0FA089118C8ABA900A343B6 /* StoreKit.framework in Frameworks */,
@@ -316,6 +317,8 @@
 				C0C830C018EEEC6B00846C20 /* AMSettingsVC.m */,
 				C099378218F045E7007303FE /* AMSampleSettingsTVCell.h */,
 				C099378318F045E7007303FE /* AMSampleSettingsTVCell.m */,
+				C05C145B18F6DC67000EC7CF /* AMTestSettingsTVCell.h */,
+				C05C145C18F6DC67000EC7CF /* AMTestSettingsTVCell.m */,
 				C0B7947018B7F6FC00D45334 /* AMModesSettingsTVCell.h */,
 				C0B7947118B7F6FC00D45334 /* AMModesSettingsTVCell.m */,
 				C0A4D45F18F42EC2004A0EF8 /* AMSettingsItem.h */,
@@ -595,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C099C98518BBB8B400730AD9 /* AMStatisticsVC.m in Sources */,
+				C05C145D18F6DC67000EC7CF /* AMTestSettingsTVCell.m in Sources */,
 				C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */,
 				C0D55D3818C2C141001B76D0 /* AMEndTestVC.m in Sources */,
 				C0EE1F8318BC17890070F6F6 /* AMScalesManager.m in Sources */,

@@ -9,8 +9,9 @@
 #import "AMSettingsVC.h"
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
-#import "AMModesSettingsTVCell.h"
 #import "AMSampleSettingsTVCell.h"
+#import "AMTestSettingsTVCell.h"
+#import "AMModesSettingsTVCell.h"
 #import "AMSettingsItem.h"
 #import "UIViewController+Parallax.h"
 
@@ -172,13 +173,13 @@ static int kContentTableNumberOfItemsPerSection = 3;
                     cell.accessoryView = cell.accessoryView = [self accessoryViewForTitleCellWithContentShown:item.isShown];
                 }else{
                     if(indexPath.row == ([self indexForContentItemShown] + 1)){ //return the content cell
+                        AMSettingsItem *item = [self.contentCells objectAtIndex:[self indexForContentItemShown]];
+                        
                         //exceptions
-                        if(indexPath.row == 1) cell = [self cellForSamplesPickerInTableView:tableView];
+                        if([self indexForContentItemShown] == 0) cell = [self cellForSamplesPickerInTableView:tableView cellIdentifier:item.contentCellID];
+                        else if([self indexForContentItemShown] == 1) cell = [self cellForTestSettingsInTableView:tableView cellIdentifier:item.contentCellID];
                         //general
-                        else{
-                            AMSettingsItem *item = [self.contentCells objectAtIndex:(indexPath.row -1)];
-                            cell = [tableView dequeueReusableCellWithIdentifier:item.contentCellID];
-                        }
+                        else cell = [tableView dequeueReusableCellWithIdentifier:item.contentCellID];
                     }else{
                         long theIndexRow = indexPath.row;
                         if (indexPath.row > ([self indexForContentItemShown] + 1))theIndexRow--;
@@ -288,9 +289,8 @@ static int kContentTableNumberOfItemsPerSection = 3;
     }
 }
 
--(AMSampleSettingsTVCell *)cellForSamplesPickerInTableView:(UITableView *) tableView{
-    AMSettingsItem *pickerCellItem = [self.contentCells firstObject];
-    AMSampleSettingsTVCell *pickerCell = [tableView dequeueReusableCellWithIdentifier:pickerCellItem.contentCellID];
+-(AMSampleSettingsTVCell *)cellForSamplesPickerInTableView:(UITableView *) tableView cellIdentifier:(NSString *) cellID{
+    AMSampleSettingsTVCell *pickerCell = [tableView dequeueReusableCellWithIdentifier:cellID];
     pickerCell.listOfSamples = self.listOfSamples;
     pickerCell.pkrPlayerSample.delegate = pickerCell;
     pickerCell.pkrPlayerSample.dataSource = pickerCell;
@@ -301,6 +301,14 @@ static int kContentTableNumberOfItemsPerSection = 3;
     
     return pickerCell;
 }
+-(AMTestSettingsTVCell *)cellForTestSettingsInTableView:(UITableView *)tableView cellIdentifier:(NSString *) cellID{
+    AMTestSettingsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.swRandomStartingNote.on = (![[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"]);
+    cell.swTestOutOf8.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"testOutOf8Answers"];
+    
+    return cell;
+}
+
 -(UITableViewCell *)cellForModeSettingsTable:(UITableView *) tableView ForIndexPath:(NSIndexPath *)indexPath{
     static NSString *reuseIdentifier = @"scalesCell";
     AMModesSettingsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];

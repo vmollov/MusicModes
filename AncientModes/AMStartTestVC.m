@@ -8,7 +8,7 @@
 
 #import "AMStartTestVC.h"
 #import "UIViewController+Parallax.h"
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
 
 @interface AMStartTestVC ()
 
@@ -34,22 +34,11 @@
     [self.pkrNumQuestions selectRow:1 inComponent:0 animated:YES];
     
     [self.pkrNumQuestions selectRow:([[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"]-1) inComponent:0 animated:YES];
-    
-    BOOL sameNote = [[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"];
-    [self.sgmSameNote setSelectedSegmentIndex:sameNote?0:1];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - User Actions
-- (IBAction)changeStartNote:(id)sender {
-    UISegmentedControl *button = sender;
-    BOOL sameNote = (button.selectedSegmentIndex == 0);
-    [[NSUserDefaults standardUserDefaults] setBool:sameNote forKey:@"ChallengeOnSameNote"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - UIPicker Delegates

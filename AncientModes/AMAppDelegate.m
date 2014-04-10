@@ -9,7 +9,7 @@
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
 
 @implementation AMAppDelegate
 
@@ -32,23 +32,12 @@
         [[NSUserDefaults standardUserDefaults] setFloat:120.0 forKey:@"playTempo"];
         
         [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"numberOfQuestions"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoAdvance"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ChallengeOnSameNote"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"testOutOf8Answers"];
         
         //enable use of all modes
         NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];
         for(NSString *mode in listOfModes){
             NSDictionary *modeProperties = [[AMDataManager getInstance]getPropertiesForMode:mode];
             [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
-        }
-        
-        //mark purchases as not completed
-        NSDictionary *listOfPurchases = [[AMDataManager getInstance] getListOfPurchases];
-        for(NSString *itemName in [listOfPurchases allKeys]){
-            NSDictionary *item = [listOfPurchases objectForKey:itemName];
-            
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:[item objectForKey:@"TrackingKey"]];
         }
         
         // sync the defaults to disk
@@ -65,18 +54,6 @@
     /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
         [UIViewController prepareInterstitialAds];
     }*/
-    
-    
-    
-    //testing -------------------
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"testOutOf8Answers"];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
-    
-    //NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]);
-    //NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]);
-    
-    //testing --------------------
     
     return YES;
 }
