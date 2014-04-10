@@ -140,7 +140,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
         }
         return self.listOfModes.count;
     }else{
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) return kContentTableNumberOfSections - 1;
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] /*&& [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]*/) return kContentTableNumberOfSections - 1;
         return kContentTableNumberOfSections;
     }
 }
@@ -154,7 +154,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
     else {
         int rowNum = kContentTableNumberOfItemsPerSection;
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) rowNum--;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) rowNum--;
+        /*if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"])*/ rowNum--;
         return rowNum;
     }
 }
@@ -197,8 +197,8 @@ static int kContentTableNumberOfItemsPerSection = 3;
                         else cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
                         break;
                     case 1:
-                        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
-                        else cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
+                        /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                        else */cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
                         break;
                     case 2:
                         cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];

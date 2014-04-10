@@ -10,6 +10,7 @@
 #import "AMScalesPlayer.h"
 #import "AMDataManager.h"
 #import "AMEndTestVC.h"
+#import <iAd/iAd.h>
 #import "UIViewController+Parallax.h"
 
 @interface AMTestVC ()
@@ -223,6 +224,8 @@
         destination.test = self.currentTest;
         destination.questions = (int)self.currentTest.challengeIndex;
         if(self.currentTest.getCurrentChallenge.answered) destination.questions++;
+        
+        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 @end

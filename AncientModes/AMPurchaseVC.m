@@ -45,6 +45,7 @@
 - (IBAction)buyProduct:(id)sender {
     SKPayment *payment = [SKPayment paymentWithProduct:_product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
+    NSLog(@"%@", _product);
 }
 
 - (IBAction)cancel:(id)sender {
@@ -69,6 +70,7 @@
 }
 
 -(void)getProductInfo{
+    NSLog(@"getting info for: %@", [[AMDataManager getInstance] getIdForProductPurchase:self.productName]);
     if ([SKPaymentQueue canMakePayments]){
         if(self.productName != nil){
             SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers: [NSSet setWithObject:[[AMDataManager getInstance] getIdForProductPurchase:self.productName]]];
@@ -143,6 +145,7 @@
                 break;
                 
             case SKPaymentTransactionStateFailed:
+                NSLog(@"%@", transaction.originalTransaction.payment.productIdentifier);
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 [self failTransaction];
                 break;

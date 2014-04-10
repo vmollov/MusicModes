@@ -9,7 +9,7 @@
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
-
+#import <iAd/iAd.h>
 
 @implementation AMAppDelegate
 
@@ -17,8 +17,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     // initialize defaults
     NSString *dateKey    = @"dateKey";
     NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"dateKey"];
@@ -62,16 +61,20 @@
     //Initialize the Scales Player
     [AMScalesPlayer getInstance];
     
+    //prepare iAds
+    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
+        [UIViewController prepareInterstitialAds];
+    }*/
+    
     
     
     //testing -------------------
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"testOutOf8Answers"];
     
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
     
-    NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]);
-    NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]);
+    //NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]);
+    //NSLog(@"purchased modes: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]);
     
     //testing --------------------
     

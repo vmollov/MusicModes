@@ -10,6 +10,7 @@
 #import "AMModeDetailVC.h"
 #import "AMPurchaseVC.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 @interface AMLearnModesVC ()
 @property NSArray *listOfModes;
@@ -92,13 +93,12 @@
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
     if([[segue identifier] isEqualToString:@"LearnModeDetailSegue"]){
         AMModeDetailVC *detailVC = [segue destinationViewController];
         NSIndexPath *indexPath = self.tblListOfModes.indexPathForSelectedRow;
         detailVC.modeName = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) detailVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
