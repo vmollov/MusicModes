@@ -9,7 +9,7 @@
 #import "AMStatisticsVC.h"
 #import "AMDataManager.h"
 #import "UIViewController+Parallax.h"
-//#import <iAd/iAd.h>
+#import <iAd/iAd.h>
 
 @interface AMStatisticsVC ()
 
@@ -37,7 +37,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
 }
 
 - (void)didReceiveMemoryWarning{

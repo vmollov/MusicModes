@@ -10,7 +10,7 @@
 #import "AMModeDetailVC.h"
 #import "AMPurchaseVC.h"
 #import "UIViewController+Parallax.h"
-//#import <iAd/iAd.h>
+#import <iAd/iAd.h>
 
 @interface AMLearnModesVC ()
 @property NSArray *listOfModes;
@@ -98,7 +98,7 @@
         NSIndexPath *indexPath = self.tblListOfModes.indexPathForSelectedRow;
         detailVC.modeName = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         
-        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) detailVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) detailVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{

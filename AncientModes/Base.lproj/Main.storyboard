@@ -175,11 +175,11 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" id="O9b-pj-WMJ">
-                                <rect key="frame" x="228" y="282" width="54" height="162"/>
+                                <rect key="frame" x="228" y="275" width="54" height="162"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </pickerView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Questions:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iGa-lI-9Vd">
-                                <rect key="frame" x="45" y="345" width="169" height="21"/>
+                                <rect key="frame" x="56" y="345" width="169" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

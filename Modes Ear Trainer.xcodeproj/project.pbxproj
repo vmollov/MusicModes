@@ -30,6 +30,7 @@
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
 		C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A06AD189D6CD600E4A25F /* AMTestVC.m */; };
 		C051CAC4189EC12A009BCBE8 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */; };
+		C056FB0E18F71D41008F414C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A7439918F6C27A00F08DDD /* iAd.framework */; };
 		C05C145D18F6DC67000EC7CF /* AMTestSettingsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05C145C18F6DC67000EC7CF /* AMTestSettingsTVCell.m */; };
 		C063115318F0F9BE00CBB9E3 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = C063115218F0F9BE00CBB9E3 /* disclosureIndicator.png */; };
 		C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06892E918A26FB800B860C2 /* CoreData.framework */; };
@@ -188,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C056FB0E18F71D41008F414C /* iAd.framework in Frameworks */,
 				C06892EA18A26FB800B860C2 /* CoreData.framework in Frameworks */,
 				C00724BC18874136001446A5 /* CoreGraphics.framework in Frameworks */,
 				C0FA089118C8ABA900A343B6 /* StoreKit.framework in Frameworks */,

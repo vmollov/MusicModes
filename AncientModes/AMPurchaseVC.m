@@ -43,9 +43,9 @@
 }
 
 - (IBAction)buyProduct:(id)sender {
+    NSLog(@"purchasing: %@", _product.productIdentifier);
     SKPayment *payment = [SKPayment paymentWithProduct:_product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
-    NSLog(@"%@", _product);
 }
 
 - (IBAction)cancel:(id)sender {
@@ -105,6 +105,11 @@
     for(NSString *productID in purchases) [self restorePurchaseForProductID:productID];
     [self dismissPurchaseScene];
 }
+-(void)processNoRestoresFound{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Purchases" message:@"There are no purchases to restore" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [self dismissPurchaseScene];
+}
 -(void)failTransaction{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Something went wrong.  Please try again.  Sorry for the inconvenience!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
@@ -140,17 +145,20 @@
     for (SKPaymentTransaction *transaction in transactions){
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                [purchasedTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
+                NSLog(@"statePurchased: %@ id: %@", transaction, transaction.originalTransaction.payment.productIdentifier);
+                if(transaction.originalTransaction.payment.productIdentifier != nil)[purchasedTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
             case SKPaymentTransactionStateFailed:
-                NSLog(@"%@", transaction.originalTransaction.payment.productIdentifier);
+                NSLog(@"stateFailed");
+                NSLog(@"Failed for id: %@ Error: %@", transaction.originalTransaction.payment.productIdentifier, transaction.error.localizedDescription);
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 [self failTransaction];
                 break;
                 
             case SKPaymentTransactionStateRestored:
+                NSLog(@"stateRestored");
                 [restoredTransactions addObject:transaction.originalTransaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
@@ -163,5 +171,18 @@
     if(restoredTransactions.count > 0)[self processRestoresFromArray:restoredTransactions];
 }
 
+/*- (void) paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    if(queue.transactions.count == 0) [self processNoRestoresFound];
+    
+    NSLog(@"received restored transactions: %lu", (unsigned long)queue.transactions.count);
+    //for (SKPaymentTransaction *transaction in queue.transactions){
+        
+    //}
+}
+
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    NSLog(@"Error when purchasing: %@",error);
+    
+}*/
 
 @end

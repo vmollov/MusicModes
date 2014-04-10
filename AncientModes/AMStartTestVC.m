@@ -8,7 +8,7 @@
 
 #import "AMStartTestVC.h"
 #import "UIViewController+Parallax.h"
-//#import <iAd/iAd.h>
+#import <iAd/iAd.h>
 
 @interface AMStartTestVC ()
 
@@ -67,9 +67,9 @@
 
 #pragma mark - Navigation
 -(IBAction) unwindToTestRoot:(UIStoryboardSegue *)segue{
-    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
         UIViewController *destination = [segue destinationViewController];
         destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-    }*/
+    }
 }
 @end

@@ -11,7 +11,7 @@
 #import "AMStatisticsByModeDetailVC.h"
 #import "AMDataManager.h"
 #import "UIViewController+Parallax.h"
-//#import <iAd/iAd.h>
+#import <iAd/iAd.h>
 
 @interface AMStatisticsByModeVC ()
 @property NSArray *listOfModes;
@@ -100,7 +100,7 @@
         destination.average = selectedCell.average;
         destination.modeName = selectedCell.textLabel.text;
         
-        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

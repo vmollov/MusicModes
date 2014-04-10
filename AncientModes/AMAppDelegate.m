@@ -9,7 +9,7 @@
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
-//#import <iAd/iAd.h>
+#import <iAd/iAd.h>
 
 @implementation AMAppDelegate
 
@@ -51,9 +51,14 @@
     [AMScalesPlayer getInstance];
     
     //prepare iAds
-    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
         [UIViewController prepareInterstitialAds];
-    }*/
+    }
+    
+    //testing ------------------
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
+    //testing ------------------
     
     return YES;
 }
