@@ -10,9 +10,9 @@
 #import "AMScalesManager.h"
 #import "AMScalesPlayer.h"
 #import "AMNote.h"
-
 #import "UIViewController+Parallax.h"
 #import "AMUtilities.h"
+#import <iAd/iAd.h>
 
 @interface AMModeDetailVC ()
 @property AMMode *mode;
@@ -21,17 +21,12 @@
 @end
 
 @implementation AMModeDetailVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
     
     [self setParallaxToView:self.imgBackground];
     

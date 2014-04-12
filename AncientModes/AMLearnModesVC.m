@@ -20,21 +20,22 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:YES grouped:YES];
     self.tblListOfModes.dataSource = self;
     self.tblListOfModes.delegate = self;
     
     self.tblListOfModes.backgroundColor = [UIColor clearColor];
+    self.tblListOfModes.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
     [self setParallaxToView:self.imgBackground];
-     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tblListOfModes flashScrollIndicators];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +99,7 @@
         NSIndexPath *indexPath = self.tblListOfModes.indexPathForSelectedRow;
         detailVC.modeName = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         
-        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) detailVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) detailVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{

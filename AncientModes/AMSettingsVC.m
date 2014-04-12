@@ -14,6 +14,7 @@
 #import "AMModesSettingsTVCell.h"
 #import "AMSettingsItem.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 static NSString *kEnableAdvancedModesCellID = @"cEnableAdvancedModes";
 static NSString *kRemoveAdsCellID = @"cRemoveAds";
@@ -31,16 +32,11 @@ static int kContentTableNumberOfItemsPerSection = 3;
 @end
 
 @implementation AMSettingsVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-}
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+    
     [self setParallaxToView:self.imgBackground];
     
     self.tblContent.backgroundColor = [UIColor clearColor];
@@ -84,8 +80,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
     self.contentCells = tmpContentCells;
     
     self.tblContent.backgroundColor = [UIColor clearColor];
-   
-    [self.tblContent flashScrollIndicators];
+    self.tblContent.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -93,6 +88,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.tblContent reloadData];
+    [self.tblContent flashScrollIndicators];
 }
 -(void)purchasesCompleted{
     [self.tblContent reloadData];

@@ -22,6 +22,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+    
     [self setParallaxToView:self.imgBackground];
     
     //prepare the controls
@@ -225,7 +227,7 @@
         destination.questions = (int)self.currentTest.challengeIndex;
         if(self.currentTest.getCurrentChallenge.answered) destination.questions++;
         
-        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 @end

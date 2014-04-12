@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AMEarTest.h"
 #import "AMVisualExampleV.h"
+#import <iAd/iAd.h>
 
 @interface AMTestVC : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imgBackground;

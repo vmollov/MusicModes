@@ -16,17 +16,11 @@
 
 @implementation AMStartTestVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+    
     [self setParallaxToView:self.imgBackground];
     
     self.pkrNumQuestions.delegate = self;
@@ -34,8 +28,8 @@
     [self.pkrNumQuestions selectRow:1 inComponent:0 animated:YES];
     
     [self.pkrNumQuestions selectRow:([[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"]-1) inComponent:0 animated:YES];
+    
 }
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -67,9 +61,9 @@
 
 #pragma mark - Navigation
 -(IBAction) unwindToTestRoot:(UIStoryboardSegue *)segue{
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
+    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
         UIViewController *destination = [segue destinationViewController];
         destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-    }
+    }*/
 }
 @end

@@ -17,18 +17,9 @@
 
 @implementation AMStatisticsVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
-    return self;
-}
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+	
     [self setParallaxToView:self.imgBackground];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -37,7 +28,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
 }
 
 - (void)didReceiveMemoryWarning{

@@ -8,6 +8,7 @@
 
 #import "AMEndTestVC.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 @interface AMEndTestVC ()
 
@@ -15,18 +16,13 @@
 
 @implementation AMEndTestVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-}
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
 	
     [self setParallaxToView:self.imgBackground];
+    
     self.vwResults.backgroundColor = [UIColor clearColor];
     
     self.summaryTable = [self.childViewControllers lastObject];
