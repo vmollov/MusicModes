@@ -11,17 +11,17 @@
 
 @interface AMPurchaseVC : UIViewController<SKPaymentTransactionObserver, SKProductsRequestDelegate>
 @property (strong, nonatomic)SKProduct *product;
-@property (strong, nonatomic)NSString *productID;
+@property (strong, nonatomic)NSString *productName;
 
 @property (strong, nonatomic) IBOutlet UILabel *lbProductTitle;
 @property (strong, nonatomic) IBOutlet UITextView *txtProductDescription;
 @property (strong, nonatomic) IBOutlet UIButton *btnBuy;
-@property (strong, nonatomic) IBOutlet UIButton *btnRestore;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancel;
 
 - (IBAction)buyProduct:(id)sender;
 - (IBAction)cancel:(id)sender;
-- (IBAction)restorePurchase:(id)sender;
+-(void)restorePurchase;
 
--(void)getProductInfo:(UIViewController *) viewController;
+-(void)getProductInfo;
 
 @end

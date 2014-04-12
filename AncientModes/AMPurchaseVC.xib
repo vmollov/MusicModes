@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMPurchaseVC">
             <connections>
                 <outlet property="btnBuy" destination="GfN-3P-cga" id="mTJ-0y-MGD"/>
-                <outlet property="btnRestore" destination="5DQ-w9-Yck" id="W72-Q6-Jjs"/>
+                <outlet property="btnCancel" destination="5DQ-w9-Yck" id="EyT-Jg-Y6r"/>
                 <outlet property="lbProductTitle" destination="5EF-9J-i3q" id="PWt-Ev-DS3"/>
                 <outlet property="txtProductDescription" destination="VzW-1S-efU" id="ZZB-nJ-Oew"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -22,8 +22,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EF-9J-i3q">
-                    <rect key="frame" x="40" y="77" width="240" height="27"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="5EF-9J-i3q">
+                    <rect key="frame" x="40" y="77" width="240" height="62"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="21"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,22 +61,23 @@
                         <action selector="cancel:" destination="-1" eventType="touchUpInside" id="jiv-uW-O93"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DQ-w9-Yck">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DQ-w9-Yck">
                     <rect key="frame" x="83" y="398" width="154" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Restore Purchases" backgroundImage="btnAnswer.png">
+                    <state key="normal" title="Cancel" backgroundImage="btnAnswer.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="disabled" backgroundImage="btnAnswer.png"/>
                     <state key="selected" backgroundImage="btnAnswerSelected.png"/>
                     <state key="highlighted" backgroundImage="btnAnswer.png"/>
                     <connections>
-                        <action selector="restorePurchase:" destination="-1" eventType="touchUpInside" id="bIy-IV-7O8"/>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="CQn-3Q-hMw"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

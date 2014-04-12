@@ -14,9 +14,9 @@
 @property int correctAnswerIndex;
 @property BOOL answered, answeredCorrectly, usedHint;
 
--(id)initWithScale:(AMScale *)scale;
--(id)initWithRandModeRandNote;
--(id)initWithRandModeStartingOnNote:(UInt8)startingNote;
+-(id)initWithScale:(AMScale *)scale numberOfPresentedAnswers:(int)presentedAnswersCount;
+-(id)initWithRandModeRandNoteAndnumberOfPresentedAnswers:(int)presentedAnswersCount;
+-(id)initWithRandModeStartingOnNote:(UInt8)startingNote numberOfPresentedAnswers:(int)presentedAnswersCount;
 
 -(NSArray *) getHint;
 

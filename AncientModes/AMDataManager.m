@@ -159,10 +159,6 @@
 
 
 #pragma mark - Plist Interfaces
-#pragma mark - Tier 1 inApp Purchase
--(NSString *) getTier1ProductID{
-    return [self.plApplicationData objectForKey:@"Tier1ProductID"];
-}
 #pragma mark - Mode Data
 -(NSDictionary *)getPropertiesForMode:(NSString *)modeName{
     //Get the mode definitions node
@@ -279,7 +275,8 @@
     enabled?enabledModes++:enabledModes--;
     
     //if the number of enabled modes will be 4 or less after this method completes then return false
-    if(!enabled && enabledModes < 4) return false;
+    int minimumAllowed = [[NSUserDefaults standardUserDefaults] boolForKey:@"testOutOf8Answers"]? 8 : 4;
+    if(!enabled && enabledModes < minimumAllowed) return false;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
     
@@ -296,4 +293,24 @@
     return NO;
 }
 
+#pragma mark - inApp Purchases
+-(NSDictionary *) getListOfPurchases{
+    return [self.plApplicationData objectForKey:@"Purchases"];
+}
+-(NSString *) getIdForProductPurchase:(NSString *) theProduct{
+    return [[self.getListOfPurchases objectForKey:theProduct] objectForKey:@"ProductId"];
+}
+-(NSString *) getTrackingKeyForProductPurchase:(NSString *) theProduct{
+    return [[self.getListOfPurchases objectForKey:theProduct] objectForKey:@"TrackingKey"];
+}
+-(NSString *) getProductNameForProductId:(NSString *) productId{
+    NSDictionary *listOfPurchases = [self getListOfPurchases];
+    for(NSString *key in [listOfPurchases allKeys]){
+        if([productId isEqualToString:[[listOfPurchases objectForKey:key] objectForKey:@"ProductId"]]) return key;
+    }
+    return nil;
+}
+-(NSString *) getProductDisplayNameForProductName:(NSString *) theProduct{
+    return [[[self getListOfPurchases] objectForKey:theProduct] objectForKey:@"DisplayName"];
+}
 @end

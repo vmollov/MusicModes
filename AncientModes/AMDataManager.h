@@ -15,7 +15,6 @@
 -(void)updateStatisticsForMode:(NSString *) modeName correct:(BOOL)correct neededHint:(BOOL) withHint testTimeStamp:(NSDate *) timeStamp;
 -(void)eraseAllStatistics;
 
--(NSString *) getTier1ProductID;
 -(NSDictionary *)getPropertiesForMode: (NSString *) modeName;
 -(NSDictionary *) getListOfAllGroups;
 -(NSString *) getNameForGroupId:(int) groupId;
@@ -29,4 +28,10 @@
 
 -(BOOL) mode:(NSString *) mode setEnabled:(BOOL) enabled;
 -(BOOL) isModeAvailable:(NSString *) mode;
+
+-(NSDictionary *) getListOfPurchases;
+-(NSString *) getIdForProductPurchase:(NSString *) theProduct;
+-(NSString *) getTrackingKeyForProductPurchase:(NSString *) theProduct;
+-(NSString *) getProductNameForProductId:(NSString *) productId;
+-(NSString *) getProductDisplayNameForProductName:(NSString *) theProduct;
 @end

@@ -9,7 +9,7 @@
 #import "AMAppDelegate.h"
 #import "AMDataManager.h"
 #import "AMScalesPlayer.h"
-
+#import <iAd/iAd.h>
 
 @implementation AMAppDelegate
 
@@ -17,8 +17,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     // initialize defaults
     NSString *dateKey    = @"dateKey";
     NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"dateKey"];
@@ -33,8 +32,6 @@
         [[NSUserDefaults standardUserDefaults] setFloat:120.0 forKey:@"playTempo"];
         
         [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"numberOfQuestions"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoAdvance"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ChallengeOnSameNote"];
         
         //enable use of all modes
         NSArray *listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:NO];
@@ -49,12 +46,12 @@
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
     
     //Initialize the Scales Player
     [AMScalesPlayer getInstance];
+    
     return YES;
 }
 							

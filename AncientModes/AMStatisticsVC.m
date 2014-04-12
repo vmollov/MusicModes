@@ -9,6 +9,7 @@
 #import "AMStatisticsVC.h"
 #import "AMDataManager.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 @interface AMStatisticsVC ()
 
@@ -16,24 +17,15 @@
 
 @implementation AMStatisticsVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
-    return self;
-}
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+	
     [self setParallaxToView:self.imgBackground];
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self refreshStatisticsView];
 }
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

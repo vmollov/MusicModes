@@ -8,6 +8,7 @@
 
 #import "AMStartTestVC.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 @interface AMStartTestVC ()
 
@@ -15,17 +16,11 @@
 
 @implementation AMStartTestVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
+    
     [self setParallaxToView:self.imgBackground];
     
     self.pkrNumQuestions.delegate = self;
@@ -34,20 +29,10 @@
     
     [self.pkrNumQuestions selectRow:([[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfQuestions"]-1) inComponent:0 animated:YES];
     
-    BOOL sameNote = [[NSUserDefaults standardUserDefaults] boolForKey:@"ChallengeOnSameNote"];
-    [self.sgmSameNote setSelectedSegmentIndex:sameNote?0:1];
 }
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - User Actions
-- (IBAction)changeStartNote:(id)sender {
-    UISegmentedControl *button = sender;
-    BOOL sameNote = (button.selectedSegmentIndex == 0);
-    [[NSUserDefaults standardUserDefaults] setBool:sameNote forKey:@"ChallengeOnSameNote"];
 }
 
 #pragma mark - UIPicker Delegates
@@ -67,6 +52,7 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     [[NSUserDefaults standardUserDefaults] setInteger:(row + 1) forKey:@"numberOfQuestions"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{

@@ -11,23 +11,17 @@
 #import "AMStatisticsByModeDetailVC.h"
 #import "AMDataManager.h"
 #import "UIViewController+Parallax.h"
+#import <iAd/iAd.h>
 
 @interface AMStatisticsByModeVC ()
 @property NSArray *listOfModes;
 @end
 
 @implementation AMStatisticsByModeVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
     
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     
@@ -35,8 +29,13 @@
     self.tblListOfModes.delegate = self;
     self.tblListOfModes.dataSource = self;
     self.tblListOfModes.backgroundColor = [UIColor clearColor];
+    self.tblListOfModes.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
     [self setParallaxToView:self.imgBackground];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tblListOfModes flashScrollIndicators];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -45,14 +44,11 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    // Return the number of sections.
     return self.listOfModes.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    // Return the number of rows in the section.
     return [[self.listOfModes objectAtIndex:section] count];
 }
 
