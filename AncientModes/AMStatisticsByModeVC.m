@@ -94,8 +94,6 @@
         destination.data = selectedCell.modeData;
         destination.average = selectedCell.average;
         destination.modeName = selectedCell.textLabel.text;
-        
-        //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

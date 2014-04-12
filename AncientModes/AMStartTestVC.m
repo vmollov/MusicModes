@@ -61,9 +61,6 @@
 
 #pragma mark - Navigation
 -(IBAction) unwindToTestRoot:(UIStoryboardSegue *)segue{
-    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
-        UIViewController *destination = [segue destinationViewController];
-        destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-    }*/
+    
 }
 @end

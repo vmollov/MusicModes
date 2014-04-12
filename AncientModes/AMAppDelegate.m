@@ -43,23 +43,11 @@
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
     
     //Initialize the Scales Player
     [AMScalesPlayer getInstance];
-    
-    //prepare iAds
-    /*if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
-        [UIViewController prepareInterstitialAds];
-    }*/
-    
-    //testing ------------------
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableRemoveAds"];
-    
-    //testing ------------------
     
     return YES;
 }

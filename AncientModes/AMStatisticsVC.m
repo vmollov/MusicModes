@@ -26,11 +26,6 @@
     [super viewWillAppear:animated];
     [self refreshStatisticsView];
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    //if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-}
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
