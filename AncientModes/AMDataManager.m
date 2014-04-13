@@ -279,7 +279,8 @@
     if(!enabled && enabledModes < minimumAllowed) return false;
     
     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:mode];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+        
     return true;
 }
 -(BOOL) isModeAvailable:(NSString *) mode{

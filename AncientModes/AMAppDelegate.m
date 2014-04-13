@@ -40,9 +40,6 @@
             [[NSUserDefaults standardUserDefaults] setBool:[[modeProperties objectForKey:@"startEnabled"] boolValue] forKey:mode];
         }
         
-        //purchasesed advanced modes
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enableAdvancedModes"];
-        
         // sync the defaults to disk
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
