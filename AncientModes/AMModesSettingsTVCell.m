@@ -30,7 +30,7 @@
 - (IBAction)changeModeUseSetting:(id)sender {
     if (![[AMDataManager getInstance]isModeAvailable:self.mode]) {
         self.swModeSetting.on = NO;
-        [self.parentVC purchaseAdvancedModes:nil];
+        [self.parentVC purchaseAdvancedModes];
         return;
     }
     

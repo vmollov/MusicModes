@@ -43,7 +43,9 @@
 }
 
 - (IBAction)buyProduct:(id)sender {
-    NSLog(@"purchasing: %@", _product.productIdentifier);
+    self.txtProductDescription.text = @"";
+    self.lbProductTitle.text = @"Processing...";
+    
     SKPayment *payment = [SKPayment paymentWithProduct:_product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }

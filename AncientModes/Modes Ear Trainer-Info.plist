@@ -1019,15 +1019,6 @@
 				<key>TrackingKey</key>
 				<string>enableAdvancedModes</string>
 			</dict>
-			<key>RemoveAds</key>
-			<dict>
-				<key>DisplayName</key>
-				<string>Remove Advertisemets</string>
-				<key>ProductId</key>
-				<string>com.vmollov.ModesEarTrainer_removeAds</string>
-				<key>TrackingKey</key>
-				<string>enableRemoveAds</string>
-			</dict>
 		</dict>
 		<key>Samples</key>
 		<dict>

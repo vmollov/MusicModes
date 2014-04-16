@@ -49,7 +49,8 @@
     //Initialize the Scales Player
     [AMScalesPlayer getInstance];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) [UIViewController prepareInterstitialAds];
+    //prepare ads
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) [UIViewController prepareInterstitialAds];
     
     return YES;
 }

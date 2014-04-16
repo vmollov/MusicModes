@@ -11,23 +11,18 @@
 #import "AMScalesPlayer.h"
 #import "AMSampleSettingsTVCell.h"
 #import "AMTestSettingsTVCell.h"
-#import "AMModesSettingsTVCell.h"
 #import "AMSettingsItem.h"
 #import "UIViewController+Parallax.h"
 
+static NSString *kModesSettingsCellID = @"cChooseModesToUse";
 static NSString *kEnableAdvancedModesCellID = @"cEnableAdvancedModes";
 static NSString *kRemoveAdsCellID = @"cRemoveAds";
 static NSString *kRestorePurchasesCellID = @"cRestorePurchases";
 
-static int kTblModeSettingsTag = 2; //try to remove
-
 static int kContentTableNumberOfSections = 2;
-static int kContentTableNumberOfItemsPerSection = 3;
 
 @interface AMSettingsVC ()
-@property NSArray *listOfModes, *listOfSamples, *contentCells;
-
-@property (strong) UITableView *tblModeSettings;
+@property NSArray *listOfSamples, *contentCells;
 @end
 
 @implementation AMSettingsVC
@@ -39,7 +34,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
     self.tblContent.backgroundColor = [UIColor clearColor];
     
     //setup the data
-    self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     self.listOfSamples = [[AMDataManager getInstance] getListOfSamples];
     
     //set up the content table data
@@ -54,30 +48,18 @@ static int kContentTableNumberOfItemsPerSection = 3;
     cellItem = [[AMSettingsItem alloc] initWithTitleCellID:@"cChooseTestSettings" contentCellID:@"cTestSettings" indexPathRow:indexCounter];
     [tmpContentCells insertObject:cellItem atIndex:indexCounter];
     indexCounter++;
-    cellItem = [[AMSettingsItem alloc] initWithTitleCellID:@"cChooseModesToUse" contentCellID:@"cModesToUseTableCell" indexPathRow:indexCounter];
-    [tmpContentCells insertObject:cellItem atIndex:indexCounter];
-    indexCounter++;
+    //cellItem = [[AMSettingsItem alloc] initWithTitleCellID:@"cChooseModesToUse" contentCellID:nil indexPathRow:indexCounter];
+    //[tmpContentCells insertObject:cellItem atIndex:indexCounter];
+    //indexCounter++;
     
     //calculate the content cells heights
     for(AMSettingsItem *item in tmpContentCells){
         UITableViewCell *cellToCheck = [self.tblContent dequeueReusableCellWithIdentifier:item.contentCellID];
         item.contentCellHeight = cellToCheck.frame.size.height;
     }
-    //calculate the content cell height for the modes cell
-    int modesCellHeight = 0;
-    for(int i=0; i<self.listOfModes.count;i++){
-        modesCellHeight += 49; //add the height of the group header
-        for(int n=0; n<[[self.listOfModes objectAtIndex:i] count]; n++) modesCellHeight += 44; //add the height of the cell
-    }
-    cellItem = [tmpContentCells objectAtIndex:2];
-    cellItem.contentCellHeight = (float)modesCellHeight;
-    
     
     //assign the contentCellsArray to the property
     self.contentCells = tmpContentCells;
-    
-    self.tblContent.backgroundColor = [UIColor clearColor];
-    self.tblContent.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -89,7 +71,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
 }
 -(void)purchasesCompleted{
     [self.tblContent reloadData];
-    [self.tblModeSettings reloadData];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PurchaseControllerFinished" object:nil];
 }
@@ -108,15 +89,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchasesCompleted) name:@"PurchaseControllerFinished" object:nil];
 }
 
-- (IBAction)purchaseRemoveAds:(id)sender {
-    AMPurchaseVC *purchaseController = [[AMPurchaseVC alloc]init];
-    purchaseController.productName = @"RemoveAds";
-    [self.navigationController presentViewController:purchaseController animated:YES completion:nil];
-    [purchaseController getProductInfo];
-    //add purchase transaction observer
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchasesCompleted) name:@"PurchaseControllerFinished" object:nil];
-}
-
 - (IBAction)restorePurchases:(id)sender {
     AMPurchaseVC *purchaseController = [[AMPurchaseVC alloc] init];
     [self.navigationController presentViewController:purchaseController animated:YES completion:nil];
@@ -127,43 +99,34 @@ static int kContentTableNumberOfItemsPerSection = 3;
 
 #pragma mark - UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if(tableView.tag == kTblModeSettingsTag) {
-        if(self.tblModeSettings == nil){
-            self.tblModeSettings = tableView;
-            self.tblModeSettings.backgroundColor = [UIColor clearColor];
-        }
-        return self.listOfModes.count;
-    }else{
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) return kContentTableNumberOfSections - 1;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) return kContentTableNumberOfSections - 1;
         return kContentTableNumberOfSections;
-    }
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(tableView.tag == kTblModeSettingsTag) return [[AMDataManager getInstance] getNameForGroupId:(int)section + 1];
-    else return @"";
+    return @"";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(tableView.tag == kTblModeSettingsTag) return [[self.listOfModes objectAtIndex:section] count];
-    else if(section == 0)return [self embededViewIsShown]?self.contentCells.count+1:self.contentCells.count;
-    else {
-        int rowNum = kContentTableNumberOfItemsPerSection;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) rowNum--;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) rowNum--;
-        return rowNum;
-    }
+    if(section == 0)return [self embededViewIsShown]?self.contentCells.count+2:self.contentCells.count+1;
+    else return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    
-    if(tableView.tag == kTblModeSettingsTag) cell = [self cellForModeSettingsTable:tableView ForIndexPath:indexPath];
-    else{
-        switch (indexPath.section) {
-            case 0:
-                if(![self embededViewIsShown]){
+    switch (indexPath.section) {
+        case 0:
+            if(![self embededViewIsShown]){
+                if(indexPath.row == self.contentCells.count){
+                    cell = [tableView dequeueReusableCellWithIdentifier:kModesSettingsCellID];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                }else{
                     AMSettingsItem *item = [self.contentCells objectAtIndex:indexPath.row];
                     cell = [tableView dequeueReusableCellWithIdentifier:item.titleCellID];
                     cell.accessoryView = cell.accessoryView = [self accessoryViewForTitleCellWithContentShown:item.isShown];
+                }
+            }else{
+                if(indexPath.row == self.contentCells.count+1){
+                    cell = [tableView dequeueReusableCellWithIdentifier:kModesSettingsCellID];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }else{
                     if(indexPath.row == ([self indexForContentItemShown] + 1)){ //return the content cell
                         AMSettingsItem *item = [self.contentCells objectAtIndex:[self indexForContentItemShown]];
@@ -181,30 +144,26 @@ static int kContentTableNumberOfItemsPerSection = 3;
                         cell.accessoryView = cell.accessoryView = [self accessoryViewForTitleCellWithContentShown:item.isShown];
                     }
                 }
-
-                break;
-            case 1:
-                switch (indexPath.row) {
-                    case 0:
-                        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"])
-                            cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
-                        else cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
-                        break;
-                    case 1:
-                        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"]) cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
-                        else cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
-                        break;
-                    case 2:
-                        cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
-                        break;
-                    default:
-                        break;
-                }
-                break;
+            }
             
-            default:
-                break;
-        }
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableAdvancedModes"])
+                        cell = [tableView dequeueReusableCellWithIdentifier:kEnableAdvancedModesCellID];
+                    else cell = [tableView dequeueReusableCellWithIdentifier:kRemoveAdsCellID];
+                    break;
+                case 1:
+                    cell = [tableView dequeueReusableCellWithIdentifier:kRestorePurchasesCellID];
+                    break;
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
     }
     
     cell.backgroundColor =[UIColor clearColor];
@@ -213,7 +172,7 @@ static int kContentTableNumberOfItemsPerSection = 3;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat rowHeight = self.tblContent.rowHeight;
-    if(tableView.tag != kTblModeSettingsTag && indexPath.section == 0){
+    if(indexPath.section == 0){
         for(int i=0; i<self.contentCells.count; i++){
             AMSettingsItem *item = [self.contentCells objectAtIndex:i];
             if(item.isShown && indexPath.row == item.indexPathRow + 1){
@@ -226,36 +185,36 @@ static int kContentTableNumberOfItemsPerSection = 3;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(tableView.tag != kTblModeSettingsTag && indexPath.section == 0){
-        [self.tblContent beginUpdates];
-        
-        long indexCorrection = 0;
-        BOOL actionNeeded = YES;
-        for(int i=0; i<self.contentCells.count; i++){
-            AMSettingsItem *item = [self.contentCells objectAtIndex:i];
-            if(item.isShown){
-                if(indexPath.row == item.indexPathRow + 1) {
-                    actionNeeded=NO;
-                    break;
-                }
-                if(indexPath.row > item.indexPathRow + 1) indexCorrection = 1;
-                if(indexPath.row == item.indexPathRow){
-                    [self hideContentForSettingsItem:indexPath.row - indexCorrection];
-                    actionNeeded = NO;
-                }
-            }
-            [self hideContentForSettingsItem:i];
-        }
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [tableView endUpdates];
-        
-        if(actionNeeded){
-            [self.tblContent beginUpdates];
-            [self showContentForSettingsItem:indexPath.row - indexCorrection];
-            [self.tblContent endUpdates];
-        }
-    }
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if([cell.reuseIdentifier isEqualToString:kModesSettingsCellID]) return;
     
+    [self.tblContent beginUpdates];
+    
+    long indexCorrection = 0;
+    BOOL actionNeeded = YES;
+    for(int i=0; i<self.contentCells.count; i++){
+        AMSettingsItem *item = [self.contentCells objectAtIndex:i];
+        if(item.isShown){
+            if(indexPath.row == item.indexPathRow + 1) {
+                actionNeeded=NO;
+                break;
+            }
+            if(indexPath.row > item.indexPathRow + 1) indexCorrection = 1;
+            if(indexPath.row == item.indexPathRow){
+                [self hideContentForSettingsItem:indexPath.row - indexCorrection];
+                actionNeeded = NO;
+            }
+        }
+        [self hideContentForSettingsItem:i];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView endUpdates];
+    
+    if(actionNeeded){
+        [self.tblContent beginUpdates];
+        [self showContentForSettingsItem:indexPath.row - indexCorrection];
+        [self.tblContent endUpdates];
+    }
 }
 
 #pragma mark - TableView helper methods
@@ -302,24 +261,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
     return cell;
 }
 
--(UITableViewCell *)cellForModeSettingsTable:(UITableView *) tableView ForIndexPath:(NSIndexPath *)indexPath{
-    static NSString *reuseIdentifier = @"scalesCell";
-    AMModesSettingsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if(cell ==nil) cell = [[AMModesSettingsTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    
-    NSString *currentMode = [[self.listOfModes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    cell.lbMode.text = currentMode;
-    cell.swModeSetting.on = [[NSUserDefaults standardUserDefaults] boolForKey:currentMode];
-    BOOL isModeAvailable = [[AMDataManager getInstance]isModeAvailable:currentMode];
-    if (isModeAvailable) cell.lbOn.text = cell.swModeSetting.on?@"Used":@"Not Used";
-    else cell.lbOn.text = @"Requires a Purchase";
-    cell.mode = currentMode;
-    cell.parentVC = self;
-    
-    return cell;
-}
-
 -(UIImageView *) accessoryViewForTitleCellWithContentShown:(BOOL)shown{
     UIImageView *accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
     accessoryView.image = [UIImage imageNamed:@"disclosureIndicator.png"];
@@ -332,4 +273,9 @@ static int kContentTableNumberOfItemsPerSection = 3;
     return index;
 }
 
+
+#pragma mark - Navigation
+-(IBAction) unwindToSettingsRoot:(UIStoryboardSegue *)segue{
+    
+}
 @end
