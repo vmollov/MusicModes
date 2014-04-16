@@ -19,8 +19,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
-    
     [self setParallaxToView:self.imgBackground];
     
     self.pkrNumQuestions.delegate = self;
@@ -61,6 +59,10 @@
 
 #pragma mark - Navigation
 -(IBAction) unwindToTestRoot:(UIStoryboardSegue *)segue{
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) {
+        UIViewController *destination = segue.destinationViewController;
+        destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    }
     
 }
 @end

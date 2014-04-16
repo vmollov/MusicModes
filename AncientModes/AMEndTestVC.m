@@ -8,7 +8,6 @@
 
 #import "AMEndTestVC.h"
 #import "UIViewController+Parallax.h"
-#import <iAd/iAd.h>
 
 @interface AMEndTestVC ()
 
@@ -18,8 +17,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
 	
     [self setParallaxToView:self.imgBackground];
     

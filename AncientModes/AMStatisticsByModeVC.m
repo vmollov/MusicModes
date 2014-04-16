@@ -21,8 +21,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
-    
     self.listOfModes = [[AMDataManager getInstance] getListOfAllModesUseDisplayName:NO grouped:YES];
     
     //setup the tableview
@@ -94,6 +92,8 @@
         destination.data = selectedCell.modeData;
         destination.average = selectedCell.average;
         destination.modeName = selectedCell.textLabel.text;
+        
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) destination.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

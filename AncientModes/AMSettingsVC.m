@@ -14,7 +14,6 @@
 #import "AMModesSettingsTVCell.h"
 #import "AMSettingsItem.h"
 #import "UIViewController+Parallax.h"
-#import <iAd/iAd.h>
 
 static NSString *kEnableAdvancedModesCellID = @"cEnableAdvancedModes";
 static NSString *kRemoveAdsCellID = @"cRemoveAds";
@@ -34,8 +33,6 @@ static int kContentTableNumberOfItemsPerSection = 3;
 @implementation AMSettingsVC
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
     
     [self setParallaxToView:self.imgBackground];
     

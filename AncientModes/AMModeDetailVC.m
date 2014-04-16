@@ -12,7 +12,6 @@
 #import "AMNote.h"
 #import "UIViewController+Parallax.h"
 #import "AMUtilities.h"
-#import <iAd/iAd.h>
 
 @interface AMModeDetailVC ()
 @property AMMode *mode;
@@ -23,10 +22,6 @@
 @implementation AMModeDetailVC
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
-    
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"enableRemoveAds"]) self.canDisplayBannerAds = YES;
     
     [self setParallaxToView:self.imgBackground];
     
