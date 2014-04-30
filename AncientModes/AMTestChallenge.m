@@ -22,7 +22,6 @@
         NSString *variationMode = _scale.mode.variationMode;
         
         //generate the answers
-        //int presentedAnswersCount = 8;
         int index = 0;
         NSMutableArray *randomAnswers = [[NSMutableArray alloc] initWithCapacity:presentedAnswersCount];
         
@@ -31,7 +30,7 @@
         index++; //to account for adding the correct answer
         
         //add the variation mode
-        if(variationMode != nil){
+        if(variationMode != nil && [[NSUserDefaults standardUserDefaults] boolForKey:variationMode]){
             [randomAnswers addObject:variationMode];
             index++; //to account for adding the variation mode
         }

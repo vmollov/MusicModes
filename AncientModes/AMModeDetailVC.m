@@ -34,13 +34,11 @@
     self.navigationItem.title = self.mode.displayName;
     
     //set the description and the listenFors
-    self.txtDescription.text = self.mode.modeDescription;
-    self.txtDescription.backgroundColor = [UIColor clearColor];
-    
     NSString *strTips = @"";
-    for(NSString *tip in self.mode.tips) strTips = [strTips stringByAppendingString:[NSString stringWithFormat:@"- %@\n", tip]];
-    self.txtListenFor.text = strTips;
-    self.txtListenFor.backgroundColor = [UIColor clearColor];
+    for(NSString *tip in self.mode.tips)
+        strTips = [strTips stringByAppendingString:[NSString stringWithFormat:@"- %@\n", tip]];
+    self.txtDescription.text = [self.mode.modeDescription stringByAppendingString:[NSString stringWithFormat:@"\n\nListen For:\n%@", strTips]];
+    self.txtDescription.backgroundColor = [UIColor clearColor];
     
     //create the visual example
     NSMutableArray *scaleNotePaths = [[NSMutableArray alloc]initWithCapacity:8];
@@ -75,7 +73,6 @@
     [super viewDidAppear:animated];
     
     [self.txtDescription flashScrollIndicators];
-    [self.txtListenFor flashScrollIndicators];
 }
 -(void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
