@@ -48,9 +48,6 @@ static int kContentTableNumberOfSections = 2;
     cellItem = [[AMSettingsItem alloc] initWithTitleCellID:@"cChooseTestSettings" contentCellID:@"cTestSettings" indexPathRow:indexCounter];
     [tmpContentCells insertObject:cellItem atIndex:indexCounter];
     indexCounter++;
-    //cellItem = [[AMSettingsItem alloc] initWithTitleCellID:@"cChooseModesToUse" contentCellID:nil indexPathRow:indexCounter];
-    //[tmpContentCells insertObject:cellItem atIndex:indexCounter];
-    //indexCounter++;
     
     //calculate the content cells heights
     for(AMSettingsItem *item in tmpContentCells){
@@ -117,7 +114,8 @@ static int kContentTableNumberOfSections = 2;
             if(![self embededViewIsShown]){
                 if(indexPath.row == self.contentCells.count){
                     cell = [tableView dequeueReusableCellWithIdentifier:kModesSettingsCellID];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.accessoryView = [self accessoryViewForTitleCellDefault];
                 }else{
                     AMSettingsItem *item = [self.contentCells objectAtIndex:indexPath.row];
                     cell = [tableView dequeueReusableCellWithIdentifier:item.titleCellID];
@@ -126,7 +124,8 @@ static int kContentTableNumberOfSections = 2;
             }else{
                 if(indexPath.row == self.contentCells.count+1){
                     cell = [tableView dequeueReusableCellWithIdentifier:kModesSettingsCellID];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.accessoryView = [self accessoryViewForTitleCellDefault];
                 }else{
                     if(indexPath.row == ([self indexForContentItemShown] + 1)){ //return the content cell
                         AMSettingsItem *item = [self.contentCells objectAtIndex:[self indexForContentItemShown]];
@@ -262,9 +261,13 @@ static int kContentTableNumberOfSections = 2;
 }
 
 -(UIImageView *) accessoryViewForTitleCellWithContentShown:(BOOL)shown{
+    UIImageView *accessoryView = [self accessoryViewForTitleCellDefault];
+    accessoryView.transform = CGAffineTransformMakeRotation(shown?-(M_PI/2):M_PI/2);
+    return accessoryView;
+}
+-(UIImageView *) accessoryViewForTitleCellDefault{
     UIImageView *accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,18,18)];
     accessoryView.image = [UIImage imageNamed:@"disclosureIndicator.png"];
-    accessoryView.transform = CGAffineTransformMakeRotation(shown?-(M_PI/2):M_PI/2);
     return accessoryView;
 }
 -(int)indexForContentItemShown{
