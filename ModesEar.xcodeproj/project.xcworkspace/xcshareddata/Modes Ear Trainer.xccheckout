@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1F347065-8B67-4B8E-AD74-65C0B11C2C25</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Modes Ear Trainer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D2E555E3-4FCB-48AE-B208-1EC6C47A0AE2</key>
+		<string>https://github.com/vmollov/ModesEarTrainerApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Modes Ear Trainer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D2E555E3-4FCB-48AE-B208-1EC6C47A0AE2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/vmollov/ModesEarTrainerApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D2E555E3-4FCB-48AE-B208-1EC6C47A0AE2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D2E555E3-4FCB-48AE-B208-1EC6C47A0AE2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ModesEarTrainerApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

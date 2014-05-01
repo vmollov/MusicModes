@@ -81,7 +81,7 @@
 			containerPortal = C00724AE18874135001446A5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C00724B518874136001446A5;
-			remoteInfo = AncientModes;
+			remoteInfo = ModesEar;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -146,8 +146,8 @@
 		C0A7439918F6C27A00F08DDD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		C0AE922F18FEA6D600192173 /* AMModesSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsVC.h; sourceTree = "<group>"; };
 		C0AE923018FEA6D600192173 /* AMModesSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsVC.m; sourceTree = "<group>"; };
-		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = AncientModes/Statistics.h; sourceTree = "<group>"; };
-		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = AncientModes/Statistics.m; sourceTree = "<group>"; };
+		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = ModesEar/Statistics.h; sourceTree = "<group>"; };
+		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = ModesEar/Statistics.m; sourceTree = "<group>"; };
 		C0B7461618C914AE00FF6127 /* AMPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPurchaseVC.h; sourceTree = "<group>"; };
 		C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPurchaseVC.m; sourceTree = "<group>"; };
 		C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMPurchaseVC.xib; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 		C0E92AFD18E6338400D4E718 /* UIViewController+Parallax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Parallax.m"; sourceTree = "<group>"; };
 		C0E9DF5818C4F21C000FC648 /* AMTestSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestSummaryVC.h; sourceTree = "<group>"; };
 		C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestSummaryVC.m; sourceTree = "<group>"; };
-		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = AncientModes/AMDataManager.h; sourceTree = "<group>"; };
-		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = AncientModes/AMDataManager.m; sourceTree = "<group>"; };
+		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = ModesEar/AMDataManager.h; sourceTree = "<group>"; };
+		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = ModesEar/AMDataManager.m; sourceTree = "<group>"; };
 		C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
 		C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
 		C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				C00724C018874136001446A5 /* Supporting Files */,
 			);
 			name = ModesEarTrainer;
-			path = AncientModes;
+			path = ModesEar;
 			sourceTree = "<group>";
 		};
 		C00724C018874136001446A5 /* Supporting Files */ = {
@@ -508,7 +508,7 @@
 			dependencies = (
 			);
 			name = ModesEar;
-			productName = AncientModes;
+			productName = ModesEar;
 			productReference = C0715B1218A13D610062038A /* ModesEar.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -779,8 +779,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AncientModes/ModesEar-Prefix.pch";
-				INFOPLIST_FILE = "AncientModes/ModesEar-Info.plist";
+				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
+				INFOPLIST_FILE = "ModesEar/ModesEar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = ModesEar;
 				PROVISIONING_PROFILE = "";
@@ -796,8 +796,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AncientModes/ModesEar-Prefix.pch";
-				INFOPLIST_FILE = "AncientModes/ModesEar-Info.plist";
+				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
+				INFOPLIST_FILE = "ModesEar/ModesEar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = ModesEar;
 				PROVISIONING_PROFILE = "";
@@ -816,7 +816,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AncientModes/AncientModes-Prefix.pch";
+				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -839,7 +839,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AncientModes/AncientModes-Prefix.pch";
+				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
 				INFOPLIST_FILE = "AncientModesTests/ModesEarTests-Info.plist";
 				PRODUCT_NAME = ModesEarTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
