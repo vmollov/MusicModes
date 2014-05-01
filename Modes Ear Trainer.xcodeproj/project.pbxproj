@@ -25,6 +25,7 @@
 		C01CF27418BFF60500050C28 /* AMStatisticsByModeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27318BFF60500050C28 /* AMStatisticsByModeVC.m */; };
 		C01CF27718BFFFA500050C28 /* AMStatisticsByModeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27618BFFFA500050C28 /* AMStatisticsByModeTVCell.m */; };
 		C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27918C0051D00050C28 /* AMStatisticsByModeDetailVC.m */; };
+		C02347F01912AAD0002D7918 /* Guitar.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C02347EF1912AAD0002D7918 /* Guitar.aupreset */; };
 		C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BB91895744B009F0934 /* AMEarTest.m */; };
 		C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BBD189574B7009F0934 /* AMTestChallenge.m */; };
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
@@ -108,6 +109,7 @@
 		C01CF27618BFFFA500050C28 /* AMStatisticsByModeTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsByModeTVCell.m; sourceTree = "<group>"; };
 		C01CF27818C0051D00050C28 /* AMStatisticsByModeDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsByModeDetailVC.h; sourceTree = "<group>"; };
 		C01CF27918C0051D00050C28 /* AMStatisticsByModeDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsByModeDetailVC.m; sourceTree = "<group>"; };
+		C02347EF1912AAD0002D7918 /* Guitar.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Guitar.aupreset; sourceTree = "<group>"; };
 		C0343BB81895744B009F0934 /* AMEarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEarTest.h; sourceTree = "<group>"; };
 		C0343BB91895744B009F0934 /* AMEarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEarTest.m; sourceTree = "<group>"; };
 		C0343BBC189574B7009F0934 /* AMTestChallenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestChallenge.h; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				C00724D118874136001446A5 /* Images.xcassets */,
 				C0DB351E18C6C46000768113 /* noteImages */,
 				C0CFA2B5188AD25F00583812 /* Sounds */,
+				C02347EF1912AAD0002D7918 /* Guitar.aupreset */,
 				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
 				C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */,
 				C0CFA2BB188AD42C00583812 /* Trombone.aupreset */,
@@ -573,6 +576,7 @@
 				C0D38ACA18C142B100E3C963 /* playAgain.png in Resources */,
 				C0F3470118C15233006218BF /* btnNext.png in Resources */,
 				C063115318F0F9BE00CBB9E3 /* disclosureIndicator.png in Resources */,
+				C02347F01912AAD0002D7918 /* Guitar.aupreset in Resources */,
 				C0B7461A18C914AE00FF6127 /* AMPurchaseVC.xib in Resources */,
 				C070825218C74C7E007FF7DF /* graphBg.png in Resources */,
 				C0D38AC818C1408000E3C963 /* bg.png in Resources */,
