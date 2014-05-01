@@ -222,8 +222,8 @@
 		C00724AD18874135001446A5 = {
 			isa = PBXGroup;
 			children = (
-				C00724BF18874136001446A5 /* ModesEarTrainer */,
-				C00724DE18874136001446A5 /* ModesEarTrainerTests */,
+				C00724BF18874136001446A5 /* ModesEar */,
+				C00724DE18874136001446A5 /* ModesEarTests */,
 				C00724B818874136001446A5 /* Frameworks */,
 				C0715B1418A13D6C0062038A /* Products */,
 			);
@@ -243,7 +243,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C00724BF18874136001446A5 /* ModesEarTrainer */ = {
+		C00724BF18874136001446A5 /* ModesEar */ = {
 			isa = PBXGroup;
 			children = (
 				C0B36EE818B242B200962D99 /* Application Delegate */,
@@ -252,7 +252,6 @@
 				C0458FBC18A14921009A1958 /* Controller */,
 				C00724C018874136001446A5 /* Supporting Files */,
 			);
-			name = ModesEarTrainer;
 			path = ModesEar;
 			sourceTree = "<group>";
 		};
@@ -277,13 +276,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C00724DE18874136001446A5 /* ModesEarTrainerTests */ = {
+		C00724DE18874136001446A5 /* ModesEarTests */ = {
 			isa = PBXGroup;
 			children = (
 				C00724E418874136001446A5 /* AncientModesTests.m */,
 				C00724DF18874136001446A5 /* Supporting Files */,
 			);
-			name = ModesEarTrainerTests;
+			name = ModesEarTests;
 			path = AncientModesTests;
 			sourceTree = "<group>";
 		};
