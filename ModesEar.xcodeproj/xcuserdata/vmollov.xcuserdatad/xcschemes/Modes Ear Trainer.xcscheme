@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C00724B518874136001446A5"
-               BuildableName = "Modes Ear Trainer.app"
+               BuildableName = "ModesEar.app"
                BlueprintName = "ModesEar"
                ReferencedContainer = "container:ModesEar.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "Modes Ear Trainer.app"
+            BuildableName = "ModesEar.app"
             BlueprintName = "ModesEar"
             ReferencedContainer = "container:ModesEar.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "Modes Ear Trainer.app"
+            BuildableName = "ModesEar.app"
             BlueprintName = "ModesEar"
             ReferencedContainer = "container:ModesEar.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "Modes Ear Trainer.app"
+            BuildableName = "ModesEar.app"
             BlueprintName = "ModesEar"
             ReferencedContainer = "container:ModesEar.xcodeproj">
          </BuildableReference>

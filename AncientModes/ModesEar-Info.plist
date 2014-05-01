@@ -1022,19 +1022,19 @@
 		</dict>
 		<key>Samples</key>
 		<dict>
-			<key>Piano</key>
-			<dict>
-				<key>rangeHigh</key>
-				<integer>108</integer>
-				<key>rangeLow</key>
-				<integer>29</integer>
-			</dict>
 			<key>Guitar</key>
 			<dict>
 				<key>rangeHigh</key>
 				<integer>83</integer>
 				<key>rangeLow</key>
 				<integer>40</integer>
+			</dict>
+			<key>Piano</key>
+			<dict>
+				<key>rangeHigh</key>
+				<integer>108</integer>
+				<key>rangeLow</key>
+				<integer>29</integer>
 			</dict>
 			<key>Trombone</key>
 			<dict>
@@ -1063,7 +1063,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>com.vmollov.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.vmollov.Modes-Ear-Trainer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
