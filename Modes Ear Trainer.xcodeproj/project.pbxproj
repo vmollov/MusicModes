@@ -26,6 +26,7 @@
 		C01CF27718BFFFA500050C28 /* AMStatisticsByModeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27618BFFFA500050C28 /* AMStatisticsByModeTVCell.m */; };
 		C01CF27A18C0051D00050C28 /* AMStatisticsByModeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C01CF27918C0051D00050C28 /* AMStatisticsByModeDetailVC.m */; };
 		C02347F01912AAD0002D7918 /* Guitar.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = C02347EF1912AAD0002D7918 /* Guitar.aupreset */; };
+		C02347F31912AF73002D7918 /* AMScale+AMPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C02347F21912AF73002D7918 /* AMScale+AMPlayer.m */; };
 		C0343BBA1895744B009F0934 /* AMEarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BB91895744B009F0934 /* AMEarTest.m */; };
 		C0343BBE189574B7009F0934 /* AMTestChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BBD189574B7009F0934 /* AMTestChallenge.m */; };
 		C0343BC1189578C2009F0934 /* AMScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C0343BC0189578C2009F0934 /* AMScale.m */; };
@@ -110,6 +111,8 @@
 		C01CF27818C0051D00050C28 /* AMStatisticsByModeDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsByModeDetailVC.h; sourceTree = "<group>"; };
 		C01CF27918C0051D00050C28 /* AMStatisticsByModeDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsByModeDetailVC.m; sourceTree = "<group>"; };
 		C02347EF1912AAD0002D7918 /* Guitar.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Guitar.aupreset; sourceTree = "<group>"; };
+		C02347F11912AF73002D7918 /* AMScale+AMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMScale+AMPlayer.h"; sourceTree = "<group>"; };
+		C02347F21912AF73002D7918 /* AMScale+AMPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMScale+AMPlayer.m"; sourceTree = "<group>"; };
 		C0343BB81895744B009F0934 /* AMEarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEarTest.h; sourceTree = "<group>"; };
 		C0343BB91895744B009F0934 /* AMEarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEarTest.m; sourceTree = "<group>"; };
 		C0343BBC189574B7009F0934 /* AMTestChallenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestChallenge.h; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				C0343BC0189578C2009F0934 /* AMScale.m */,
 				C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */,
 				C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */,
+				C02347F11912AF73002D7918 /* AMScale+AMPlayer.h */,
+				C02347F21912AF73002D7918 /* AMScale+AMPlayer.m */,
 				C0CFA2B2188AC3B000583812 /* AMScalesPlayer.h */,
 				C0CFA2B3188AC3B000583812 /* AMScalesPlayer.m */,
 				C0343BB81895744B009F0934 /* AMEarTest.h */,
@@ -313,7 +318,7 @@
 				C0DB351C18C637D500768113 /* AMEnharmonicManager.m */,
 				C070825318C75F46007FF7DF /* AMNote.h */,
 				C070825418C75F46007FF7DF /* AMNote.m */,
-				C051CAC5189EC1A2009BCBE8 /* CategoriesAndUtils */,
+				C051CAC5189EC1A2009BCBE8 /* Utils */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -373,7 +378,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		C051CAC5189EC1A2009BCBE8 /* CategoriesAndUtils */ = {
+		C051CAC5189EC1A2009BCBE8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				C0863E5D18A29F7800F7BA88 /* AMUtilities.h */,
@@ -381,7 +386,7 @@
 				C051CAC2189EC12A009BCBE8 /* NSMutableArray+Shuffling.h */,
 				C051CAC3189EC12A009BCBE8 /* NSMutableArray+Shuffling.m */,
 			);
-			name = CategoriesAndUtils;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		C06892EB18A26FE500B860C2 /* DataAPI */ = {
@@ -640,6 +645,7 @@
 				C0343BC1189578C2009F0934 /* AMScale.m in Sources */,
 				C0B7461918C914AE00FF6127 /* AMPurchaseVC.m in Sources */,
 				C04A06AE189D6CD600E4A25F /* AMTestVC.m in Sources */,
+				C02347F31912AF73002D7918 /* AMScale+AMPlayer.m in Sources */,
 				C00724C618874136001446A5 /* main.m in Sources */,
 				C0B7947218B7F6FC00D45334 /* AMModesSettingsTVCell.m in Sources */,
 				C0863E5F18A29F7800F7BA88 /* AMUtilities.m in Sources */,

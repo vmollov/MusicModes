@@ -8,7 +8,7 @@
 
 #import <AVFoundation/AVAudioSession.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "AMScale.h"
+#import "AMScale+AMPlayer.h"
 
 @interface AMScalesPlayer : NSObject
 

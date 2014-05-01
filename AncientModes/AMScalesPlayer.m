@@ -112,9 +112,9 @@
     BOOL playAsc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playAscending"];
     BOOL playDesc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playDescending"];
     MusicSequence scaleSequence;
-    if(playAsc) scaleSequence = [scale scaleSequenceAsc];
-    if(playDesc) scaleSequence = [scale scaleSequenceDesc];
-    if(playAsc && playDesc) scaleSequence =[scale scaleSequence];
+    if(playAsc) scaleSequence = [scale scaleSequenceAscAdjustedForPlayerRange];
+    if(playDesc) scaleSequence = [scale scaleSequenceDescAdjustedForPlayerRange];
+    if(playAsc && playDesc) scaleSequence =[scale scaleSequenceAdjustedForPlayerRange];
         
     [self playSequence:scaleSequence];
 }

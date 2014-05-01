@@ -19,5 +19,6 @@
 -(MusicSequence)scaleSequence;
 -(MusicSequence)scaleSequenceAsc;
 -(MusicSequence)scaleSequenceDesc;
+-(MusicSequence)buildSequenceInAscending: (BOOL)ascending descending: (BOOL) descending startingNote:(UInt8) startingNote;
 
 @end

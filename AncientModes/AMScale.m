@@ -50,16 +50,16 @@
 }
 
 -(MusicSequence)scaleSequence{
-    return [self buildSequenceInAscending:true descending:true];
+    return [self buildSequenceInAscending:true descending:true startingNote:self.baseMIDINote];
 }
 -(MusicSequence)scaleSequenceAsc{
-    return [self buildSequenceInAscending:true descending:false];
+    return [self buildSequenceInAscending:true descending:false startingNote:self.baseMIDINote];
 }
 -(MusicSequence)scaleSequenceDesc{
-    return [self buildSequenceInAscending:false descending:true];
+    return [self buildSequenceInAscending:false descending:true startingNote:self.baseMIDINote];
 }
 
--(MusicSequence)buildSequenceInAscending: (BOOL)ascending descending: (BOOL) descending {
+-(MusicSequence)buildSequenceInAscending: (BOOL)ascending descending: (BOOL) descending startingNote:(UInt8) startingNote {
     //Get the settings
     if(!ascending && !descending) [NSException raise:@"Incorrect Application Congfiguration" format:@"The settings currently indicate that neither ascending nor descending scale should be built. Adjust the configuration in the main plist file"];
     
@@ -74,7 +74,7 @@
     aNote.channel = 1;
     aNote.velocity = 127;
     //set starting note to the passed midi note argument
-    aNote.note = self.baseMIDINote;
+    aNote.note = startingNote;
     aNote.duration = 1;
     
     MusicTimeStamp noteTime = 0.0;
