@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C00724B518874136001446A5"
-               BuildableName = "ModesEar.app"
-               BlueprintName = "ModesEar"
-               ReferencedContainer = "container:ModesEar.xcodeproj">
+               BuildableName = "MusicModes.app"
+               BlueprintName = "MusicModes"
+               ReferencedContainer = "container:MusicModes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "ModesEar.app"
-            BlueprintName = "ModesEar"
-            ReferencedContainer = "container:ModesEar.xcodeproj">
+            BuildableName = "MusicModes.app"
+            BlueprintName = "MusicModes"
+            ReferencedContainer = "container:MusicModes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "ModesEar.app"
-            BlueprintName = "ModesEar"
-            ReferencedContainer = "container:ModesEar.xcodeproj">
+            BuildableName = "MusicModes.app"
+            BlueprintName = "MusicModes"
+            ReferencedContainer = "container:MusicModes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C00724B518874136001446A5"
-            BuildableName = "ModesEar.app"
-            BlueprintName = "ModesEar"
-            ReferencedContainer = "container:ModesEar.xcodeproj">
+            BuildableName = "MusicModes.app"
+            BlueprintName = "MusicModes"
+            ReferencedContainer = "container:MusicModes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

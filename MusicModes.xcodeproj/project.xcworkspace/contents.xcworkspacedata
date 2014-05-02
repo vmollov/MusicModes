@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ModesEar.xcodeproj">
+      location = "self:MusicModes.xcodeproj">
    </FileRef>
 </Workspace>

@@ -81,7 +81,7 @@
 			containerPortal = C00724AE18874135001446A5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C00724B518874136001446A5;
-			remoteInfo = ModesEar;
+			remoteInfo = MusicModes;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -90,10 +90,10 @@
 		C00724B918874136001446A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C00724BB18874136001446A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C00724BD18874136001446A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C00724C118874136001446A5 /* ModesEar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModesEar-Info.plist"; sourceTree = "<group>"; };
+		C00724C118874136001446A5 /* MusicModes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicModes-Info.plist"; sourceTree = "<group>"; };
 		C00724C318874136001446A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C00724C518874136001446A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C00724C718874136001446A5 /* ModesEar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModesEar-Prefix.pch"; sourceTree = "<group>"; };
+		C00724C718874136001446A5 /* MusicModes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicModes-Prefix.pch"; sourceTree = "<group>"; };
 		C00724C818874136001446A5 /* AMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMAppDelegate.h; sourceTree = "<group>"; };
 		C00724C918874136001446A5 /* AMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMAppDelegate.m; sourceTree = "<group>"; };
 		C00724CC18874136001446A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		C070825118C74C7E007FF7DF /* graphBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphBg.png; path = Images/graphBg.png; sourceTree = "<group>"; };
 		C070825318C75F46007FF7DF /* AMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNote.h; sourceTree = "<group>"; };
 		C070825418C75F46007FF7DF /* AMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNote.m; sourceTree = "<group>"; };
-		C0715B1218A13D610062038A /* ModesEar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModesEar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0715B1318A13D610062038A /* ModesEarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModesEarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0715B1218A13D610062038A /* MusicModes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicModes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0715B1318A13D610062038A /* MusicModesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicModesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0747BC818BD39C00073DC15 /* AMStatisticsGraphV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStatisticsGraphV.h; sourceTree = "<group>"; };
 		C0747BC918BD39C00073DC15 /* AMStatisticsGraphV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStatisticsGraphV.m; sourceTree = "<group>"; };
 		C0863E5D18A29F7800F7BA88 /* AMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUtilities.h; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		C0A7439918F6C27A00F08DDD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		C0AE922F18FEA6D600192173 /* AMModesSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModesSettingsVC.h; sourceTree = "<group>"; };
 		C0AE923018FEA6D600192173 /* AMModesSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModesSettingsVC.m; sourceTree = "<group>"; };
-		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = ModesEar/Statistics.h; sourceTree = "<group>"; };
-		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = ModesEar/Statistics.m; sourceTree = "<group>"; };
+		C0B2CFE918B6330200DB025A /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Statistics.h; path = MusicModes/Statistics.h; sourceTree = "<group>"; };
+		C0B2CFEA18B6330200DB025A /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Statistics.m; path = MusicModes/Statistics.m; sourceTree = "<group>"; };
 		C0B7461618C914AE00FF6127 /* AMPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPurchaseVC.h; sourceTree = "<group>"; };
 		C0B7461718C914AE00FF6127 /* AMPurchaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPurchaseVC.m; sourceTree = "<group>"; };
 		C0B7461818C914AE00FF6127 /* AMPurchaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMPurchaseVC.xib; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 		C0E92AFD18E6338400D4E718 /* UIViewController+Parallax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Parallax.m"; sourceTree = "<group>"; };
 		C0E9DF5818C4F21C000FC648 /* AMTestSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTestSummaryVC.h; sourceTree = "<group>"; };
 		C0E9DF5918C4F21C000FC648 /* AMTestSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTestSummaryVC.m; sourceTree = "<group>"; };
-		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = ModesEar/AMDataManager.h; sourceTree = "<group>"; };
-		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = ModesEar/AMDataManager.m; sourceTree = "<group>"; };
+		C0EE1F7E18BC177A0070F6F6 /* AMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMDataManager.h; path = MusicModes/AMDataManager.h; sourceTree = "<group>"; };
+		C0EE1F7F18BC177A0070F6F6 /* AMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMDataManager.m; path = MusicModes/AMDataManager.m; sourceTree = "<group>"; };
 		C0EE1F8118BC17890070F6F6 /* AMScalesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScalesManager.h; sourceTree = "<group>"; };
 		C0EE1F8218BC17890070F6F6 /* AMScalesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScalesManager.m; sourceTree = "<group>"; };
 		C0EE1F8518BC18330070F6F6 /* AMAncientModesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AMAncientModesData.xcdatamodel; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		C00724AD18874135001446A5 = {
 			isa = PBXGroup;
 			children = (
-				C00724BF18874136001446A5 /* ModesEar */,
-				C00724DE18874136001446A5 /* ModesEarTests */,
+				C00724BF18874136001446A5 /* MusicModes */,
+				C00724DE18874136001446A5 /* MusicModesTests */,
 				C00724B818874136001446A5 /* Frameworks */,
 				C0715B1418A13D6C0062038A /* Products */,
 			);
@@ -243,7 +243,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C00724BF18874136001446A5 /* ModesEar */ = {
+		C00724BF18874136001446A5 /* MusicModes */ = {
 			isa = PBXGroup;
 			children = (
 				C0B36EE818B242B200962D99 /* Application Delegate */,
@@ -252,7 +252,8 @@
 				C0458FBC18A14921009A1958 /* Controller */,
 				C00724C018874136001446A5 /* Supporting Files */,
 			);
-			path = ModesEar;
+			name = MusicModes;
+			path = MusicModes;
 			sourceTree = "<group>";
 		};
 		C00724C018874136001446A5 /* Supporting Files */ = {
@@ -266,23 +267,23 @@
 				C0CFA2B7188AD27100583812 /* Piano.aupreset */,
 				C0CFA2B8188AD27100583812 /* Vibraphone.aupreset */,
 				C0CFA2BB188AD42C00583812 /* Trombone.aupreset */,
-				C00724C118874136001446A5 /* ModesEar-Info.plist */,
+				C00724C118874136001446A5 /* MusicModes-Info.plist */,
 				C0EE1F8418BC18330070F6F6 /* AMAncientModesData.xcdatamodeld */,
 				C00724C218874136001446A5 /* InfoPlist.strings */,
 				C00724C518874136001446A5 /* main.m */,
-				C00724C718874136001446A5 /* ModesEar-Prefix.pch */,
+				C00724C718874136001446A5 /* MusicModes-Prefix.pch */,
 				C006C1FF18C7D47A009890C1 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C00724DE18874136001446A5 /* ModesEarTests */ = {
+		C00724DE18874136001446A5 /* MusicModesTests */ = {
 			isa = PBXGroup;
 			children = (
 				C00724E418874136001446A5 /* AncientModesTests.m */,
 				C00724DF18874136001446A5 /* Supporting Files */,
 			);
-			name = ModesEarTests;
+			name = MusicModesTests;
 			path = AncientModesTests;
 			sourceTree = "<group>";
 		};
@@ -402,8 +403,8 @@
 		C0715B1418A13D6C0062038A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C0715B1218A13D610062038A /* ModesEar.app */,
-				C0715B1318A13D610062038A /* ModesEarTests.xctest */,
+				C0715B1218A13D610062038A /* MusicModes.app */,
+				C0715B1318A13D610062038A /* MusicModesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,9 +495,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C00724B518874136001446A5 /* ModesEar */ = {
+		C00724B518874136001446A5 /* MusicModes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C00724E818874136001446A5 /* Build configuration list for PBXNativeTarget "ModesEar" */;
+			buildConfigurationList = C00724E818874136001446A5 /* Build configuration list for PBXNativeTarget "MusicModes" */;
 			buildPhases = (
 				C00724B218874136001446A5 /* Sources */,
 				C00724B318874136001446A5 /* Frameworks */,
@@ -506,14 +507,14 @@
 			);
 			dependencies = (
 			);
-			name = ModesEar;
-			productName = ModesEar;
-			productReference = C0715B1218A13D610062038A /* ModesEar.app */;
+			name = MusicModes;
+			productName = MusicModes;
+			productReference = C0715B1218A13D610062038A /* MusicModes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C00724D618874136001446A5 /* ModesEarTests */ = {
+		C00724D618874136001446A5 /* MusicModesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C00724EB18874136001446A5 /* Build configuration list for PBXNativeTarget "ModesEarTests" */;
+			buildConfigurationList = C00724EB18874136001446A5 /* Build configuration list for PBXNativeTarget "MusicModesTests" */;
 			buildPhases = (
 				C00724D318874136001446A5 /* Sources */,
 				C00724D418874136001446A5 /* Frameworks */,
@@ -524,9 +525,9 @@
 			dependencies = (
 				C00724DD18874136001446A5 /* PBXTargetDependency */,
 			);
-			name = ModesEarTests;
+			name = MusicModesTests;
 			productName = AncientModesTests;
-			productReference = C0715B1318A13D610062038A /* ModesEarTests.xctest */;
+			productReference = C0715B1318A13D610062038A /* MusicModesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -552,7 +553,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C00724B118874135001446A5 /* Build configuration list for PBXProject "ModesEar" */;
+			buildConfigurationList = C00724B118874135001446A5 /* Build configuration list for PBXProject "MusicModes" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -565,8 +566,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C00724B518874136001446A5 /* ModesEar */,
-				C00724D618874136001446A5 /* ModesEarTests */,
+				C00724B518874136001446A5 /* MusicModes */,
+				C00724D618874136001446A5 /* MusicModesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -665,7 +666,7 @@
 /* Begin PBXTargetDependency section */
 		C00724DD18874136001446A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C00724B518874136001446A5 /* ModesEar */;
+			target = C00724B518874136001446A5 /* MusicModes */;
 			targetProxy = C00724DC18874136001446A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -778,10 +779,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
-				INFOPLIST_FILE = "ModesEar/ModesEar-Info.plist";
+				GCC_PREFIX_HEADER = "MusicModes/MusicModes-Prefix.pch";
+				INFOPLIST_FILE = "MusicModes/MusicModes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = ModesEar;
+				PRODUCT_NAME = MusicModes;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -795,10 +796,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
-				INFOPLIST_FILE = "ModesEar/ModesEar-Info.plist";
+				GCC_PREFIX_HEADER = "MusicModes/MusicModes-Prefix.pch";
+				INFOPLIST_FILE = "MusicModes/MusicModes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = ModesEar;
+				PRODUCT_NAME = MusicModes;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -815,13 +816,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
+				GCC_PREFIX_HEADER = "MusicModes/MusicModes-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "AncientModesTests/ModesEarTests-Info.plist";
-				PRODUCT_NAME = ModesEarTests;
+				PRODUCT_NAME = MusicModesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -838,9 +839,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ModesEar/ModesEar-Prefix.pch";
+				GCC_PREFIX_HEADER = "MusicModes/MusicModes-Prefix.pch";
 				INFOPLIST_FILE = "AncientModesTests/ModesEarTests-Info.plist";
-				PRODUCT_NAME = ModesEarTests;
+				PRODUCT_NAME = MusicModesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -849,7 +850,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C00724B118874135001446A5 /* Build configuration list for PBXProject "ModesEar" */ = {
+		C00724B118874135001446A5 /* Build configuration list for PBXProject "MusicModes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C00724E618874136001446A5 /* Debug */,
@@ -858,7 +859,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C00724E818874136001446A5 /* Build configuration list for PBXNativeTarget "ModesEar" */ = {
+		C00724E818874136001446A5 /* Build configuration list for PBXNativeTarget "MusicModes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C00724E918874136001446A5 /* Debug */,
@@ -867,7 +868,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C00724EB18874136001446A5 /* Build configuration list for PBXNativeTarget "ModesEarTests" */ = {
+		C00724EB18874136001446A5 /* Build configuration list for PBXNativeTarget "MusicModesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C00724EC18874136001446A5 /* Debug */,
