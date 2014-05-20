@@ -111,7 +111,7 @@
 -(void)playScale:(AMScale *) scale{
     BOOL playAsc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playAscending"];
     BOOL playDesc = [[NSUserDefaults standardUserDefaults] boolForKey:@"playDescending"];
-    MusicSequence scaleSequence;
+    MusicSequence scaleSequence = NULL;
     if(playAsc) scaleSequence = [scale scaleSequenceAscAdjustedForPlayerRange];
     if(playDesc) scaleSequence = [scale scaleSequenceDescAdjustedForPlayerRange];
     if(playAsc && playDesc) scaleSequence =[scale scaleSequenceAdjustedForPlayerRange];
@@ -361,13 +361,13 @@ static void MIDIReadProcess(const MIDIPacketList *pktlist, void *refCon, void *c
             Byte note = packet->data[1] & 0x7F;
             Byte velocity = packet->data[2] & 0x7F;
             
-            OSStatus result = noErr;
+            //OSStatus result = noErr;
             
             if(velocity==0){
                 UInt32 noteOff = 0x8 << 4 | 0;
-                result = MusicDeviceMIDIEvent (refCon, noteOff, note, velocity, 0);
+                MusicDeviceMIDIEvent (refCon, noteOff, note, velocity, 0);
             }else{
-                result = MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
+                MusicDeviceMIDIEvent (refCon, midiStatus, note, velocity, 0);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MIDINotePlayed" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", (int) note] forKey:@"MIDINote"]];
             }
         }
